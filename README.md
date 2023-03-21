@@ -13,10 +13,10 @@ To play the game, simply download and run the project.
 - Gameplay log and statistics
 
 # Contributors
-[Andrew Graham](https://github.com/JustDru)
-[Joshua Frederick](https://github.com/frederickj3)
-[Markus Bruusgard](https://github.com/R0ss44)
-[Mark Spiers](https://github.com/MarkSpiers25)
-[Sebastian Castelan](https://github.com/Zelius5)
-[Ryan Tapp](https://github.com/RyanTapp91)
-[Ethan Chen](https://github.com/Americanprogrammer108)
+[Andrew Graham](https://github.com/JustDru)\
+[Joshua Frederick](https://github.com/frederickj3)\
+[Markus Bruusgard](https://github.com/R0ss44)\
+[Mark Spiers](https://github.com/MarkSpiers25)\
+[Sebastian Castelan](https://github.com/Zelius5)\
+[Ryan Tapp](https://github.com/RyanTapp91)\
+[Ethan Chen](https://github.com/Americanprogrammer108)\
