@@ -19,4 +19,4 @@ To play the game, simply download and run the project.
 [Mark Spiers](https://github.com/MarkSpiers25)\
 [Sebastian Castelan](https://github.com/Zelius5)\
 [Ryan Tapp](https://github.com/RyanTapp91)\
-[Ethan Chen](https://github.com/Americanprogrammer108)\
+[Ethan Chen](https://github.com/Americanprogrammer108)
