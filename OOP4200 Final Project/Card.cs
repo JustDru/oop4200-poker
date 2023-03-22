@@ -63,9 +63,7 @@ namespace OOP4200_Final_Project
         {
             return (op1.cardSuit != op2.cardSuit || op1.cardValue != op2.cardValue);
         }
-        
 
-
-
+//  TODO Do a draw class
     }
 }
