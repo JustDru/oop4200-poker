@@ -1,0 +1,110 @@
+﻿<Window x:Class="OOP4200_Final_Project.Gameplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP4200_Final_Project"
+        mc:Ignorable="d"
+        Title="Gameplay" Height="800" Width="1200">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="20,20,20,392">
+            <StackPanel Orientation="Vertical">
+                <Button Content="MainMenu" Click="ReturnMM" Width="100" HorizontalAlignment="Left"/>
+                <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="DealerCard1" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard2" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard3" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard4" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard5" Source="CardBack.png" Height="145" Width="100"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="Aqua">
+                <Label Content="Bot 1" FontWeight="Bold" FontSize="18"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="Bot1Card1" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot1Card2" Source="CardBack.png" Height="145" Width="100"/>
+                </StackPanel>
+                <Label Content="$amount:"/>
+                <TextBox Name="tbxBot1Amount"/>
+                <Label Content="$Bet:"/>
+                <TextBox Name="tbxBot1Bet"/>
+                <Label Content="Status:"/>
+                <TextBox Name="tbxBot1Status"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="YellowGreen">
+                <Label Content="Bot 2" FontWeight="Bold" FontSize="18"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="Bot2Card1" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot2Card2" Source="CardBack.png" Height="145" Width="100"/>
+                </StackPanel>
+                <Label Content="$amount:"/>
+                <TextBox Name="tbxBot2Amount"/>
+                <Label Content="$Bet:"/>
+                <TextBox Name="tbxBot2Bet"/>
+                <Label Content="Status:"/>
+                <TextBox Name="tbxBot2Status"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="Fuchsia">
+                <Label Content="Bot 3" FontWeight="Bold" FontSize="18"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="Bot3Card1" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot3Card2" Source="CardBack.png" Height="145" Width="100"/>
+                </StackPanel>
+                <Label Content="$amount:"/>
+                <TextBox Name="tbxBot3Amount"/>
+                <Label Content="$Bet:"/>
+                <TextBox Name="tbxBot3Bet"/>
+                <Label Content="Status:"/>
+                <TextBox Name="tbxBot3Status"/>
+
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="20,397,20,20">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Status:"/>
+                    <TextBox Name="tbxUserStatus"/>
+                    <Label Content="Bet:"/>
+                    <TextBox Name="tbxUserBet"/>
+                    <Label Content="Amount:"/>
+                    <TextBox Name="tbxUserAmount"/>
+                </StackPanel>
+                <Image Name="UserCard1" Source="CardBack.png" Height="300" Width="207"/>
+                <Image Name="UserCard2" Source="CardBack.png" Height="300" Width="207"/>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Actions:"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Call: " Width="55"/>
+                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Fold: " Width="55"/>
+                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Raise: " Width="55"/>
+                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <TextBox Name="tbxRaise" Width="80" IsEnabled="False" TextChanged="tbxRaise_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Check: " Width="55"/>
+                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                    </StackPanel>
+                    <Button Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Current Pot: "/>
+                    <TextBox Name="tbxPot"/>
+                    <Label Content="Announcements: "/>
+                    <ListBox Name="lbxAnnoucements"/>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
+
