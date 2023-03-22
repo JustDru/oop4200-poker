@@ -17,10 +17,10 @@
         <Label HorizontalAlignment="Left" Margin="44,172,0,0"  Content="Bot 1" VerticalAlignment="Top" Width="56" FontSize="20"/>
         <Label HorizontalAlignment="Left" Margin="44,227,0,0"  Content="Bot 2" VerticalAlignment="Top" Width="56" FontSize="20"/>
         <Label HorizontalAlignment="Left" Margin="44,291,0,0"  Content="Bot 3" VerticalAlignment="Top" Width="56" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="544,124,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="544,176,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="544,231,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="544,295,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="544,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="544,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="544,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="544,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20"/>
         <ComboBox HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
             <ComboBoxItem>Easy</ComboBoxItem>
             <ComboBoxItem>Medium</ComboBoxItem>
@@ -44,5 +44,9 @@
             <ComboBoxItem>Playing</ComboBoxItem>
             <ComboBoxItem>Not Playing</ComboBoxItem>
         </ComboBox>
+        <Label Content="$" HorizontalAlignment="Left" Margin="525,122,0,0" VerticalAlignment="Top" FontSize="17"/>
+        <Label Content="$" HorizontalAlignment="Left" Margin="525,174,0,0" VerticalAlignment="Top" FontSize="17"/>
+        <Label Content="$" HorizontalAlignment="Left" Margin="525,227,0,0" VerticalAlignment="Top" FontSize="17"/>
+        <Label Content="$" HorizontalAlignment="Left" Margin="525,291,0,0" VerticalAlignment="Top" FontSize="17"/>
     </Grid>
 </Window>
