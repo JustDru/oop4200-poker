@@ -12,9 +12,9 @@ namespace OOP4200_Final_Project
         // Give values to each card suit
         public enum Suit
         {
-            Club = 1,
-            Diamond = 2,
-            Heart = 3,
+            Clubs = 1,
+            Diamonds = 2,
+            Hearts = 3,
             Spades = 4
         }
 
@@ -65,6 +65,11 @@ namespace OOP4200_Final_Project
         public static bool operator !=(Card op1, Card op2)
         {
             return (op1.cardSuit != op2.cardSuit || op1.cardValue != op2.cardValue);
+        }
+
+        public override string ToString()
+        {
+            return cardValue + " of " + cardSuit;
         }
 
         #endregion

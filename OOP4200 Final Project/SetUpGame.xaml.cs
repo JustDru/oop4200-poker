@@ -22,7 +22,11 @@ namespace OOP4200_Final_Project
     {
         public SetUpGame()
         {
+
             InitializeComponent();
+
+            
+
         }
     }
 }
