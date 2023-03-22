@@ -21,10 +21,28 @@
         <TextBox HorizontalAlignment="Left" Margin="544,176,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Margin="544,231,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Margin="544,295,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120" FontSize="20"/>
-        <ComboBox HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Width="120" FontSize="17"/>
-        <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="17" Margin="0,231,0,0"/>
-        <ComboBox HorizontalAlignment="Center" Margin="0,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17"/>
-        <ComboBox HorizontalAlignment="Left" Margin="145,235,0,0" VerticalAlignment="Top" Width="120" FontSize="17"/>
-        <ComboBox HorizontalAlignment="Left" Margin="146,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17"/>
+        <ComboBox HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
+            <ComboBoxItem>Easy</ComboBoxItem>
+            <ComboBoxItem>Medium</ComboBoxItem>
+            <ComboBoxItem>Easy</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="17" Margin="0,231,0,0">
+            <ComboBoxItem>Easy</ComboBoxItem>
+            <ComboBoxItem>Medium</ComboBoxItem>
+            <ComboBoxItem>Easy</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Center" Margin="0,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
+            <ComboBoxItem>Easy</ComboBoxItem>
+            <ComboBoxItem>Medium</ComboBoxItem>
+            <ComboBoxItem>Easy</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="145,235,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
+            <ComboBoxItem>Playing</ComboBoxItem>
+            <ComboBoxItem>Not Playing</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
+            <ComboBoxItem>Playing</ComboBoxItem>
+            <ComboBoxItem>Not Playing</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>
