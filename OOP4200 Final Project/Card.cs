@@ -8,7 +8,7 @@ namespace OOP4200_Final_Project
 {
     internal class Card
     {
-        // Enumerators
+        #region Enumerators
         // Give values to each card suit
         public enum Suit
         {
@@ -35,12 +35,15 @@ namespace OOP4200_Final_Project
             Queen = 12,
             King = 13
         }
+        #endregion
 
-
-        // Properties
+        #region Properties
         public Suit cardSuit { get; set; }
         public Value cardValue { get; set; }
+        #endregion
 
+
+        #region Method
 
         /// <summary>
         /// Checks if two cards passed in are equal to eachother
@@ -64,6 +67,6 @@ namespace OOP4200_Final_Project
             return (op1.cardSuit != op2.cardSuit || op1.cardValue != op2.cardValue);
         }
 
-//  TODO Do a draw class
+        #endregion
     }
 }
