@@ -1,0 +1,15 @@
+﻿<Window x:Class="FinalProjectforOOP.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProjectforOOP"
+        mc:Ignorable="d"
+        Title="Help" Height="450" Width="800">
+    <Grid x:Name="Helpwindow">
+        <Button x:Name="HowToPlay" Content="How to Play" HorizontalAlignment="Left" Margin="40,328,0,0" VerticalAlignment="Top" Click="HowToPlay_Click"/>
+        <Button x:Name="ChangeBackground" Content="Change background" HorizontalAlignment="Left" Margin="305,328,0,0" VerticalAlignment="Top" Click="ChangeBackground_Click"/>
+        <Label x:Name="SelectanOption" Content="Select an Option" HorizontalAlignment="Left" Margin="40,51,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
