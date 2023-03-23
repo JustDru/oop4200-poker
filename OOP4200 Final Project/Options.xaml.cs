@@ -16,18 +16,27 @@ using System.Windows.Shapes;
 namespace OOP4200_Final_Project
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Options.xaml
     /// </summary>
-    public partial class SetUpGame : UserControl
+    public partial class Options : UserControl
     {
-        public SetUpGame()
+        public Options()
         {
-
             InitializeComponent();
-
-            
-
         }
 
+        private void Options_Accept_CLick(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void Options_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            //MainMenu.Show_Menu();
+            //Control menu = new MainMenu();
+            //this.Content = menu;
+            MainMenu menu1 = new MainMenu();
+            MainMenu.Show_Menu();
+        }
     }
 }
