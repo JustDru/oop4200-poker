@@ -21,8 +21,6 @@ namespace OOP4200_Final_Project
     public partial class MainMenu : Window
     {
 
-        string resolution;
-        string windowSize;
 
 
         public MainMenu()
@@ -31,39 +29,6 @@ namespace OOP4200_Final_Project
             this.ContentGrid.Visibility = Visibility.Hidden;
             
         }
-        public static void Show_Menu()
-        {
-            //Control menu = new MainMenu();
-            //menu.Visibility = Visibility.Visible;
-            //System.Windows.Application.Current.Shutdown();
-            Window menu = new MainMenu();
-            menu.Show();
-        }
-
-        private String getResolution()
-        {
-            return this.resolution;
-        }
-        private void setResolution(string resolution)
-        {
-            this.resolution = resolution;
-        }
-        private string getWindowSize()
-        {
-            return this.windowSize;
-        }
-        private void setWindowSize(string windowSize)
-        {
-            this.windowSize = windowSize;
-        }
-
-        public void SetOptions(string resolution, string windowSize)
-        {
-            setResolution(resolution);
-            setWindowSize(windowSize);
-
-        }
-
       
         private void Play_Click(object sender, RoutedEventArgs e)
         {
@@ -79,7 +44,7 @@ namespace OOP4200_Final_Project
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
-            this.mainContentControl.Content = new Options();
+           
             this.ContentGrid.Visibility = Visibility.Visible;
             this.OptionsView.Visibility = Visibility.Visible;
 
@@ -99,19 +64,34 @@ namespace OOP4200_Final_Project
         private void Options_Accept_Click(object sender, RoutedEventArgs e)
         {
             this.ContentGrid.Visibility = Visibility.Hidden;
-            this.OptionsView.Visibility= Visibility.Hidden;
-
+            this.OptionsView.Visibility = Visibility.Hidden;
 
             
-            Object selectedItem = cboWindowMode.SelectedItem;
-            if (1==2)
+            int selectedIndex = cboWindowMode.SelectedIndex;
+            // Fullscreen
+            if (selectedIndex == 0)
             {
                 this.Visibility = Visibility.Collapsed;
                 this.WindowState = WindowState.Maximized;
                 this.WindowStyle = WindowStyle.None;
                 this.Visibility = Visibility.Visible;
+            
+            // Windowed Fullscreen
+            } else if (selectedIndex == 1)
+            {
+                this.WindowState = WindowState.Normal;
+                this.WindowStyle = WindowStyle.ThreeDBorderWindow;
+                this.WindowState = WindowState.Maximized;
+                this.Visibility = Visibility.Visible;
             }
 
+            // Windowed
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                this.WindowStyle = WindowStyle.ThreeDBorderWindow;
+                this.Visibility = Visibility.Visible;
+            }
 
         }
     }
