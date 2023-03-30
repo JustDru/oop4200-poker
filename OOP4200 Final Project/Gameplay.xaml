@@ -1,4 +1,4 @@
-﻿<Window x:Class="OOP4200_Final_Project.Gameplay"
+﻿<Window x:Name="GameplayScreen" x:Class="OOP4200_Final_Project.Gameplay"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
         Title="Gameplay" Height="800" Width="1200">
-    <Grid>
-        <StackPanel Orientation="Horizontal" Margin="20,20,20,392">
+    <Grid x:Name="Gamescreen">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
                 <Button Content="MainMenu" Click="ReturnMM" Width="100" HorizontalAlignment="Left"/>
                 <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18"/>
@@ -26,11 +30,11 @@
                     <Image Name="Bot1Card2" Source="CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
-                <TextBox Name="tbxBot1Amount"/>
+                <TextBox Name="tbxBot1Amount" IsReadOnly="True"/>
                 <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot1Bet"/>
+                <TextBox Name="tbxBot1Bet" IsReadOnly="True"/>
                 <Label Content="Status:"/>
-                <TextBox Name="tbxBot1Status"/>
+                <TextBox Name="tbxBot1Status" IsReadOnly="True"/>
 
             </StackPanel>
             <StackPanel Orientation="Vertical" Background="YellowGreen">
@@ -40,11 +44,11 @@
                     <Image Name="Bot2Card2" Source="CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
-                <TextBox Name="tbxBot2Amount"/>
+                <TextBox Name="tbxBot2Amount" IsReadOnly="True"/>
                 <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot2Bet"/>
+                <TextBox Name="tbxBot2Bet" IsReadOnly="True"/>
                 <Label Content="Status:"/>
-                <TextBox Name="tbxBot2Status"/>
+                <TextBox Name="tbxBot2Status" IsReadOnly="True"/>
 
             </StackPanel>
             <StackPanel Orientation="Vertical" Background="Fuchsia">
@@ -54,23 +58,23 @@
                     <Image Name="Bot3Card2" Source="CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
-                <TextBox Name="tbxBot3Amount"/>
+                <TextBox Name="tbxBot3Amount" IsReadOnly="True"/>
                 <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot3Bet"/>
+                <TextBox Name="tbxBot3Bet" IsReadOnly="True"/>
                 <Label Content="Status:"/>
-                <TextBox Name="tbxBot3Status"/>
+                <TextBox Name="tbxBot3Status" IsReadOnly="True"/>
 
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="20,397,20,20">
+        <StackPanel Orientation="Vertical" Margin="20,397,20,20" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Status:"/>
                     <TextBox Name="tbxUserStatus"/>
                     <Label Content="Bet:"/>
-                    <TextBox Name="tbxUserBet"/>
+                    <TextBox Name="tbxUserBet" IsReadOnly="True"/>
                     <Label Content="Amount:"/>
-                    <TextBox Name="tbxUserAmount"/>
+                    <TextBox Name="tbxUserAmount" IsReadOnly="True"/>
                 </StackPanel>
                 <Image Name="UserCard1" Source="CardBack.png" Height="300" Width="207"/>
                 <Image Name="UserCard2" Source="CardBack.png" Height="300" Width="207"/>

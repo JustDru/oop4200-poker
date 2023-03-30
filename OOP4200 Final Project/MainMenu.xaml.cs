@@ -35,11 +35,22 @@ namespace OOP4200_Final_Project
            
             this.mainContentControl.Content = new SetUpGame();
             this.ContentGrid.Visibility = Visibility.Visible;
+
+            //MyCard1.Visibility = Visibility.Visible;
+            //MyCard2.Visibility = Visibility.Visible;
+            /*
+            P2Card1.Visibility = Visibility.Visible;
+            P2Card2.Visibility = Visibility.Visible;
+            P3Card1.Visibility = Visibility.Visible;
+            P3Card2.Visibility = Visibility.Visible;
+            P4Card1.Visibility = Visibility.Visible;
+            P4Card2.Visibility = Visibility.Visible;*/
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            
+            Help win2 = new Help();
+            win2.Show();
         }
 
         private void Options_Click(object sender, RoutedEventArgs e)

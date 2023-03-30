@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,9 +20,149 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class Gameplay : Window
     {
+        int turn = 1;
+        int callamountraise;
+        string[] suits = {"♥","♦", "♣", "♠"};
+
+        int[] ranks = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+        //11 is Jack, 12 is queen, 13 is King and 14 is Ace
+
+        string selectedsuit = "";
+        int selectedrank;
+
         public Gameplay()
         {
             InitializeComponent();
+        }
+
+
+
+        public void Start()
+        {
+            Random rand = new Random();
+            selectedsuit = suits[rand.Next(0, suits.Length)];
+            selectedrank = ranks[rand.Next(0, ranks.Length)];
+
+            Take2Cards(selectedsuit, selectedrank);
+            for (int i = 0; i <= 4; i++)
+            {
+                Call();
+                Thread.Sleep(3000);
+            }
+            
+        }
+
+        public void Raise()
+        {
+            tbxRaise.IsEnabled = true;
+        }
+
+        public void Take2Cards(string suit, int rank)
+        {
+            Card P1Cards = new Card();
+        }
+
+        public void Bet()
+        {
+
+        }
+
+        public void Call()
+        {
+            if (turn == 1)
+            {
+                rbCall.IsEnabled = false;
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                try
+                {
+                    if (int.TryParse(tbxUserAmount.Text, out int callAmount))
+                    {
+                        callAmount--;
+                        tbxUserAmount.Text = callAmount.ToString();
+                        callamountraise++;
+                        tbxPot.Text = callamountraise.ToString();
+                        callamountraise = callamountraise * 2;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error has occurred");
+                }
+            }
+            else if (turn == 2)
+            {
+                try
+                {
+                    if (int.TryParse(tbxBot1Amount.Text, out int bot1callAmount))
+                    {
+                        //deduct how much was the callamountraise
+                        bot1callAmount-= callamountraise;
+
+                        //convert to string to return how much is left
+                        tbxUserAmount.Text = bot1callAmount.ToString();
+
+                        //add to pot
+                        if(int.TryParse(tbxPot.Text, out int addamount))
+                        {
+                            addamount += callamountraise;
+                        }
+                        //return the value for display
+                        tbxPot.Text = bot1callAmount.ToString();
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error has occurred");
+                }
+            }
+            else if (turn == 3)
+            {
+                try
+                {
+                    if (int.TryParse(tbxBot1Amount.Text, out int bot2callAmount))
+                    {
+                        bot2callAmount-= callamountraise;
+                        tbxUserAmount.Text = bot2callAmount.ToString();
+                        if (int.TryParse(tbxPot.Text, out int addamount2))
+                        {
+                            addamount2 += callamountraise;
+                        }
+                        tbxPot.Text = bot2callAmount.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error has occurred");
+                }
+            }
+            else if (turn == 4)
+            {
+                try
+                {
+                    if (int.TryParse(tbxBot1Amount.Text, out int bot3callAmount))
+                    {
+                        bot3callAmount-= callamountraise;
+                        tbxUserAmount.Text = bot3callAmount.ToString();
+                        if (int.TryParse(tbxPot.Text, out int addamount3))
+                        {
+                            addamount3 += callamountraise;
+                        }
+                        tbxPot.Text = bot3callAmount.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error has occurred");
+                }
+            }
+        }
+
+        public void deal3()
+        {
+
         }
 
         BitmapImage CARDBACK = new BitmapImage(new Uri("CardBack.png", UriKind.Relative));
@@ -43,6 +184,19 @@ namespace OOP4200_Final_Project
             //after all rounds, all cards are displayed and the winner
             //gets the pot, and will be stated who won in the announcements
 
+            if(turn == 1)
+            {
+                if(rbCall.IsChecked == true || rbCheck.IsChecked == true || rbRaise.IsChecked == true || rbFold.IsChecked == true)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select an option");
+                }
+            }
+
+            /*
             tbxRaise.IsEnabled = false;
             rbCall.IsChecked = false;
             rbFold.IsChecked = false;
@@ -116,6 +270,7 @@ namespace OOP4200_Final_Project
 
                 lbxAnnoucements.Items.Add("Dealer: Game Reset");
             }
+            */
 
 
 
