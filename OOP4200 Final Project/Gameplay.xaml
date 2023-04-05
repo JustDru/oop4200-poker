@@ -110,6 +110,9 @@
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
+                </StackPanel>
             </StackPanel>
             <TextBox x:Name="TurnDisplay" TextWrapping="Wrap" Text="" Width="120"/>
 

@@ -88,22 +88,103 @@ namespace OOP4200_Final_Project
             
         }
 
-        public static bool operator ==(Card op1, Card op2)
+
+        /// <summary>
+        /// Acts as a secondary == operator, takes in two Cards and checks if they share the same suit
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool SameSuit(Card op1, Card op2)
         {
-            return (op1.cardSuit == op2.cardSuit && op1.cardValue == op2.cardValue);
+            return (op1.cardSuit == op2.cardSuit);
         }
 
         /// <summary>
-        /// Checks if two cards passed in are not equal to eachother
+        /// Acts as a secondary != operator, takes in two Cards and checks if they are different suits
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool DifferentSuit(Card op1, Card op2)
+        {
+            return (op1.cardSuit != op2.cardSuit);
+        }
+
+
+        /// <summary>
+        /// Takes in 2 cards and checks if the values of the two cards are equal to eachother
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool operator ==(Card op1, Card op2)
+        {
+            return (op1.cardValue == op2.cardValue);
+        }
+
+
+        /// <summary>
+        /// Takes in 2 cards and checks if the values of the two cards are not equal to eachother
         /// </summary>
         /// <param name="op1"></param>
         /// <param name="op2"></param>
         /// <returns></returns>
         public static bool operator !=(Card op1, Card op2)
         {
-            return (op1.cardSuit != op2.cardSuit || op1.cardValue != op2.cardValue);
+            return (op1.cardValue != op2.cardValue);
         }
 
+        /// <summary>
+        /// Takes in 2 cards and checks if Card 1 is less than the value of Card 2
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool operator <(Card op1, Card op2)
+        {
+            return (op1.cardValue < op2.cardValue);
+        }
+
+        /// <summary>
+        /// Takes in 2 Cards and checks if Card 1 is greater than the value of Card 2
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool operator >(Card op1, Card op2)
+        {
+            return (op1.cardValue > op2.cardValue);
+        }
+
+        /// <summary>
+        /// Takes in 2 Cards and checks if Card 1 is less than or equal to the value of Card 2
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool operator <=(Card op1, Card op2)
+        {
+            return (op1.cardValue <= op2.cardValue);
+        }
+
+        /// <summary>
+        /// Takes in two Cards and checks if Card 1 is greater than or equal to the value of Card 2
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool operator >=(Card op1, Card op2)
+        {
+            return (op1.cardValue >= op2.cardValue);
+        }
+
+
+
+        /// <summary>
+        /// Override the ToString method for the class
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return cardValue + " of " + cardSuit;
