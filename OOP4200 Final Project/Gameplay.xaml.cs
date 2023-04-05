@@ -20,15 +20,11 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class Gameplay : Window
     {
+        
+
         int turn = 1;
         int callamountraise;
-        string[] suits = {"♥","♦", "♣", "♠"};
-
-        int[] ranks = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-        //11 is Jack, 12 is queen, 13 is King and 14 is Ace
-
-        string selectedsuit = "";
-        int selectedrank;
+        Deck deck = new Deck();
 
         public Gameplay()
         {
@@ -36,20 +32,34 @@ namespace OOP4200_Final_Project
         }
 
 
-
+        /// <summary>
+        /// Method that runs when the game is started - initalizes all players
+        /// </summary>
         public void Start()
         {
-            Random rand = new Random();
-            selectedsuit = suits[rand.Next(0, suits.Length)];
-            selectedrank = ranks[rand.Next(0, ranks.Length)];
+            // Create the player object for the human player
+            int playerStartAmount = Int32.Parse(tbxUserAmount.Text);
+            Player human = new Player("Player", deck.DrawCards(2), playerStartAmount);
 
-            Take2Cards(selectedsuit, selectedrank);
-            for (int i = 0; i <= 4; i++)
+            // Bot 1 is enabled by default, create their Player object
+            int bot1StartAmount = Int32.Parse(tbxBot1Amount.Text);
+            Player bot1 = new Player("bot1", deck.DrawCards(2), bot1StartAmount);
+
+            // If bot 2 is enabled create their Player object
+            if(tbxBot2Amount != null)
             {
-                Call();
-                Thread.Sleep(3000);
+                int bot2StartAmount = Int32.Parse(tbxBot2Amount.Text);
+                Player bot2 = new Player("bot2", deck.DrawCards(2), bot2StartAmount);
             }
-            
+            // If bot 3 is enabled create their Player object
+            if (tbxBot3Amount != null)
+            {
+                int bot3StartAmount = Int32.Parse(tbxBot3Amount.Text);
+                Player bot3 = new Player("bot3", deck.DrawCards(2), bot3StartAmount);
+            }
+
+
+
         }
 
         public void Raise()
@@ -160,10 +170,6 @@ namespace OOP4200_Final_Project
             }
         }
 
-        public void deal3()
-        {
-
-        }
 
         BitmapImage CARDBACK = new BitmapImage(new Uri("CardBack.png", UriKind.Relative));
         BitmapImage RandomCard = new BitmapImage(new Uri("2_of_clubs.png", UriKind.Relative));//placeholder until class logic
