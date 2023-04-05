@@ -326,5 +326,11 @@ namespace OOP4200_Final_Project
                 btnContinue.IsEnabled = true;
             }
         }
+
+        private void btnRanking_Click(object sender, RoutedEventArgs e)
+        {
+            Rankings ranking = new Rankings();
+            ranking.Visibility = Visibility.Visible;
+        }
     }
 }

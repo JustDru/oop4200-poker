@@ -14,7 +14,7 @@
         <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
                 <Button Content="MainMenu" Click="ReturnMM" Width="100" HorizontalAlignment="Left"/>
-                <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18"/>
+                <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="DealerCard1" Source="CardBack.png" Height="145" Width="100"/>
                     <Image Name="DealerCard2" Source="CardBack.png" Height="145" Width="100"/>
@@ -104,6 +104,9 @@
                     <TextBox Name="tbxPot"/>
                     <Label Content="Announcements: "/>
                     <ListBox Name="lbxAnnoucements"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
             </StackPanel>
 
