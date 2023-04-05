@@ -20,41 +20,397 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class Gameplay : Window
     {
+        
+
         int turn = 1;
         int callamountraise;
-        string[] suits = {"♥","♦", "♣", "♠"};
+        int choice = 0;
+        int call;
 
-        int[] ranks = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-        //11 is Jack, 12 is queen, 13 is King and 14 is Ace
-
-        string selectedsuit = "";
-        int selectedrank;
+        bool P1Fold, P2Fold, P3Fold, P4Fold;
+        int foldcount;
+        Deck deck = new Deck();
 
         public Gameplay()
         {
             InitializeComponent();
+            turn = 1;
         }
 
+        public void Fold()
+        {
+            tbxAnnouncements.Clear();
+            if (turn == 1)
+            {
+                P1Fold = true;
+                tbxAnnouncements.Text = "You folded";
+                foldcount++;
+            }
+            else if (turn == 2)
+            {
+                P2Fold = true;
+                tbxAnnouncements.Text = "Player 2 has folded";
+                foldcount++;
+            }
+            else if (turn == 3)
+            {
+                P3Fold = true;
+                tbxAnnouncements.Text = "Player 3 has folded";
+                foldcount++;
+            }
+            else if (turn == 4)
+            {
+                P4Fold = true;
+                tbxAnnouncements.Text = "Player 4 has folded";
+                foldcount++;
+            }
+            Thread.Sleep(3000);
 
+            if (foldcount == 3 && P1Fold == false)
+            {
+                if (int.TryParse(tbxUserAmount.Text, out int record1))
+                {
+                    if (int.TryParse(tbxPot.Text, out int record2))
+                    {
+                        record1 += record2;
+                        tbxAnnouncements.Text = "You won $" + record2;
+                    }
+                    tbxUserAmount.Text = record1.ToString();
+                    NextRoundbtn.IsEnabled = true;
+                }
+            }
+            else if (foldcount == 3 && P2Fold == false)
+            {
+                if (int.TryParse(tbxBot1Amount.Text, out int record3))
+                {
+                    if (int.TryParse(tbxPot.Text, out int record4))
+                    {
+                        record3 += record4;
+                        tbxAnnouncements.Text = "Player 2 has won $" + record4;
+                    }
+                    tbxBot1Amount.Text = record3.ToString();
+                    NextRoundbtn.IsEnabled = true;
+                }
+            }
+            else if (foldcount == 3 && P3Fold == false)
+            {
+                if (int.TryParse(tbxBot2Amount.Text, out int record5))
+                {
+                    if (int.TryParse(tbxPot.Text, out int record6))
+                    {
+                        record5 += record6;
+                        tbxAnnouncements.Text = "Player 3 has won $" + record6;
+                    }
+                    tbxBot2Amount.Text = record5.ToString();
+                }
+                NextRoundbtn.IsEnabled = true;
+            }
+            else if (foldcount == 3 && P4Fold == false)
+            {
+                if (int.TryParse(tbxBot3Amount.Text, out int record7))
+                {
+                    if (int.TryParse(tbxPot.Text, out int record8))
+                    {
+                        record7 += record8;
+                        tbxAnnouncements.Text = "Player 4 has won $" + record8;
+                    }
+                    tbxBot3Amount.Text = record7.ToString();
+                }
+                NextRoundbtn.IsEnabled = true;
+            }
+            turn++;
+            TurnDisplay.Text = "Turn " + turn;
+            Thread.Sleep(1000);
+            Continue();
+        }
 
+        /// <summary>
+        /// Method that runs when the game is started - initalizes all players
+        /// </summary>
         public void Start()
         {
-            Random rand = new Random();
-            selectedsuit = suits[rand.Next(0, suits.Length)];
-            selectedrank = ranks[rand.Next(0, ranks.Length)];
+            // Create the player object for the human player
+            int playerStartAmount = Int32.Parse(tbxUserAmount.Text);
+            Player human = new Player("Player", deck.DrawCards(2), playerStartAmount);
 
-            Take2Cards(selectedsuit, selectedrank);
-            for (int i = 0; i <= 4; i++)
+            // Bot 1 is enabled by default, create their Player object
+            int bot1StartAmount = Int32.Parse(tbxBot1Amount.Text);
+            Player bot1 = new Player("bot1", deck.DrawCards(2), bot1StartAmount);
+
+            // If bot 2 is enabled create their Player object
+            if(tbxBot2Amount != null)
             {
-                Call();
-                Thread.Sleep(3000);
+                int bot2StartAmount = Int32.Parse(tbxBot2Amount.Text);
+                Player bot2 = new Player("bot2", deck.DrawCards(2), bot2StartAmount);
             }
-            
+            // If bot 3 is enabled create their Player object
+            if (tbxBot3Amount != null)
+            {
+                int bot3StartAmount = Int32.Parse(tbxBot3Amount.Text);
+                Player bot3 = new Player("bot3", deck.DrawCards(2), bot3StartAmount);
+            }
+
+            turn = 1;
+            Continue();
+
+
+        }
+
+        public void Check()
+        {
+            tbxAnnouncements.Clear();
+            if (turn == 1)
+            {
+                TurnDisplay.Text = "Turn " + turn;
+                tbxAnnouncements.Text = "You checked";
+            }
+            else if (turn == 2)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                TurnDisplay.Text = "Turn " + turn;
+                tbxAnnouncements.Text = "Player 2 checked";
+            }
+            else if (turn == 3)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                TurnDisplay.Text = "Turn " + turn;
+                tbxAnnouncements.Text = "Player 3 checked";
+
+            }
+            else if (turn == 4)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                TurnDisplay.Text = "Turn " + turn;
+                tbxAnnouncements.Text = "Player 4 checked";
+            }
+            Thread.Sleep(3000);
+            Continue();
+        }
+
+        public void Continue()
+        {
+            Random randomselector = new Random();
+            int choice;
+            if (turn == 1)
+            {
+                rbFold.IsEnabled = true;
+                rbRaise.IsEnabled = true;
+                if (call == 3)
+                {
+                    rbCheck.IsEnabled = true;
+                    rbCall.IsEnabled = false;
+                }
+                else
+                {
+                    rbCall.IsEnabled = true;
+                    rbCheck.IsEnabled = false;
+                }
+                btnContinue.IsEnabled = true;
+
+
+            }
+            else if (turn == 2)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                choice = randomselector.Next(1, 3);
+                if (turn == 2 && P2Fold == true)
+                {
+                    turn++;
+                }
+                else
+                {
+                    if (choice == 1)
+                    {
+
+                        if (call == 3)
+                        {
+                            Check();
+                        }
+                        else
+                        {
+                            Call();
+                        }
+
+                    }
+                    else if (choice == 2)
+                    {
+                        Raise();
+                    }
+                    else if (choice == 3)
+                    {
+                        Fold();
+                    }
+                }
+
+            }
+            else if (turn == 3)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                choice = randomselector.Next(1, 3);
+                if (turn == 3 && P3Fold == true)
+                {
+                    turn++;
+                }
+                else
+                {
+                    if (choice == 1)
+                    {
+                        if (call == 3)
+                        {
+                            Check();
+                        }
+                        else
+                        {
+                            Call();
+                        }
+
+                    }
+                    else if (choice == 2)
+                    {
+                        Raise();
+                    }
+                    else if (choice == 3)
+                    {
+                        Fold();
+                    }
+                }
+
+            }
+            else if (turn == 4)
+            {
+                rbFold.IsEnabled = false;
+                rbRaise.IsEnabled = false;
+                rbCall.IsEnabled = false;
+                rbCheck.IsEnabled = false;
+                choice = randomselector.Next(1, 3);
+                if (turn == 4 && P4Fold == true)
+                {
+                    turn = 1;
+                }
+                else
+                {
+                    if (choice == 1)
+                    {
+                        if (call == 3)
+                        {
+                            Check();
+                        }
+                        else
+                        {
+                            Call();
+                        }
+
+                    }
+                    else if (choice == 2)
+                    {
+                        Raise();
+                    }
+                    else if (choice == 3)
+                    {
+                        Fold();
+                    }
+                }
+
+            }
         }
 
         public void Raise()
         {
-            tbxRaise.IsEnabled = true;
+            tbxAnnouncements.Clear();
+            if (turn == 1)
+            {
+                tbxRaise.IsEnabled = false;
+                if (int.TryParse(tbxUserAmount.Text, out int bet))
+                {
+                    //now converted to int
+                    if(int.TryParse(tbxRaise.Text, out int myraise))
+                    {
+                        bet = bet - myraise;
+                        if (int.TryParse(tbxPot.Text, out int pot))
+                        {
+                            pot += myraise;
+                            tbxPot.Text = pot.ToString();
+                        }
+                    }
+
+                    tbxUserAmount.Text = bet.ToString();
+                    tbxAnnouncements.Text = "You raise $" + myraise;
+                }
+                turn++;
+                TurnDisplay.Text = "Turn " + turn;
+            }
+            else if (turn == 2)
+            {
+                Random rand = new Random();
+                if (int.TryParse(tbxBot1Amount.Text, out int bet))
+                {
+                    int P2Bet = rand.Next(1, 200);
+                    bet = bet - P2Bet;
+                    if (int.TryParse(tbxPot.Text, out int pot))
+                    {
+                        pot += P2Bet;
+                        tbxPot.Text = pot.ToString();
+                    }
+                    tbxBot1Amount.Text = bet.ToString();
+                    tbxAnnouncements.Text = "Player 2 has raised $" + P2Bet;
+                }
+                turn++;
+                TurnDisplay.Text = "Turn " + turn;
+            }
+            else if (turn == 3)
+            {
+                Random rand = new Random();
+                if (int.TryParse(tbxBot2Amount.Text, out int bet1))
+                {
+                    int P3Bet = rand.Next(1, 200);
+                    bet1 = bet1 - P3Bet;
+                    if (int.TryParse(tbxPot.Text, out int pot))
+                    {
+                        pot += P3Bet;
+                        tbxPot.Text = pot.ToString();
+                    }
+                    tbxBot1Amount.Text = bet1.ToString();
+                    tbxAnnouncements.Text = "Player 3 has raised $" + P3Bet;
+                }
+                turn++;
+                TurnDisplay.Text = "Turn " + turn;
+            }
+            else if (turn == 4)
+            {
+                Random rand = new Random();
+                if (int.TryParse(tbxBot3Amount.Text, out int bet2))
+                {
+                    int P4Bet = rand.Next(1, 200);
+                    bet2 = bet2 - P4Bet;
+                    if (int.TryParse(tbxPot.Text, out int pot))
+                    {
+                        pot += P4Bet;
+                        tbxPot.Text = pot.ToString();
+                    }
+                    tbxBot1Amount.Text = bet2.ToString();
+                    tbxAnnouncements.Text = "Player 4 has raised $" + P4Bet;
+                }
+                turn = 1;
+                TurnDisplay.Text = "Turn " + turn;
+            }
+            call = 1;
+            Thread.Sleep(1000);
+            Continue();
         }
 
         public void Take2Cards(string suit, int rank)
@@ -158,12 +514,9 @@ namespace OOP4200_Final_Project
                     MessageBox.Show("Error has occurred");
                 }
             }
+            Continue();
         }
 
-        public void deal3()
-        {
-
-        }
 
         BitmapImage CARDBACK = new BitmapImage(new Uri("CardBack.png", UriKind.Relative));
         BitmapImage RandomCard = new BitmapImage(new Uri("2_of_clubs.png", UriKind.Relative));//placeholder until class logic
@@ -183,19 +536,45 @@ namespace OOP4200_Final_Project
             //once turn counter hits 4, the dealer revieals the next cards
             //after all rounds, all cards are displayed and the winner
             //gets the pot, and will be stated who won in the announcements
-
-            if(turn == 1)
+            if (turn == 1)
             {
-                if(rbCall.IsChecked == true || rbCheck.IsChecked == true || rbRaise.IsChecked == true || rbFold.IsChecked == true)
+                btnContinue.IsEnabled = true;
+                if (rbCall.IsChecked == true || rbCheck.IsChecked == true || rbRaise.IsChecked == true || rbFold.IsChecked == true)
                 {
-
+                    if (rbCall.IsChecked == true)
+                    {
+                        Call();
+                    }
+                    else if (rbFold.IsChecked == true)
+                    {
+                        Fold();
+                    }
+                    else if (rbRaise.IsChecked == true)
+                    {
+                        Raise();
+                    }
+                    else if (rbCheck.IsChecked == true)
+                    {
+                        Check();
+                    }
+                    turn++;
+                    rbCall.IsEnabled = false;
+                    rbCheck.IsEnabled = false;
+                    rbFold.IsEnabled = false;
+                    rbRaise.IsEnabled = false;
+                    btnContinue.IsEnabled = false;
+                    Continue();
                 }
                 else
                 {
                     MessageBox.Show("Please select an option");
                 }
-            }
 
+            }
+            else
+            {
+                Continue();
+            }
             /*
             tbxRaise.IsEnabled = false;
             rbCall.IsChecked = false;
@@ -278,6 +657,15 @@ namespace OOP4200_Final_Project
 
         private void actionChecked(object sender, RoutedEventArgs e)
         {
+            if(rbRaise.IsChecked == true)
+            {
+                tbxRaise.IsEnabled = true;
+            }
+            else
+            {
+                tbxRaise.IsEnabled = false;
+            }
+            
             //TODO
             if (RoundCounter != 0)
             {
@@ -325,6 +713,12 @@ namespace OOP4200_Final_Project
             {
                 btnContinue.IsEnabled = true;
             }
+        }
+
+        private void btnRanking_Click(object sender, RoutedEventArgs e)
+        {
+            Rankings ranking = new Rankings();
+            ranking.Visibility = Visibility.Visible;
         }
     }
 }

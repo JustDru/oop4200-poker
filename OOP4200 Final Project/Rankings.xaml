@@ -5,30 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
-        Title="Rankings" Height="1500" Width="450">
+        Title="Rankings" Height="650" Width="454">
     <Grid>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,1292,0,0" VerticalAlignment="Top" Width="196" Source="/High_card.jpg"/>
-        <Label Content="High Card" HorizontalAlignment="Center" Margin="0,1376,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,1165,0,0" VerticalAlignment="Top" Width="196" Source="/1_pair.jpg"/>
-        <Label Content="1 Pair" HorizontalAlignment="Center" Margin="0,1249,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,1029,0,0" VerticalAlignment="Top" Width="196" Source="/2_pair.jpg"/>
-        <Label Content="2 Pair" HorizontalAlignment="Center" Margin="0,1113,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,892,0,0" VerticalAlignment="Top" Width="196" Source="/3_of_a_kind.jpg"/>
-        <Label Content="3 of a kind" HorizontalAlignment="Center" Margin="0,976,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,769,0,0" VerticalAlignment="Top" Width="196" Source="/Straight.jpg"/>
-        <Label Content="Straight" HorizontalAlignment="Center" Margin="0,853,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,633,0,0" VerticalAlignment="Top" Width="196" Source="/Flush.jpg"/>
-        <Label Content="Flush" HorizontalAlignment="Center" Margin="0,717,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,497,0,0" VerticalAlignment="Top" Width="196" Source="/Full_house.jpg"/>
-        <Label Content="Full House" HorizontalAlignment="Center" Margin="0,581,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,382,0,0" VerticalAlignment="Top" Width="196" Source="/4_of_a_kind.jpg"/>
-        <Label Content="4 of a kind" HorizontalAlignment="Center" Margin="0,466,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,244,0,0" VerticalAlignment="Top" Width="196" Source="/Straight_Flush.jpg"/>
-        <Label Content="Straight Flush" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Center" Height="111" Margin="0,108,0,0" VerticalAlignment="Top" Width="196" Source="/Royal_Flush.jpg"/>
-        <Label Content="Royal Flush" HorizontalAlignment="Center" Margin="0,192,0,0" VerticalAlignment="Top"/>
-        <Label Content="Reference: Retrieved on March 26, 2023 from" HorizontalAlignment="Center" Margin="0,1413,0,0" VerticalAlignment="Top" Height="28" Width="273"/>
-        <Button Content="888 Poker" HorizontalAlignment="Center" Margin="0,1446,0,0" VerticalAlignment="Top" Width="168" Click="Website_Click"/>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Margin="50,20,0,0">
+                    <Image Source="Royal_flush.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="Royal Flush" HorizontalAlignment="Center" />
+
+                    <Image Source="4_of_a_kind.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="4 of a kind" HorizontalAlignment="Center" />
+
+                    <Image Source="Flush.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="Flush" HorizontalAlignment="Center" />
+
+                    <Image Source="Straight.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="Straight" HorizontalAlignment="Center" />
+
+                    <Image Source="1_pair.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="1 Pair" HorizontalAlignment="Center" />
+
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,40,0,2">
+                    <Image Source="Straight_flush.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="Straight Flush" HorizontalAlignment="Center" />
+
+                    <Image Source="Full_house.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="Full House" HorizontalAlignment="Center" />
+
+                    <Image Source="3_of_a_kind.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="3 of a kind" HorizontalAlignment="Center" />
+
+                    <Image Source="2_pair.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="2 Pair" HorizontalAlignment="Center" />
+
+                    <Image Source="High_card.jpg" Height="100" Width="177" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+                    <Label Content="High Card" HorizontalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label Content="Reference: Retrieved on March 26, 2023 from" HorizontalAlignment="Center" Margin="0,0,0,-5"/>
+                <Button Content="www.888poker.ca/how-to-play-poker/hands" Click="Website_Click"/>
+                <Button Content="   Done   " Click="Close_Click" Margin="25" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -51,84 +51,111 @@ namespace OOP4200_Final_Project
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            if (P1Bet.Text == "" || !int.TryParse(P1Bet.Text, out int mybet1) || P2AI.Text == "" || P2Bet.Text == "" || !int.TryParse(P2Bet.Text, out int mybet2) ||P3Bet.Text == "" || !int.TryParse(P3Bet.Text, out int mybet3) || P4Bet.Text == "" || !int.TryParse(P4Bet.Text, out int mybet4))
+            int bet1 = 0;
+            int bet2 = 0;
+            int bet3 = 0;
+            int bet4 = 0;
+            ErrorMessages.Clear();
+
+            #region Validation
+            if (P1Bet.Text == "" || !int.TryParse(P1Bet.Text, out bet1))
             {
-                ErrorMessages.Clear();
-                if(P1Bet.Text == "")
+                ErrorMessages.AppendText("User Amount is Invalid.");
+            }
+            if (P2Bet.Text == "" || !int.TryParse(P2Bet.Text, out bet2))
+            {
+                ErrorMessages.AppendText("\nBot 1 Amount is Invalid.");
+            }
+            //only checks if bot 2 is playing
+            if (P3Active.Text == "Playing")
+            {
+                if (P3Bet.Text == "" || !int.TryParse(P3Bet.Text, out bet3))
                 {
-                    ErrorMessages.AppendText("Player 1 needs to make a bet!");
-                }
-                else if (!int.TryParse(P1Bet.Text, out mybet1))
-                {
-                    ErrorMessages.AppendText("Bet cannot be a string!");
-                }                
-                
-                if(P2Bet.Text == "")
-                {
-                    ErrorMessages.AppendText("\nPlayer 2 needs to make a bet!");
-                }
-                else if (!int.TryParse(P2Bet.Text, out mybet2))
-                {
-                    ErrorMessages.AppendText("\nBet cannot be a string!");
-                }                
-                
-                if (P2AI.Text == "")
-                {
-                    ErrorMessages.AppendText("\nSelect a difficulty for Player 2!");
-                }
-                
-                if(P3Bet.Text == "")
-                {
-                    ErrorMessages.AppendText("\nPlayer 3 needs to make a bet!");
-                }
-                else if (!int.TryParse(P3Bet.Text, out mybet3))
-                {
-                    ErrorMessages.AppendText("\nBet cannot be a string!");
-                }
-
-                if (P3AI.Text == "")
-                {
-                    ErrorMessages.AppendText("\nSelect a difficulty for Player 3!");
-                }
-
-                if (P4Bet.Text == "")
-                {
-                    ErrorMessages.AppendText("\nPlayer 4 needs to make a bet!");
-                }
-                else if (!int.TryParse(P4Bet.Text, out mybet4))
-                {
-                    ErrorMessages.AppendText("\nBet cannot be a string!");
-                }
-
-                if (P4AI.Text == "")
-                {
-                    ErrorMessages.AppendText("\nSelect a difficulty for Player 4!");
+                    ErrorMessages.AppendText("\nBot 2 Amount is Invalid.");
                 }
             }
-            else
+            //only checks if bot 3 is playing
+            if (P4Active.Text == "Playing")
+            {
+                if (P4Bet.Text == "" || !int.TryParse(P4Bet.Text, out bet4))
+                {
+                    ErrorMessages.AppendText("\nBot 3 Amount is Invalid.");
+                }
+            }
+            #endregion
+
+            if (ErrorMessages.Text == "")
             {
                 Gameplay gameplay = new Gameplay();
                 gameplay.Visibility = Visibility.Visible;
                 
                 //pass the starting amount values to the textbox, then call
-                gameplay.tbxUserAmount.Text = mybet1.ToString();
-                gameplay.tbxBot1Amount.Text = mybet2.ToString();
-                gameplay.tbxBot2Amount.Text = mybet3.ToString();
-                gameplay.tbxBot3Amount.Text = mybet4.ToString();
-                
-                
+                gameplay.tbxUserAmount.Text = bet1.ToString();
+                gameplay.tbxBot1Amount.Text = bet2.ToString();
+                gameplay.tbxBot2Amount.Text = bet3.ToString();
+                gameplay.tbxBot3Amount.Text = bet4.ToString();
                 
                 this.Visibility = Visibility.Hidden;
 
                 //call the Call function
-                gameplay.Call();
+                
 
                 
                 //newgame.Visibility = Visibility.Visible;
                 
                 
             }
+
         }
+
+        #region Select Logic
+        /// <summary>
+        /// Event of changing selection for Player 3 Activity.
+        /// When changed, it will enable/disable the other comboboxes/textboxes assosiated.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void P3Active_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (P3Active.Text == "Not Playing")
+            {
+                P3AI.IsEnabled = true;
+                P3AI.Text = "Easy";
+                P3Bet.IsEnabled = true;
+                P3Bet.Text = "1000";
+            }
+            else
+            {
+                P3AI.IsEnabled = false;
+                P3AI.Text = "";
+                P3Bet.IsEnabled = false;
+                P3Bet.Clear();
+            }
+        }
+        /// <summary>
+        /// Event of changing selection for Player 4 Activity.
+        /// When changed, it will enable/disable the other comboboxes/textboxes assosiated.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void P4Active_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (P4Active.Text == "Not Playing")
+            {
+                P4AI.IsEnabled = true;
+                P4AI.Text = "Easy";
+                P4Bet.IsEnabled = true;
+                P4Bet.Text = "1000";
+            }
+            else
+            {
+                P4AI.IsEnabled = false;
+                P4AI.Text = "";
+                P4Bet.IsEnabled = false;
+                P4Bet.Clear();
+            }
+        }
+        #endregion
 
     }
 }
