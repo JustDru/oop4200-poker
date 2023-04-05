@@ -90,25 +90,49 @@ namespace OOP4200_Final_Project
 
 
         /// <summary>
-        /// Takes in 2 cards and checks if the two cards are equal to eachother
+        /// Acts as a secondary == operator, takes in two Cards and checks if they share the same suit
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool SameSuit(Card op1, Card op2)
+        {
+            return (op1.cardSuit == op2.cardSuit);
+        }
+
+        /// <summary>
+        /// Acts as a secondary != operator, takes in two Cards and checks if they are different suits
+        /// </summary>
+        /// <param name="op1"></param>
+        /// <param name="op2"></param>
+        /// <returns></returns>
+        public static bool DifferentSuit(Card op1, Card op2)
+        {
+            return (op1.cardSuit != op2.cardSuit);
+        }
+
+
+        /// <summary>
+        /// Takes in 2 cards and checks if the values of the two cards are equal to eachother
         /// </summary>
         /// <param name="op1"></param>
         /// <param name="op2"></param>
         /// <returns></returns>
         public static bool operator ==(Card op1, Card op2)
         {
-            return (op1.cardSuit == op2.cardSuit && op1.cardValue == op2.cardValue);
+            return (op1.cardValue == op2.cardValue);
         }
 
+
         /// <summary>
-        /// Takes in 2 cards and checks if the two cards are not equal to eachother
+        /// Takes in 2 cards and checks if the values of the two cards are not equal to eachother
         /// </summary>
         /// <param name="op1"></param>
         /// <param name="op2"></param>
         /// <returns></returns>
         public static bool operator !=(Card op1, Card op2)
         {
-            return (op1.cardSuit != op2.cardSuit || op1.cardValue != op2.cardValue);
+            return (op1.cardValue != op2.cardValue);
         }
 
         /// <summary>
