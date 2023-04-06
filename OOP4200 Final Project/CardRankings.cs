@@ -10,6 +10,9 @@ namespace OOP4200_Final_Project
 {
     internal class CardRankings : Card
     {
+        private List<Card> allCards = new List<Card>();
+
+
         #region Enums
         // Enum for rankings
         public enum Rankings
@@ -36,6 +39,11 @@ namespace OOP4200_Final_Project
         {
 
         }
+
+        public CardRankings(List<Card> playerCards, List<Card> dealerCards)
+        {
+            allCards = CombineCards(playerCards, dealerCards);
+        }
         #endregion
 
         #region Methods
@@ -46,11 +54,11 @@ namespace OOP4200_Final_Project
         /// <param name="playerCards"></param>
         /// <param name="dealerCards"></param>
         /// <returns></returns>
-        private bool CheckRoyalFlush(List<Card> playerCards, List<Card> dealerCards)
+        private bool CheckRoyalFlush()
         {
             // Boolean to determine if the player has a royal flush.
             bool success = false;
-            List<Card> allCards = CombineCards(playerCards, dealerCards);
+            
             List<Card> royalFlushCards = new List<Card>();
             bool aceCard = false;
             bool kingCard = false;
@@ -92,6 +100,16 @@ namespace OOP4200_Final_Project
 
             return success;
         }
+
+        private bool CheckStraightFlush()
+        {
+            bool success = false;
+
+            return success;
+        }
+
+        
+
 
         // Might need editting
         /// <summary>
