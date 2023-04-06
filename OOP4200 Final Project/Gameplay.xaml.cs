@@ -26,6 +26,7 @@ namespace OOP4200_Final_Project
         int callamountraise;
         int choice = 0;
         int call;
+        int numPlayers = 2;
 
         bool P1Fold, P2Fold, P3Fold, P4Fold;
         int foldcount;
@@ -66,7 +67,7 @@ namespace OOP4200_Final_Project
             }
             Thread.Sleep(3000);
 
-            if (foldcount == 3 && P1Fold == false)
+            if (foldcount == (numPlayers -1) && P1Fold == false)
             {
                 if (int.TryParse(tbxUserAmount.Text, out int record1))
                 {
@@ -79,7 +80,7 @@ namespace OOP4200_Final_Project
                     NextRoundbtn.IsEnabled = true;
                 }
             }
-            else if (foldcount == 3 && P2Fold == false)
+            else if (foldcount == (numPlayers -1) && P2Fold == false)
             {
                 if (int.TryParse(tbxBot1Amount.Text, out int record3))
                 {
@@ -92,7 +93,7 @@ namespace OOP4200_Final_Project
                     NextRoundbtn.IsEnabled = true;
                 }
             }
-            else if (foldcount == 3 && P3Fold == false)
+            else if (foldcount == (numPlayers - 1) && P3Fold == false)
             {
                 if (int.TryParse(tbxBot2Amount.Text, out int record5))
                 {
@@ -105,7 +106,7 @@ namespace OOP4200_Final_Project
                 }
                 NextRoundbtn.IsEnabled = true;
             }
-            else if (foldcount == 3 && P4Fold == false)
+            else if (foldcount == (numPlayers - 1) && P4Fold == false)
             {
                 if (int.TryParse(tbxBot3Amount.Text, out int record7))
                 {
@@ -142,12 +143,14 @@ namespace OOP4200_Final_Project
             {
                 int bot2StartAmount = Int32.Parse(tbxBot2Amount.Text);
                 Player bot2 = new Player("bot2", deck.DrawCards(2), bot2StartAmount);
+                numPlayers++;
             }
             // If bot 3 is enabled create their Player object
             if (tbxBot3Amount != null)
             {
                 int bot3StartAmount = Int32.Parse(tbxBot3Amount.Text);
                 Player bot3 = new Player("bot3", deck.DrawCards(2), bot3StartAmount);
+                numPlayers++;
             }
 
             turn = 1;
@@ -164,33 +167,20 @@ namespace OOP4200_Final_Project
                 TurnDisplay.Text = "Turn " + turn;
                 tbxAnnouncements.Text = "You checked";
             }
-            else if (turn == 2)
+            else
             {
                 DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 2 checked";
+                tbxAnnouncements.Text = "Plaer " + turn + " checked";
             }
-            else if (turn == 3)
-            {
-                DisableActions();
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 3 checked";
 
-            }
-            else if (turn == 4)
-            {
-                DisableActions();
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 4 checked";
-            }
             Thread.Sleep(3000);
             Continue();
         }
 
         public void Continue()
         {
-            Random randomselector = new Random();
-            int choice;
+            
             if (turn == 1)
             {
                 EnableActions();
@@ -211,100 +201,39 @@ namespace OOP4200_Final_Project
             else if (turn == 2)
             {
                 DisableActions();
-                choice = randomselector.Next(1, 3);
-                if (turn == 2 && P2Fold == true)
+                
+                if (P2Fold == true)
                 {
                     turn++;
                 }
                 else
                 {
-                    if (choice == 1)
-                    {
-
-                        if (call == 3)
-                        {
-                            Check();
-                        }
-                        else
-                        {
-                            Call();
-                        }
-
-                    }
-                    else if (choice == 2)
-                    {
-                        Raise();
-                    }
-                    else if (choice == 3)
-                    {
-                        Fold();
-                    }
+                    RandomActionDecider();
                 }
 
             }
             else if (turn == 3)
             {
                 DisableActions();
-                choice = randomselector.Next(1, 3);
-                if (turn == 3 && P3Fold == true)
+                if (P3Fold == true)
                 {
                     turn++;
                 }
-                else
-                {
-                    if (choice == 1)
-                    {
-                        if (call == 3)
-                        {
-                            Check();
-                        }
-                        else
-                        {
-                            Call();
-                        }
-
-                    }
-                    else if (choice == 2)
-                    {
-                        Raise();
-                    }
-                    else if (choice == 3)
-                    {
-                        Fold();
-                    }
+                else{
+                    RandomActionDecider();
                 }
 
             }
             else if (turn == 4)
             {
                 DisableActions();
-                choice = randomselector.Next(1, 3);
-                if (turn == 4 && P4Fold == true)
+                if (P4Fold == true)
                 {
                     turn = 1;
                 }
                 else
                 {
-                    if (choice == 1)
-                    {
-                        if (call == 3)
-                        {
-                            Check();
-                        }
-                        else
-                        {
-                            Call();
-                        }
-
-                    }
-                    else if (choice == 2)
-                    {
-                        Raise();
-                    }
-                    else if (choice == 3)
-                    {
-                        Fold();
-                    }
+                    RandomActionDecider();
                 }
 
             }
@@ -487,6 +416,7 @@ namespace OOP4200_Final_Project
                 {
                     MessageBox.Show("Error has occurred");
                 }
+                turn = 1;
             }
             Continue();
         }
@@ -496,7 +426,7 @@ namespace OOP4200_Final_Project
         BitmapImage RandomCard = new BitmapImage(new Uri("2_of_clubs.png", UriKind.Relative));//placeholder until class logic
         int TurnCounter = 0;
         int RoundCounter = 0;
-        private void ReturnMM(object sender, RoutedEventArgs e)
+        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             
         }
@@ -712,6 +642,41 @@ namespace OOP4200_Final_Project
         }
 
 
+        /// <summary>
+        /// Function to generate a random number from 1-3 to decide on the opponents play
+        /// </summary>
+        private void RandomActionDecider()
+        {
+            // Create a random number generator
+            Random randomselector = new Random();
+            int choice;
+            // Draw a number from 1 through 3
+            choice = randomselector.Next(1, 3);
+            // Decide on what the opponent does based on what number was generated above
+            if (choice == 1)
+            {
+                if (call == 3)
+                {
+                    Check();
+                }
+                else
+                {
+                    Call();                        
+                }
+            }
+            else if (choice == 2)
+            {
+                Raise();
+            }
+            else if (choice == 3)
+            {
+                Fold();
+            }
+        }
 
+
+
+
+        
     }
 }
