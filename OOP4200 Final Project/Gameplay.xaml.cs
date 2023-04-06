@@ -85,27 +85,27 @@ namespace OOP4200_Final_Project
             if (turn == 1)
             {
                 p1Fold = true;
-                tbxAnnouncements.Text = "You folded";
+                lbxAnnoucements.Items.Add("You folded");
                 turn++;
             }
             else if (turn == 2)
             {
                 p2Fold = true;
-                tbxAnnouncements.Text = "Player 2 has folded";
+                lbxAnnoucements.Items.Add("Player 2 has folded");
                 turn++;
                 
             }
             else if (turn == 3)
             {
                 p3Fold = true;
-                tbxAnnouncements.Text = "Player 3 has folded";
+                lbxAnnoucements.Items.Add("Player 3 has folded");
                 turn++;
                 
             }
             else if (turn == 4)
             {
                 p4Fold = true;
-                tbxAnnouncements.Text = "Player 4 has folded";
+                lbxAnnoucements.Items.Add("Player 4 has folded");
                 turn++;
                
             }
@@ -628,9 +628,14 @@ namespace OOP4200_Final_Project
             // Get the current values for each player that they can use to raise with
             int player1Amount = Int32.Parse(tbxUserAmount.Text.ToString());
             int player2Amount = Int32.Parse(tbxBot1Amount.Text.ToString());
-
-            int player3Amount = Int32.Parse(tbxBot2Amount.Text.ToString()); 
-            int player4Amount = Int32.Parse(tbxBot3Amount.Text.ToString()); 
+            int player3Amount;
+            if (int.TryParse(tbxBot2Amount.Text, out player3Amount))
+            { }
+            else { player3Amount = 0; }
+            int player4Amount;
+            if (int.TryParse(tbxBot2Amount.Text, out player4Amount))
+            { }
+            else { player4Amount = 0; }
 
             // Check which player is raising and ensure they have more than 0 dollars
             if (player == "player1" &&  player1Amount > 0)
