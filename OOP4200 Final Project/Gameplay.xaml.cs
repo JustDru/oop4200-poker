@@ -166,29 +166,20 @@ namespace OOP4200_Final_Project
             }
             else if (turn == 2)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
                 tbxAnnouncements.Text = "Player 2 checked";
             }
             else if (turn == 3)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
                 tbxAnnouncements.Text = "Player 3 checked";
 
             }
             else if (turn == 4)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
                 tbxAnnouncements.Text = "Player 4 checked";
             }
@@ -202,8 +193,7 @@ namespace OOP4200_Final_Project
             int choice;
             if (turn == 1)
             {
-                rbFold.IsEnabled = true;
-                rbRaise.IsEnabled = true;
+                EnableActions();
                 if (call == 3)
                 {
                     rbCheck.IsEnabled = true;
@@ -220,10 +210,7 @@ namespace OOP4200_Final_Project
             }
             else if (turn == 2)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 choice = randomselector.Next(1, 3);
                 if (turn == 2 && P2Fold == true)
                 {
@@ -257,10 +244,7 @@ namespace OOP4200_Final_Project
             }
             else if (turn == 3)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 choice = randomselector.Next(1, 3);
                 if (turn == 3 && P3Fold == true)
                 {
@@ -293,10 +277,7 @@ namespace OOP4200_Final_Project
             }
             else if (turn == 4)
             {
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCall.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 choice = randomselector.Next(1, 3);
                 if (turn == 4 && P4Fold == true)
                 {
@@ -413,10 +394,6 @@ namespace OOP4200_Final_Project
             Continue();
         }
 
-        public void Take2Cards(string suit, int rank)
-        {
-            Card P1Cards = new Card();
-        }
 
         public void Bet()
         {
@@ -427,10 +404,7 @@ namespace OOP4200_Final_Project
         {
             if (turn == 1)
             {
-                rbCall.IsEnabled = false;
-                rbFold.IsEnabled = false;
-                rbRaise.IsEnabled = false;
-                rbCheck.IsEnabled = false;
+                DisableActions();
                 try
                 {
                     if (int.TryParse(tbxUserAmount.Text, out int callAmount))
@@ -467,7 +441,7 @@ namespace OOP4200_Final_Project
                         //return the value for display
                         tbxPot.Text = bot1callAmount.ToString();
                     }
-                    
+                    //
                 }
                 catch (Exception ex)
                 {
@@ -539,37 +513,30 @@ namespace OOP4200_Final_Project
             if (turn == 1)
             {
                 btnContinue.IsEnabled = true;
-                if (rbCall.IsChecked == true || rbCheck.IsChecked == true || rbRaise.IsChecked == true || rbFold.IsChecked == true)
+                if (rbCall.IsChecked == true)
                 {
-                    if (rbCall.IsChecked == true)
-                    {
-                        Call();
-                    }
-                    else if (rbFold.IsChecked == true)
-                    {
-                        Fold();
-                    }
-                    else if (rbRaise.IsChecked == true)
-                    {
-                        Raise();
-                    }
-                    else if (rbCheck.IsChecked == true)
-                    {
-                        Check();
-                    }
-                    turn++;
-                    rbCall.IsEnabled = false;
-                    rbCheck.IsEnabled = false;
-                    rbFold.IsEnabled = false;
-                    rbRaise.IsEnabled = false;
-                    btnContinue.IsEnabled = false;
-                    Continue();
+                    Call();
+                }
+                else if (rbFold.IsChecked == true)
+                {
+                    Fold();
+                }
+                else if (rbRaise.IsChecked == true)
+                {
+                    Raise();
+                }
+                else if (rbCheck.IsChecked == true)
+                {
+                    Check();
                 }
                 else
                 {
                     MessageBox.Show("Please select an option");
                 }
-
+                turn++;
+                DisableActions();
+                btnContinue.IsEnabled = false;
+                Continue();
             }
             else
             {
@@ -720,5 +687,31 @@ namespace OOP4200_Final_Project
             Rankings ranking = new Rankings();
             ranking.Visibility = Visibility.Visible;
         }
+
+
+        /// <summary>
+        /// Function to disable all actions the user can take
+        /// </summary>
+        private void DisableActions()
+        {
+            rbFold.IsEnabled = false;
+            rbRaise.IsEnabled = false;
+            rbCall.IsEnabled = false;
+            rbCheck.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// Function to enable all actions the user can take
+        /// </summary>
+        private void EnableActions()
+        {
+            rbFold.IsEnabled = true;
+            rbRaise.IsEnabled = true;
+            rbCall.IsEnabled = true;
+            rbCheck.IsEnabled = true;
+        }
+
+
+
     }
 }

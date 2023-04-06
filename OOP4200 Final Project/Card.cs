@@ -122,7 +122,7 @@ namespace OOP4200_Final_Project
         {
             return (op1.cardValue == op2.cardValue);
         }
-
+        //
 
         /// <summary>
         /// Takes in 2 cards and checks if the values of the two cards are not equal to eachother
