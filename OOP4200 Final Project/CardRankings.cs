@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,11 @@ namespace OOP4200_Final_Project
 
         }
 
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="playerCards"></param>
+        /// <param name="dealerCards"></param>
         public CardRankings(List<Card> playerCards, List<Card> dealerCards)
         {
             allCards = CombineCards(playerCards, dealerCards);
@@ -60,6 +66,8 @@ namespace OOP4200_Final_Project
             bool success = false;
             
             List<Card> royalFlushCards = new List<Card>();
+            
+
             bool aceCard = false;
             bool kingCard = false;
             bool queenCard = false;
@@ -72,7 +80,7 @@ namespace OOP4200_Final_Project
                     aceCard = true;
                     royalFlushCards.Add(card);
                 } 
-                else if (card.cardValue == Value.King)
+                else if (card.cardValue == Value.Ace)
                 { 
                     kingCard = true;
                     royalFlushCards.Add(card);
@@ -101,14 +109,86 @@ namespace OOP4200_Final_Project
             return success;
         }
 
+        /// <summary>
+        /// Checks if the cards create a straight flush. Calls the SortCardsAscending to sort the cards in ascending 
+        /// order first. Returns true if there is a straight flush, false if not.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckStraightFlush()
         {
-            bool success = false;
+            // Sorts cards
+            allCards = SortCardsAscending(allCards);
+            
 
-            return success;
+
+            // Cards will be sorted so these if statements check if the card + 1 is equal to the next 
+            // card in the list. 
+            // Checks if the first 5 cards in the 7 are sequential
+            List<Card> cards = new List<Card>();            
+            for (int i = 0; i <= 3; i++)
+            {
+                if (CheckAllCardsSuit_StraigtFlush(cards, i))
+                {
+                    if ((int)allCards[i].cardValue + 1 == (int)allCards[i + 1].cardValue &&
+                        (int)allCards[i + 1].cardValue + 1 == (int)allCards[i + 2].cardValue &&
+                        (int)allCards[i + 2].cardValue + 1 == (int)allCards[i + 3].cardValue &&
+                        (int)allCards[i + 3].cardValue + 1 == (int)allCards[i + 4].cardValue)
+                    {
+                        // The current 5 cards have matching suits and they are a straight
+                        return true;
+                    }
+                }
+                else
+                {
+                    // Cards did not match
+                    return false;
+                }
+                
+
+            }          
+            
+            // This method is here to check the current list of cards with a specific index. 
+            // Used just to organize code, otherwise there would be a for loop for each index in the 
+            // for loop above. 
+            bool CheckAllCardsSuit_StraigtFlush(List<Card> cards, int index)
+            {
+                for (int i = index; i <= (index + 4); i++)
+                {
+                    cards.Add(allCards[i]);
+                    return CheckAllCardsSuit(cards);
+                }
+                return false;
+            }
+
+            return false;
         }
 
-        
+
+        // Need to complete
+        /// <summary>
+        /// Checks for a four of a king
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckFourOfAKind()
+        {
+            return false;
+        }
+
+
+        // Might need editting
+        /// <summary>
+        /// Sorts the cards list in ascending order by their card value.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
+        private List<Card> SortCardsAscending(List<Card> cards)
+        {        
+            // (int) card.cardValue;
+            cards.OrderBy(Card => Card.cardValue);
+
+            return cards;
+            
+        }
 
 
         // Might need editting
