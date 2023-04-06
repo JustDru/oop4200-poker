@@ -21,7 +21,7 @@ namespace OOP4200_Final_Project
     public partial class Gameplay : Window
     {
         
-
+        
         int turn = 1;
         int callamountraise;
         int choice = 0;
@@ -30,13 +30,53 @@ namespace OOP4200_Final_Project
 
         bool P1Fold, P2Fold, P3Fold, P4Fold;
         int foldcount;
+
+        int pot = 0;
+
+
         Deck deck = new Deck();
 
         public Gameplay()
         {
             InitializeComponent();
-            turn = 1;
         }
+
+
+        /// <summary>
+        /// Method that runs when the game is started - initalizes all players
+        /// </summary>
+        public void Start()
+        {
+            // Create the player object for the human player
+            int player1StartAmount = Int32.Parse(tbxUserAmount.Text);
+            Player player1 = new Player("Player 1", deck.DrawCards(2), player1StartAmount);
+
+            // Bot 1 is enabled by default, create their Player object
+            int player2StartAmount = Int32.Parse(tbxBot1Amount.Text);
+            Player player2 = new Player("Player 2", deck.DrawCards(2), player2StartAmount);
+
+            // If bot 2 is enabled create their Player object
+            if (tbxBot2Amount != null)
+            {
+                int player3StartAmount = Int32.Parse(tbxBot2Amount.Text);
+                Player player3 = new Player("Player 3", deck.DrawCards(2), player3StartAmount);
+                numPlayers++;
+            }
+            // If bot 3 is enabled create their Player object
+            if (tbxBot3Amount != null)
+            {
+                int player4StartAmount = Int32.Parse(tbxBot3Amount.Text);
+                Player player4 = new Player("Player 4", deck.DrawCards(2), player4StartAmount);
+                numPlayers++;
+            }
+            // Give the dealer their five cards
+            List<Card> dealerCards = deck.DrawCards(5);
+
+            Continue();
+
+
+        }
+
 
         public void Fold()
         {
@@ -127,39 +167,7 @@ namespace OOP4200_Final_Project
             */
         }
 
-        /// <summary>
-        /// Method that runs when the game is started - initalizes all players
-        /// </summary>
-        public void Start()
-        {
-            // Create the player object for the human player
-            int player1StartAmount = Int32.Parse(tbxUserAmount.Text);
-            Player player1 = new Player("Player", deck.DrawCards(2), player1StartAmount);
 
-            // Bot 1 is enabled by default, create their Player object
-            int player2Amount = Int32.Parse(tbxBot1Amount.Text);
-            Player player2 = new Player("bot1", deck.DrawCards(2), player2Amount);
-
-            // If bot 2 is enabled create their Player object
-            if(tbxBot2Amount != null)
-            {
-                int player3Amount = Int32.Parse(tbxBot2Amount.Text);
-                Player player3 = new Player("bot2", deck.DrawCards(2), player3Amount);
-                numPlayers++;
-            }
-            // If bot 3 is enabled create their Player object
-            if (tbxBot3Amount != null)
-            {
-                int player4Amount = Int32.Parse(tbxBot3Amount.Text);
-                Player player4 = new Player("bot3", deck.DrawCards(2), player4Amount);
-                numPlayers++;
-            }
-
-            turn = 1;
-            Continue();
-
-
-        }
 
         public void Check()
         {
@@ -184,6 +192,16 @@ namespace OOP4200_Final_Project
 
         public void Continue()
         {
+            if (turn <= numPlayers)
+            {
+
+            }
+            else
+            {
+                turn = 1;
+                Continue();
+            }
+
             /*
             if (turn == 1)
             {
@@ -683,6 +701,57 @@ namespace OOP4200_Final_Project
             }
         }
 
+
+        /// <summary>
+        /// Function that accepts a string and an integer. Checks which player is raising and takes their 
+        /// raise value. Does all calculations necessary and adds to the total pot.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="raise"></param>
+        public void RaisePot(String player, int raise)
+        {
+            // Get the current values for each player that they can use to raise with
+            int player1Amount = Int32.Parse(tbxUserAmount.Text.ToString());
+            int player2Amount = Int32.Parse(tbxBot1Amount.Text.ToString());
+            int player3Amount = Int32.Parse(tbxBot2Amount.Text.ToString());
+            int player4Amount = Int32.Parse(tbxBot3Amount.Text.ToString());
+
+            // Check which player is raising and ensure they have more than 0 dollars
+            if (player == "player1" &&  player1Amount > 0)
+            {
+                // Subtract the raise amount from their total amount
+                player1Amount -= raise;
+                // Change the players total amount to the updated amount and incraese the pot
+                tbxUserAmount.Text = player1Amount.ToString();
+                pot += raise;
+                tbxPot.Text = pot.ToString();
+            }
+            else if(player == "player2" && player2Amount > 0)
+            {
+                player2Amount -= raise;
+                tbxBot1Amount.Text = player2Amount.ToString();
+                pot += raise;
+                tbxPot.Text = pot.ToString();
+            }
+            else if (player == "player3" && player3Amount > 0)
+            {
+                player3Amount -= raise;
+                tbxBot2Amount.Text = player3Amount.ToString();
+                pot += raise;
+                tbxPot.Text = pot.ToString();
+            }
+            else if(player == "player4" && player4Amount > 0)
+            {
+                player4Amount -= raise;
+                tbxBot3Amount.Text = player4Amount.ToString();
+                pot += raise;
+                tbxPot.Text = pot.ToString();
+            }
+            else
+            {
+                MessageBox.Show("An error occured!");
+            }
+        }
 
 
 
