@@ -23,13 +23,12 @@ namespace OOP4200_Final_Project
         
         
         int turn = 1;
-        int callamountraise;
         int choice = 0;
         int call;
         int numPlayers = 2;
 
-        bool P1Fold, P2Fold, P3Fold, P4Fold;
-        int foldcount;
+        bool p1Fold, p2Fold, p3Fold, p4Fold;
+        int foldCount;
 
         int pot = 0;
 
@@ -78,36 +77,40 @@ namespace OOP4200_Final_Project
         }
 
 
+        /// <summary>
+        /// Function to assign the user as folded and print out a status message
+        /// </summary>
         public void Fold()
         {
-            /*
-            tbxAnnouncements.Clear();
             if (turn == 1)
             {
-                P1Fold = true;
+                p1Fold = true;
                 tbxAnnouncements.Text = "You folded";
-                foldcount++;
+                turn++;
             }
             else if (turn == 2)
             {
-                P2Fold = true;
+                p2Fold = true;
                 tbxAnnouncements.Text = "Player 2 has folded";
-                foldcount++;
+                turn++;
+                
             }
             else if (turn == 3)
             {
-                P3Fold = true;
+                p3Fold = true;
                 tbxAnnouncements.Text = "Player 3 has folded";
-                foldcount++;
+                turn++;
+                
             }
             else if (turn == 4)
             {
-                P4Fold = true;
+                p4Fold = true;
                 tbxAnnouncements.Text = "Player 4 has folded";
-                foldcount++;
+                turn++;
+               
             }
-            Thread.Sleep(3000);
-
+            
+            /*
             if (foldcount == (numPlayers -1) && P1Fold == false)
             {
                 if (int.TryParse(tbxUserAmount.Text, out int record1))
@@ -190,162 +193,75 @@ namespace OOP4200_Final_Project
             */
         }
 
+        /// <summary>
+        /// Function to run through the turns
+        /// </summary>
         public void Continue()
-        {
-            if (turn <= numPlayers)
+        {// Human players turn 
+            if (turn == 1 && p1Fold == false)
             {
+                
+            }
+            else { turn++; }
+            // Second players turn (will choose a random action)
+            if (turn == 2 && p2Fold == false)
+            {
+                
+                RandomActionDecider();
+                // If there are more than 2 players, increment the count by 1, else set it back to player 1
+                if (turn < numPlayers) { turn++; }
+                else { turn = 1; }
+            }
+            // Third players turn, same as above
+            if (turn == 3 && p3Fold == false)
+            {
+                RandomActionDecider();
+                if (turn < numPlayers) { turn++; }
+                else { turn = 1; }
+            }
 
+            if (turn == 4 && p4Fold == false)
+            {
+                RandomActionDecider();
+                // Set the turn to player 1's turn again
+                turn = 1;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Function that is called when the Raise button is pressed, takes money from the player who raises
+        /// and adds it to the pot using the RaisePot function
+        /// </summary>
+        public void Raise()
+        {
+            // Create a random number generator to randomly raise for the ai
+            Random randomSelector = new Random();
+            int raiseAmount;
+            if (turn == 1)
+            {
+                // Get the amount that the user wants to raise the pot by
+                raiseAmount = Convert.ToInt32(tbxRaise.Text.ToString());
+                RaisePot("player1", raiseAmount);
+            }
+            // Ai turns, chooses a random number from 1 to 100 to raise by
+            else if (turn == 2)
+            {
+                raiseAmount = randomSelector.Next(1, 100);
+                RaisePot("player2", raiseAmount);
+            }
+            else if (turn == 3)
+            {
+                raiseAmount = randomSelector.Next(1, 100);
+                RaisePot("player3", raiseAmount);
             }
             else
             {
-                turn = 1;
-                Continue();
+                raiseAmount = randomSelector.Next(1, 100);
+                RaisePot("player4", raiseAmount);
             }
-
-            /*
-            if (turn == 1)
-            {
-                EnableActions();
-                if (call == 3)
-                {
-                    rbCheck.IsEnabled = true;
-                    rbCall.IsEnabled = false;
-                }
-                else
-                {
-                    rbCall.IsEnabled = true;
-                    rbCheck.IsEnabled = false;
-                }
-                btnContinue.IsEnabled = true;
-
-
-            }
-            else if (turn == 2)
-            {
-                DisableActions();
-                
-                if (P2Fold == true)
-                {
-                    turn++;
-                }
-                else
-                {
-                    RandomActionDecider();
-                }
-
-            }
-            else if (turn == 3)
-            {
-                DisableActions();
-                if (P3Fold == true)
-                {
-                    turn++;
-                }
-                else{
-                    RandomActionDecider();
-                }
-
-            }
-            else if (turn == 4)
-            {
-                DisableActions();
-                if (P4Fold == true)
-                {
-                    turn = 1;
-                }
-                else
-                {
-                    RandomActionDecider();
-                }
-
-            }
-            */
-        }
-
-        public void Raise()
-        {
-            /*
-            tbxAnnouncements.Clear();
-            if (turn == 1)
-            {
-                tbxRaise.IsEnabled = false;
-                if (int.TryParse(tbxUserAmount.Text, out int bet))
-                {
-                    //now converted to int
-                    if(int.TryParse(tbxRaise.Text, out int myraise))
-                    {
-                        bet = bet - myraise;
-                        if (int.TryParse(tbxPot.Text, out int pot))
-                        {
-                            pot += myraise;
-                            tbxPot.Text = pot.ToString();
-                        }
-                    }
-
-                    tbxUserAmount.Text = bet.ToString();
-                    tbxAnnouncements.Text = "You raise $" + myraise;
-                }
-                turn++;
-                TurnDisplay.Text = "Turn " + turn;
-            }
-            else if (turn == 2)
-            {
-                Random rand = new Random();
-                if (int.TryParse(tbxBot1Amount.Text, out int bet))
-                {
-                    int P2Bet = rand.Next(1, 200);
-                    bet = bet - P2Bet;
-                    if (int.TryParse(tbxPot.Text, out int pot))
-                    {
-                        pot += P2Bet;
-                        tbxPot.Text = pot.ToString();
-                    }
-                    tbxBot1Amount.Text = bet.ToString();
-                    tbxAnnouncements.Text = "Player 2 has raised $" + P2Bet;
-                }
-                turn++;
-                TurnDisplay.Text = "Turn " + turn;
-            }
-            else if (turn == 3)
-            {
-                Random rand = new Random();
-                if (int.TryParse(tbxBot2Amount.Text, out int bet1))
-                {
-                    int P3Bet = rand.Next(1, 200);
-                    bet1 = bet1 - P3Bet;
-                    if (int.TryParse(tbxPot.Text, out int pot))
-                    {
-                        pot += P3Bet;
-                        tbxPot.Text = pot.ToString();
-                    }
-                    tbxBot1Amount.Text = bet1.ToString();
-                    tbxAnnouncements.Text = "Player 3 has raised $" + P3Bet;
-                }
-                turn++;
-                TurnDisplay.Text = "Turn " + turn;
-            }
-            else if (turn == 4)
-            {
-                Random rand = new Random();
-                if (int.TryParse(tbxBot3Amount.Text, out int bet2))
-                {
-                    int P4Bet = rand.Next(1, 200);
-                    bet2 = bet2 - P4Bet;
-                    if (int.TryParse(tbxPot.Text, out int pot))
-                    {
-                        pot += P4Bet;
-                        tbxPot.Text = pot.ToString();
-                    }
-                    tbxBot1Amount.Text = bet2.ToString();
-                    tbxAnnouncements.Text = "Player 4 has raised $" + P4Bet;
-                }
-                turn = 1;
-                TurnDisplay.Text = "Turn " + turn;
-            }
-            call = 1;
-            Thread.Sleep(1000);
-            Continue();
-            */
+            
         }
 
 
@@ -491,7 +407,6 @@ namespace OOP4200_Final_Project
                     MessageBox.Show("Please select an option");
                 }
                 turn++;
-                DisableActions();
                 btnContinue.IsEnabled = false;
                 Continue();
             }
@@ -713,8 +628,9 @@ namespace OOP4200_Final_Project
             // Get the current values for each player that they can use to raise with
             int player1Amount = Int32.Parse(tbxUserAmount.Text.ToString());
             int player2Amount = Int32.Parse(tbxBot1Amount.Text.ToString());
-            int player3Amount = Int32.Parse(tbxBot2Amount.Text.ToString());
-            int player4Amount = Int32.Parse(tbxBot3Amount.Text.ToString());
+
+            int player3Amount = Int32.Parse(tbxBot2Amount.Text.ToString()); 
+            int player4Amount = Int32.Parse(tbxBot3Amount.Text.ToString()); 
 
             // Check which player is raising and ensure they have more than 0 dollars
             if (player == "player1" &&  player1Amount > 0)
