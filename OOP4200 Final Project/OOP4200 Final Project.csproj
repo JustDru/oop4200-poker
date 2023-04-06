@@ -24,17 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="1_Pair.png" />
-    <Resource Include="2_Pair.png" />
-    <Resource Include="3_of_a_kind.png" />
-    <Resource Include="4_of_a_kind.png" />
-    <Resource Include="CardBack.png" />
-    <Resource Include="Flush.png" />
-    <Resource Include="Full_house.png" />
-    <Resource Include="High_card.jpg" />
-    <Resource Include="Royal_flush.png" />
-    <Resource Include="Straight.png" />
-    <Resource Include="Straight_flush.png" />
+    <Resource Include="Images\1_Pair.png" />
+    <Resource Include="Images\2_Pair.png" />
+    <Resource Include="Images\3_of_a_kind.png" />
+    <Resource Include="Images\4_of_a_kind.png" />
+    <Resource Include="Images\CardBack.png" />
+    <Resource Include="Images\Flush.png" />
+    <Resource Include="Images\Full_house.png" />
+    <Resource Include="Images\High_card.jpg" />
+    <Resource Include="Images\Royal_flush.png" />
+    <Resource Include="Images\Straight.png" />
+    <Resource Include="Images\Straight_flush.png" />
   </ItemGroup>
 
 </Project>
