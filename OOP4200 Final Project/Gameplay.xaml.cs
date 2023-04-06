@@ -21,17 +21,24 @@ namespace OOP4200_Final_Project
     public partial class Gameplay : Window
     {
         
-        
+        // Keep track of whos turn it is
         int turn = 1;
+        // Variable to track the ai's random choice
         int choice = 0;
         int call;
+        // Smallest number of players is 2
         int numPlayers = 2;
 
+        // Booleans to track which players folded
         bool p1Fold, p2Fold, p3Fold, p4Fold;
         int foldCount;
 
+        // Variable to keep track of the current pot
         int pot = 0;
-
+        // Variable to keep track of the value that someone raised the pot by
+        int raisedNum = 0;
+        // Boolean flag to track whether somebody raised or not
+        bool isRaise = false;
 
         Deck deck = new Deck();
 
@@ -86,30 +93,26 @@ namespace OOP4200_Final_Project
             {
                 p1Fold = true;
                 lbxAnnoucements.Items.Add("You folded");
-                turn++;
             }
             else if (turn == 2)
             {
                 p2Fold = true;
                 lbxAnnoucements.Items.Add("Player 2 has folded");
-                turn++;
                 
             }
             else if (turn == 3)
             {
                 p3Fold = true;
                 lbxAnnoucements.Items.Add("Player 3 has folded");
-                turn++;
                 
             }
             else if (turn == 4)
             {
                 p4Fold = true;
                 lbxAnnoucements.Items.Add("Player 4 has folded");
-                turn++;
                
             }
-            
+            Continue();
             /*
             if (foldcount == (numPlayers -1) && P1Fold == false)
             {
@@ -171,26 +174,44 @@ namespace OOP4200_Final_Project
         }
 
 
-
+        /// <summary>
+        /// Function that is called when a user presses the Check button to pass their turn
+        /// </summary>
         public void Check()
         {
-            /*
-            tbxAnnouncements.Clear();
+            // Checking is just passing your turn, print out a small message for whoever checks
             if (turn == 1)
             {
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "You checked";
+               
+                if(p1Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("You checked");
+                }
             }
-            else
+            else if (turn == 2)
             {
-                DisableActions();
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player " + turn + " checked";
-            }
+                if (p2Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 2 has checked");
+                }
 
-            Thread.Sleep(3000);
+            }
+            else if (turn == 3)
+            {
+                if (p3Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 3 has checked");
+                }
+            }
+            else if (turn == 4)
+            {
+                if (p4Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 4 has checked");
+                    
+                }
+            }
             Continue();
-            */
         }
 
         /// <summary>
@@ -198,16 +219,24 @@ namespace OOP4200_Final_Project
         /// </summary>
         public void Continue()
         {// Human players turn 
-            if (turn == 1 && p1Fold == false)
+            if (turn == 1)
             {
-                
+                if(p1Fold == false)
+                {
+                    
+                }
+                else
+                {
+                    turn++;
+                }
             }
-            else { turn++; }
             // Second players turn (will choose a random action)
-            if (turn == 2 && p2Fold == false)
+            if (turn == 2 )
             {
-                
-                RandomActionDecider();
+                if (p2Fold == false)
+                {
+                    RandomActionDecider();
+                }
                 // If there are more than 2 players, increment the count by 1, else set it back to player 1
                 if (turn < numPlayers) { turn++; }
                 else { turn = 1; }
@@ -261,17 +290,51 @@ namespace OOP4200_Final_Project
                 raiseAmount = randomSelector.Next(1, 100);
                 RaisePot("player4", raiseAmount);
             }
-            
+            isRaise = true;
+            Continue();
         }
 
-
-        public void Bet()
-        {
-
-        }
-
+        /// <summary>
+        /// Function that matches the current raise 
+        /// </summary>
         public void Call()
         {
+            if (turn == 1)
+            {
+                // Print out a message and call the RaisePot function to raise the pot by the call amount
+                if (p1Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("You called");
+                    RaisePot("player1", raisedNum);
+                }
+            }
+            else if (turn == 2)
+            {
+                if (p2Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 2 has called");
+                    RaisePot("player2", raisedNum);
+                }
+
+            }
+            else if (turn == 3)
+            {
+                if (p3Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 3 has called");
+                    RaisePot("player3", raisedNum);
+                }
+            }
+            else if (turn == 4)
+            {
+                if (p4Fold == false)
+                {
+                    lbxAnnoucements.Items.Add("Player 4 has called");
+                    RaisePot("player4", raisedNum);
+
+                }
+            }
+            Continue();
             /*
             if (turn == 1)
             {
@@ -386,6 +449,18 @@ namespace OOP4200_Final_Project
             if (turn == 1)
             {
                 btnContinue.IsEnabled = true;
+
+                // If nobody raised, you cannot call
+                if (isRaise == false)
+                {
+                    rbCall.IsEnabled = false;
+                }
+                else 
+                { 
+                    rbCall.IsEnabled = true; 
+                }
+
+                // Call the function based on which radio button is clicked
                 if (rbCall.IsChecked == true)
                 {
                     Call();
@@ -407,11 +482,6 @@ namespace OOP4200_Final_Project
                     MessageBox.Show("Please select an option");
                 }
                 turn++;
-                btnContinue.IsEnabled = false;
-                Continue();
-            }
-            else
-            {
                 Continue();
             }
             /*
@@ -597,7 +667,7 @@ namespace OOP4200_Final_Project
             // Decide on what the opponent does based on what number was generated above
             if (choice == 1)
             {
-                if (call == 3)
+                if (isRaise == false)
                 {
                     Check();
                 }
@@ -646,6 +716,7 @@ namespace OOP4200_Final_Project
                 tbxUserAmount.Text = player1Amount.ToString();
                 pot += raise;
                 tbxPot.Text = pot.ToString();
+                raisedNum = raise;
             }
             else if(player == "player2" && player2Amount > 0)
             {
@@ -653,6 +724,7 @@ namespace OOP4200_Final_Project
                 tbxBot1Amount.Text = player2Amount.ToString();
                 pot += raise;
                 tbxPot.Text = pot.ToString();
+                raisedNum = raise;
             }
             else if (player == "player3" && player3Amount > 0)
             {
@@ -660,6 +732,7 @@ namespace OOP4200_Final_Project
                 tbxBot2Amount.Text = player3Amount.ToString();
                 pot += raise;
                 tbxPot.Text = pot.ToString();
+                raisedNum = raise;
             }
             else if(player == "player4" && player4Amount > 0)
             {
@@ -667,14 +740,13 @@ namespace OOP4200_Final_Project
                 tbxBot3Amount.Text = player4Amount.ToString();
                 pot += raise;
                 tbxPot.Text = pot.ToString();
+                raisedNum = raise;
             }
             else
             {
                 MessageBox.Show("An error occured!");
             }
         }
-
-
 
         
     }
