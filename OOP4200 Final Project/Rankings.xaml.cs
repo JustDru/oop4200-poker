@@ -24,12 +24,6 @@ namespace OOP4200_Final_Project
             InitializeComponent();
         }
 
-        private void Website_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO Rework this button, this will crash the program. maybe switch to hyperlink or just reference without a link.
-            System.Diagnostics.Process.Start("https://www.888poker.ca/how-to-play-poker/hands/");
-        }
-
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
