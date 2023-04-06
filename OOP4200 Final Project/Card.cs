@@ -21,8 +21,7 @@ namespace OOP4200_Final_Project
 
         // Gives values to each face card 
         public enum Value
-        {
-            Ace = 1,
+        {            
             Two = 2,
             Three = 3,
             Four = 4,
@@ -34,17 +33,18 @@ namespace OOP4200_Final_Project
             Ten = 10,
             Jack = 11,
             Queen = 12,
-            King = 13
+            King = 13,
+            Ace = 1
         }
         #endregion
         public static class Enums
         {
             public enum Suit
             {
-                Heart = 1,
-                Diamond = 2,
-                Club = 3,
-                Spade = 4
+                Clubs = 1,
+                Diamonds = 2,
+                Hearts = 3,
+                Spades = 4
             }
             
             public enum Rank
@@ -179,7 +179,134 @@ namespace OOP4200_Final_Project
             return (op1.cardValue >= op2.cardValue);
         }
 
+        /// <summary>
+        /// Takes a card and returns the refernce to the image of the card in a string
+        /// </summary>
+        /// <param name="aCard"></param>
+        /// <returns></returns>
+        public static string CardImage(Card aCard)
+        {
+            string cardPicRef = "";
 
+            if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Two)
+            { cardPicRef = "/Images/2_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Two)
+            { cardPicRef = "/Images/2_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Two)
+            { cardPicRef = "/Images/2_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Two)
+            { cardPicRef = "/Images/2_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Three)
+            { cardPicRef = "/Images/3_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Three)
+            { cardPicRef = "/Images/3_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Three)
+            { cardPicRef = "/Images/3_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Three)
+            { cardPicRef = "/Images/3_of_spades.png"; }
+
+            else if(aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Four)
+            { cardPicRef = "/Images/4_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Four)
+            { cardPicRef = "/Images/4_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Four)
+            { cardPicRef = "/Images/4_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Four)
+            { cardPicRef = "/Images/4_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Five)
+            { cardPicRef = "/Images/5_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Five)
+            { cardPicRef = "/Images/5_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Five)
+            { cardPicRef = "/Images/5_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Five)
+            { cardPicRef = "/Images/5_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Six)
+            { cardPicRef = "/Images/6_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Six)
+            { cardPicRef = "/Images/6_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Six)
+            { cardPicRef = "/Images/6_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Six)
+            { cardPicRef = "/Images/6_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Seven)
+            { cardPicRef = "/Images/7_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Seven)
+            { cardPicRef = "/Images/7_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Seven)
+            { cardPicRef = "/Images/7_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Seven)
+            { cardPicRef = "/Images/7_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Eight)
+            { cardPicRef = "/Images/8_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Eight)
+            { cardPicRef = "/Images/8_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Eight)
+            { cardPicRef = "/Images/8_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Eight)
+            { cardPicRef = "/Images/8_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Nine)
+            { cardPicRef = "/Images/9_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Nine)
+            { cardPicRef = "/Images/9_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Nine)
+            { cardPicRef = "/Images/9_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Nine)
+            { cardPicRef = "/Images/9_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Ten)
+            { cardPicRef = "/Images/10_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Ten)
+            { cardPicRef = "/Images/10_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Ten)
+            { cardPicRef = "/Images/10_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Ten)
+            { cardPicRef = "/Images/10_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Jack)
+            { cardPicRef = "/Images/jack_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Jack)
+            { cardPicRef = "/Images/jack_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Jack)
+            { cardPicRef = "/Images/jack_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Jack)
+            { cardPicRef = "/Images/jack_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Queen)
+            { cardPicRef = "/Images/queen_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Queen)
+            { cardPicRef = "/Images/queen_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Queen)
+            { cardPicRef = "/Images/queen_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Queen)
+            { cardPicRef = "/Images/queen_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.King)
+            { cardPicRef = "/Images/king_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.King)
+            { cardPicRef = "/Images/king_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.King)
+            { cardPicRef = "/Images/king_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.King)
+            { cardPicRef = "/Images/king_of_spades.png"; }
+
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Ace)
+            { cardPicRef = "/Images/ace_of_clubs.png"; }
+            else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Ace)
+            { cardPicRef = "/Images/ace_of_diamonds.png"; }
+            else if (aCard.cardSuit == Suit.Hearts && aCard.cardValue == Value.Ace)
+            { cardPicRef = "/Images/ace_of_hearts.png"; }
+            else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Ace)
+            { cardPicRef = "/Images/ace_of_spades.png"; }
+
+            return cardPicRef;
+        }
 
         /// <summary>
         /// Override the ToString method for the class
