@@ -498,7 +498,7 @@ namespace OOP4200_Final_Project
         int RoundCounter = 0;
         private void ReturnMM(object sender, RoutedEventArgs e)
         {
-            //TODO redirect to main menu
+            
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)

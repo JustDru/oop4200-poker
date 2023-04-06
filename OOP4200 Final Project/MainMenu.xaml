@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
-        Title="Poker" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="Poker" Height="450" Width="800" MinHeight="450" MinWidth="800" GotFocus="Window_GotFocus">
     <Grid Name="MainMenuView">
         <Label HorizontalAlignment="Center" Margin="0,10,0,0" Content="Texas Hold 'Em Poker" VerticalAlignment="Top" Width="340" FontSize="35" Name="lblTitle"/>
         <Button x:Name="Play" Content="Play" HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top" Height="51" Width="170" FontSize="20" Click="Play_Click"/>

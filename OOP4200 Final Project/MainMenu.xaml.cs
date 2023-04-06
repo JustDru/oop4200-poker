@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region USINGS
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+#endregion
 
 namespace OOP4200_Final_Project
 {
@@ -21,15 +23,14 @@ namespace OOP4200_Final_Project
     public partial class MainMenu : Window
     {
 
-
-
         public MainMenu()
         {
             InitializeComponent();
             this.ContentGrid.Visibility = Visibility.Hidden;
             
         }
-      
+
+        #region EVENT HANDLERS
         private void Play_Click(object sender, RoutedEventArgs e)
         {
            
@@ -111,5 +112,11 @@ namespace OOP4200_Final_Project
             }
 
         }
+
+        private void Window_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this.ContentGrid.Visibility = Visibility.Hidden;
+        }
+        #endregion
     }
 }
