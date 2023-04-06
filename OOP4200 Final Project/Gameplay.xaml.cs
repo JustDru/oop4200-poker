@@ -40,6 +40,7 @@ namespace OOP4200_Final_Project
 
         public void Fold()
         {
+            /*
             tbxAnnouncements.Clear();
             if (turn == 1)
             {
@@ -123,6 +124,7 @@ namespace OOP4200_Final_Project
             TurnDisplay.Text = "Turn " + turn;
             Thread.Sleep(1000);
             Continue();
+            */
         }
 
         /// <summary>
@@ -131,25 +133,25 @@ namespace OOP4200_Final_Project
         public void Start()
         {
             // Create the player object for the human player
-            int playerStartAmount = Int32.Parse(tbxUserAmount.Text);
-            Player human = new Player("Player", deck.DrawCards(2), playerStartAmount);
+            int player1StartAmount = Int32.Parse(tbxUserAmount.Text);
+            Player player1 = new Player("Player", deck.DrawCards(2), player1StartAmount);
 
             // Bot 1 is enabled by default, create their Player object
-            int bot1StartAmount = Int32.Parse(tbxBot1Amount.Text);
-            Player bot1 = new Player("bot1", deck.DrawCards(2), bot1StartAmount);
+            int player2Amount = Int32.Parse(tbxBot1Amount.Text);
+            Player player2 = new Player("bot1", deck.DrawCards(2), player2Amount);
 
             // If bot 2 is enabled create their Player object
             if(tbxBot2Amount != null)
             {
-                int bot2StartAmount = Int32.Parse(tbxBot2Amount.Text);
-                Player bot2 = new Player("bot2", deck.DrawCards(2), bot2StartAmount);
+                int player3Amount = Int32.Parse(tbxBot2Amount.Text);
+                Player player3 = new Player("bot2", deck.DrawCards(2), player3Amount);
                 numPlayers++;
             }
             // If bot 3 is enabled create their Player object
             if (tbxBot3Amount != null)
             {
-                int bot3StartAmount = Int32.Parse(tbxBot3Amount.Text);
-                Player bot3 = new Player("bot3", deck.DrawCards(2), bot3StartAmount);
+                int player4Amount = Int32.Parse(tbxBot3Amount.Text);
+                Player player4 = new Player("bot3", deck.DrawCards(2), player4Amount);
                 numPlayers++;
             }
 
@@ -161,6 +163,7 @@ namespace OOP4200_Final_Project
 
         public void Check()
         {
+            /*
             tbxAnnouncements.Clear();
             if (turn == 1)
             {
@@ -171,16 +174,17 @@ namespace OOP4200_Final_Project
             {
                 DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Plaer " + turn + " checked";
+                tbxAnnouncements.Text = "Player " + turn + " checked";
             }
 
             Thread.Sleep(3000);
             Continue();
+            */
         }
 
         public void Continue()
         {
-            
+            /*
             if (turn == 1)
             {
                 EnableActions();
@@ -237,10 +241,12 @@ namespace OOP4200_Final_Project
                 }
 
             }
+            */
         }
 
         public void Raise()
         {
+            /*
             tbxAnnouncements.Clear();
             if (turn == 1)
             {
@@ -321,6 +327,7 @@ namespace OOP4200_Final_Project
             call = 1;
             Thread.Sleep(1000);
             Continue();
+            */
         }
 
 
@@ -331,6 +338,7 @@ namespace OOP4200_Final_Project
 
         public void Call()
         {
+            /*
             if (turn == 1)
             {
                 DisableActions();
@@ -419,6 +427,7 @@ namespace OOP4200_Final_Project
                 turn = 1;
             }
             Continue();
+            */
         }
 
 
