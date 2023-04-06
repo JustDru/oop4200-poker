@@ -113,10 +113,7 @@ namespace OOP4200_Final_Project
 
         }
 
-        private void Window_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this.ContentGrid.Visibility = Visibility.Hidden;
-        }
+        
         #endregion
     }
 }
