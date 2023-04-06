@@ -118,12 +118,6 @@ namespace OOP4200_Final_Project
 
         #endregion
 
-        private void MainMenuView_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!inOption)
-            {
-                this.ContentGrid.Visibility = Visibility.Hidden;
-            }
-        }
+        
     }
 }

@@ -271,8 +271,17 @@ namespace OOP4200_Final_Project
             if (turn == 1)
             {
                 // Get the amount that the user wants to raise the pot by
-                raiseAmount = Convert.ToInt32(tbxRaise.Text.ToString());
-                RaisePot("player1", raiseAmount);
+                try
+                {
+                    raiseAmount = Convert.ToInt32(tbxRaise.Text.ToString());
+                    RaisePot("player1", raiseAmount);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occured: " + ex.Message);
+                    // Handle the exception here as appropriate
+                }
+
             }
             // Ai turns, chooses a random number from 1 to 100 to raise by
             else if (turn == 2)
@@ -707,6 +716,7 @@ namespace OOP4200_Final_Project
             { }
             else { player4Amount = 0; }
 
+
             // Check which player is raising and ensure they have more than 0 dollars
             if (player == "player1" &&  player1Amount > 0)
             {
@@ -745,6 +755,8 @@ namespace OOP4200_Final_Project
             else
             {
                 MessageBox.Show("An error occured!");
+                Application.Current.Shutdown();
+
             }
         }
 
