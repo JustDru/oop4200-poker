@@ -484,7 +484,7 @@ namespace OOP4200_Final_Project
         BitmapImage RandomCard = new BitmapImage(new Uri("2_of_clubs.png", UriKind.Relative));//placeholder until class logic
         int TurnCounter = 0;
         int RoundCounter = 0;
-        private void ReturnMM(object sender, RoutedEventArgs e)
+        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             //TODO redirect to main menu
         }
