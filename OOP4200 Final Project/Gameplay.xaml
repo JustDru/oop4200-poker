@@ -70,7 +70,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Status:"/>
-                    <TextBox Name="tbxUserStatus"/>
+                    <TextBox Name="tbxUserStatus" IsReadOnly="True"/>
                     <Label Content="Bet:"/>
                     <TextBox Name="tbxUserBet" IsReadOnly="True"/>
                     <Label Content="Amount:"/>
@@ -104,14 +104,13 @@
                     <TextBox Name="tbxPot" IsReadOnly="True"/>
                     <Label Content="Announcements: "/>
                     <ListBox Name="lbxAnnoucements"/>
-                    
-                    
+
+
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
             </StackPanel>
-            <TextBox x:Name="TurnDisplay" TextWrapping="Wrap" Text="" Width="120"/>
 
         </StackPanel>
 
