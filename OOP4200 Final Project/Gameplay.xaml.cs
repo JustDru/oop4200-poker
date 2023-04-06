@@ -164,25 +164,13 @@ namespace OOP4200_Final_Project
                 TurnDisplay.Text = "Turn " + turn;
                 tbxAnnouncements.Text = "You checked";
             }
-            else if (turn == 2)
+            else
             {
                 DisableActions();
                 TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 2 checked";
+                tbxAnnouncements.Text = "Plaer " + turn + " checked";
             }
-            else if (turn == 3)
-            {
-                DisableActions();
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 3 checked";
 
-            }
-            else if (turn == 4)
-            {
-                DisableActions();
-                TurnDisplay.Text = "Turn " + turn;
-                tbxAnnouncements.Text = "Player 4 checked";
-            }
             Thread.Sleep(3000);
             Continue();
         }
