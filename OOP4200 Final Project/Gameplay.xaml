@@ -104,8 +104,8 @@
                     <TextBox Name="tbxPot" IsReadOnly="True"/>
                     <Label Content="Announcements: "/>
                     <ListBox Name="lbxAnnoucements"/>
-                    <TextBox x:Name="tbxAnnouncements" TextWrapping="Wrap" Width="120" Height="119" IsReadOnly="True"/>
-                    <Button x:Name="NextRoundbtn" Content="Next Round" IsEnabled="False"/>
+                    
+                    
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
