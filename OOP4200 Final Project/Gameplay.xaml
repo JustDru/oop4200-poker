@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
-        Title="Gameplay" Height="800" Width="1200">
+        Title="Gameplay" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid x:Name="Gamescreen">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -13,21 +13,21 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
-                <Button Content="MainMenu" Click="ReturnMM" Width="100" HorizontalAlignment="Left"/>
+                <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left"/>
                 <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal">
-                    <Image Name="DealerCard1" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="DealerCard2" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="DealerCard3" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="DealerCard4" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="DealerCard5" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard1" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard2" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard3" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard4" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="DealerCard5" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" Background="Aqua">
                 <Label Content="Bot 1" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
-                    <Image Name="Bot1Card1" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="Bot1Card2" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot1Card1" Source="/Images/CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot1Card2" Source="/Images/CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
                 <TextBox Name="tbxBot1Amount" IsReadOnly="True"/>
@@ -40,8 +40,8 @@
             <StackPanel Orientation="Vertical" Background="YellowGreen">
                 <Label Content="Bot 2" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
-                    <Image Name="Bot2Card1" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="Bot2Card2" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot2Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="Bot2Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
                 <TextBox Name="tbxBot2Amount" IsReadOnly="True"/>
@@ -54,8 +54,8 @@
             <StackPanel Orientation="Vertical" Background="Fuchsia">
                 <Label Content="Bot 3" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
-                    <Image Name="Bot3Card1" Source="CardBack.png" Height="145" Width="100"/>
-                    <Image Name="Bot3Card2" Source="CardBack.png" Height="145" Width="100"/>
+                    <Image Name="Bot3Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
+                    <Image Name="Bot3Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:"/>
                 <TextBox Name="tbxBot3Amount" IsReadOnly="True"/>
@@ -70,14 +70,14 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Status:"/>
-                    <TextBox Name="tbxUserStatus"/>
+                    <TextBox Name="tbxUserStatus" IsReadOnly="True"/>
                     <Label Content="Bet:"/>
                     <TextBox Name="tbxUserBet" IsReadOnly="True"/>
                     <Label Content="Amount:"/>
                     <TextBox Name="tbxUserAmount" IsReadOnly="True"/>
                 </StackPanel>
-                <Image Name="UserCard1" Source="CardBack.png" Height="300" Width="207"/>
-                <Image Name="UserCard2" Source="CardBack.png" Height="300" Width="207"/>
+                <Image Name="UserCard1" Source="/Images/Cardback.png" Height="300" Width="207"/>
+                <Image Name="UserCard2" Source="/Images/Cardback.png" Height="300" Width="207"/>
                 <StackPanel Orientation="Vertical">
                     <Label Content="Actions:"/>
                     <StackPanel Orientation="Horizontal">
@@ -95,7 +95,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Check: " Width="55"/>
-                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                     </StackPanel>
                     <Button Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
                 </StackPanel>
@@ -104,17 +104,14 @@
                     <TextBox Name="tbxPot" IsReadOnly="True"/>
                     <Label Content="Announcements: "/>
                     <ListBox Name="lbxAnnoucements"/>
-                    <TextBox x:Name="tbxAnnouncements" TextWrapping="Wrap" Text="TextBox" Width="120" Height="119"/>
-                    <Button x:Name="NextRoundbtn" Content="Next Round" IsEnabled="False"/>
+
+
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
-                </StackPanel>
+                <TextBox x:Name="TotalPlayers" TextWrapping="Wrap" Text="" Width="180" Height="20" IsReadOnly="True"/>
             </StackPanel>
-            <TextBox x:Name="TurnDisplay" TextWrapping="Wrap" Text="" Width="120"/>
 
         </StackPanel>
 

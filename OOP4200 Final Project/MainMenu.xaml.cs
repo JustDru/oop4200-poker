@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region USINGS
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+#endregion
 
 namespace OOP4200_Final_Project
 {
@@ -20,22 +22,22 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class MainMenu : Window
     {
-
-
+        private Boolean inOption = false;
 
         public MainMenu()
         {
             InitializeComponent();
             this.ContentGrid.Visibility = Visibility.Hidden;
-            
+            this.MainMenuView.Visibility = Visibility.Visible;
         }
-      
+
+        #region EVENT HANDLERS
         private void Play_Click(object sender, RoutedEventArgs e)
         {
            
             this.mainContentControl.Content = new SetUpGame();
             this.ContentGrid.Visibility = Visibility.Visible;
-
+            
             //MyCard1.Visibility = Visibility.Visible;
             //MyCard2.Visibility = Visibility.Visible;
             /*
@@ -64,7 +66,7 @@ namespace OOP4200_Final_Project
            
             this.ContentGrid.Visibility = Visibility.Visible;
             this.OptionsView.Visibility = Visibility.Visible;
-
+            inOption = true;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -76,13 +78,14 @@ namespace OOP4200_Final_Project
         {
             this.ContentGrid.Visibility = Visibility.Hidden;
             this.OptionsView.Visibility = Visibility.Hidden;
+            inOption = false;
         }
         
         private void Options_Accept_Click(object sender, RoutedEventArgs e)
         {
             this.ContentGrid.Visibility = Visibility.Hidden;
             this.OptionsView.Visibility = Visibility.Hidden;
-
+            inOption = false;
             
             int selectedIndex = cboWindowMode.SelectedIndex;
             // Fullscreen
@@ -111,5 +114,10 @@ namespace OOP4200_Final_Project
             }
 
         }
+
+
+        #endregion
+
+        
     }
 }

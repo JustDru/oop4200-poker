@@ -28,6 +28,10 @@ namespace OOP4200_Final_Project
             
 
         }
+        public int p1StartAmt;
+        public int p2StartAmt;
+        public int p3StartAmt;
+        public int p4StartAmt;
 
 
 
@@ -51,25 +55,27 @@ namespace OOP4200_Final_Project
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            int bet1 = 0;
-            int bet2 = 0;
-            int bet3 = 0;
-            int bet4 = 0;
-            ErrorMessages.Clear();
+            int maxturns = 4;
+
+            p1StartAmt = 0;
+            p2StartAmt = 0;
+            p3StartAmt = 0;
+            p4StartAmt = 0;
+        ErrorMessages.Clear();
 
             #region Validation
-            if (P1Bet.Text == "" || !int.TryParse(P1Bet.Text, out bet1))
+            if (P1Bet.Text == "" || !int.TryParse(P1Bet.Text, out p1StartAmt))
             {
                 ErrorMessages.AppendText("User Amount is Invalid.");
             }
-            if (P2Bet.Text == "" || !int.TryParse(P2Bet.Text, out bet2))
+            if (P2Bet.Text == "" || !int.TryParse(P2Bet.Text, out p2StartAmt))
             {
                 ErrorMessages.AppendText("\nBot 1 Amount is Invalid.");
             }
             //only checks if bot 2 is playing
             if (P3Active.Text == "Playing")
             {
-                if (P3Bet.Text == "" || !int.TryParse(P3Bet.Text, out bet3))
+                if (P3Bet.Text == "" || !int.TryParse(P3Bet.Text, out p3StartAmt))
                 {
                     ErrorMessages.AppendText("\nBot 2 Amount is Invalid.");
                 }
@@ -77,7 +83,7 @@ namespace OOP4200_Final_Project
             //only checks if bot 3 is playing
             if (P4Active.Text == "Playing")
             {
-                if (P4Bet.Text == "" || !int.TryParse(P4Bet.Text, out bet4))
+                if (P4Bet.Text == "" || !int.TryParse(P4Bet.Text, out p4StartAmt))
                 {
                     ErrorMessages.AppendText("\nBot 3 Amount is Invalid.");
                 }
@@ -90,11 +96,27 @@ namespace OOP4200_Final_Project
                 gameplay.Visibility = Visibility.Visible;
                 
                 //pass the starting amount values to the textbox, then call
-                gameplay.tbxUserAmount.Text = bet1.ToString();
-                gameplay.tbxBot1Amount.Text = bet2.ToString();
-                gameplay.tbxBot2Amount.Text = bet3.ToString();
-                gameplay.tbxBot3Amount.Text = bet4.ToString();
+                gameplay.tbxUserAmount.Text = p1StartAmt.ToString();
+                gameplay.tbxBot1Amount.Text = p2StartAmt.ToString();
+
+                //checks to see if the textbox is enabled - only sends value if they are!
+                if (P3Bet.IsEnabled == true)
+                { gameplay.tbxBot2Amount.Text = p3StartAmt.ToString();}
+                if (P4Bet.IsEnabled == true) 
+                { gameplay.tbxBot3Amount.Text = p4StartAmt.ToString();}
                 
+                if(P3Active.Text == "Not Playing")
+                {
+                    maxturns--;
+                }
+                
+                if(P4Active.Text == "Not Playing")
+                {
+                    maxturns--;
+                }
+                
+
+                gameplay.TotalPlayers.Text = "Players: " + maxturns.ToString();
                 this.Visibility = Visibility.Hidden;
 
                 //call the Call function

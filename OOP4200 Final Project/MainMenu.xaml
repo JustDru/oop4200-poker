@@ -35,68 +35,6 @@
             <Button Content="Accept" Margin="192,0,437,9" VerticalAlignment="Bottom" Height="51" Width="171" FontSize="20" Click="Options_Accept_Click" Visibility="Visible" Name="Options_Accept"/>
 
         </Grid>
-        <Image x:Name="MyCard1" HorizontalAlignment="Left" Height="144" Margin="283,270,0,0" VerticalAlignment="Top" Width="100" Source="2_of_clubs.png" Visibility="Hidden"/>
-        <Image x:Name="MyCard2" HorizontalAlignment="Left" Height="144" Margin="400,270,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" Visibility="Hidden"/>
-        <Image x:Name="P2Card1" HorizontalAlignment="Left" Height="144" Margin="160,38,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="P2Card2" HorizontalAlignment="Left" Height="144" Margin="161,170,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="P3Card2" HorizontalAlignment="Left" Height="144" Margin="282,15,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="180"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="P3Card1" HorizontalAlignment="Left" Height="144" Margin="403,15,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="180"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="P4Card2" HorizontalAlignment="Left" Height="144" Margin="564,56,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="270"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="P4Card1" HorizontalAlignment="Left" Height="144" Margin="565,165,0,0" VerticalAlignment="Top" Width="100" Source="/2_of_clubs.png" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="270"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
     </Grid>
 
 </Window>
