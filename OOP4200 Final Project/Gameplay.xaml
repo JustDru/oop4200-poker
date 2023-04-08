@@ -82,7 +82,7 @@
                     <Label Content="Actions:"/>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Call: " Width="55"/>
-                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Fold: " Width="55"/>
