@@ -35,13 +35,13 @@ namespace OOP4200_Final_Project
         Royal Flush - Done
         Straight Flush - Done
         Four of a kind - Done
-        Full House
-        Flush
-        Straight
+        Full House - Done
+        Flush - Done
+        Straight - Done
         Three of a kind - Done
-        Two Pair
+        Two Pair - Done
         One Pair - Done
-        High Card
+        High Card - Done
 
         
         */
@@ -62,7 +62,7 @@ namespace OOP4200_Final_Project
             HighCard = 10
         }
         #endregion
-
+        
         #region Constructors
 
         /// <summary>
@@ -82,6 +82,42 @@ namespace OOP4200_Final_Project
         public CardRankings(List<Card> playerCards, List<Card> dealerCards)
         {
             allCards = CombineCards(playerCards, dealerCards);
+
+            // Will make this more efficient when its all working. 
+            allCards = SortCardsAscending(allCards);
+            List<Card> allCardsFirst = new List<Card>();
+            allCardsFirst.Add(allCards[0]);
+            allCardsFirst.Add(allCards[1]);
+            allCardsFirst.Add(allCards[2]);
+            allCardsFirst.Add(allCards[3]);
+            allCardsFirst.Add(allCards[4]);
+
+            List<Card> allCardsMiddle = new List<Card>();
+            allCardsMiddle.Add(allCards[1]);
+            allCardsMiddle.Add(allCards[2]);
+            allCardsMiddle.Add(allCards[3]);
+            allCardsMiddle.Add(allCards[4]);
+            allCardsMiddle.Add(allCards[5]);
+
+            List<Card> allCardsLast = new List<Card>();
+            allCardsLast.Add(allCards[2]);
+            allCardsLast.Add(allCards[3]);
+            allCardsLast.Add(allCards[4]);
+            allCardsLast.Add(allCards[5]);
+            allCardsLast.Add(allCards[6]);
+
+            List<List<Card>> allCardsList = new List<List<Card>>();
+            allCardsList.Add(allCardsFirst);
+            allCardsList.Add(allCardsMiddle);
+            allCardsList.Add(allCardsLast);
+
+            for (int i = 0; i <= 3; i++)
+            {
+
+            }
+
+
+
         }
         #endregion
 
@@ -94,7 +130,7 @@ namespace OOP4200_Final_Project
         /// <param name="playerCards"></param>
         /// <param name="dealerCards"></param>
         /// <returns></returns>
-        private bool CheckRoyalFlush()
+        private bool CheckRoyalFlush(List<Card> cards)
         {
             // Boolean to determine if the player has a royal flush.
             bool success = false;
@@ -107,7 +143,7 @@ namespace OOP4200_Final_Project
             bool queenCard = false;
             bool jackCard = false;
             bool tenCard = false;
-            foreach(Card card in allCards)
+            foreach(Card card in cards)
             {
                 if (card.cardValue == Value.Ace)
                 {
@@ -225,7 +261,7 @@ namespace OOP4200_Final_Project
             int numSameCards = 0;
             for (int i = 0; i <= cards.Count; i++)
             {
-                if (Card.SameSuit(cards[i], cards[i+1]))
+                if (cards[i].cardValue == cards[i + 1].cardValue)
                 {
                     numSameCards++;
                 }
@@ -234,19 +270,24 @@ namespace OOP4200_Final_Project
             // Checks if there was a four of a kind
             if (numSameCards == 4)
             {
-
+                SetCardSet(cards);
+                SetPlayerHandValue(AddCardValues(cards));
                 return 4;
             }
             
             // Checks if there was a three of a kind
             else if (numSameCards == 3)
             {
+                SetCardSet(cards);
+                SetPlayerHandValue(AddCardValues(cards));
                 return 3;
             }
 
             // Checks if there was a one pair
             else if (numSameCards == 2)
             {
+                SetCardSet(cards);
+                SetPlayerHandValue(AddCardValues(cards));
                 return 2;
             }
 
@@ -305,14 +346,73 @@ namespace OOP4200_Final_Project
             return false;
         }
 
-
+        /// <summary>
+        /// Checks if the list of cards is a straight.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
         private bool CheckStraight (List<Card> cards)
         {
+            cards = SortCardsAscending(cards);
+            if ((int)allCards[0].cardValue + 1 == (int)allCards[1].cardValue &&
+                        (int)allCards[1].cardValue + 1 == (int)allCards[2].cardValue &&
+                        (int)allCards[2].cardValue + 1 == (int)allCards[3].cardValue &&
+                        (int)allCards[3].cardValue + 1 == (int)allCards[4].cardValue)
+            {
+                // The current 5 cards have matching suits and they are a straight.
+                // Now those 5 cards will be added to the straightFlushCards list so that
+                // it can be set as the cardSet.
+                
+                SetCardSet(cards);
+                SetPlayerHandValue(AddCardValues(cards));
+                return true;
+            }
+
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if the list of cars contains a two pair.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
+        private bool CheckTwoPair (List<Card> cards)
+        {
+            cards = SortCardsAscending(cards);
+            int pairCounter = 0;
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (cards[i].cardValue == cards[i + 1].cardValue)
+                {
+                    pairCounter++;
+                } 
+            }
+
+            if (pairCounter == 2)
+            {
+                // Two pair was found.
+                SetCardSet(cards);
+                SetPlayerHandValue(AddCardValues(cards));
+            }
             return false;
         }
 
 
-        // Might need editting
+        /// <summary>
+        /// Since the default card combination is a high card, all this method does is sets the cardSet
+        /// and adds the card values together.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
+        private bool CheckHighCard (List<Card> cards)
+        {
+            cards = SortCardsAscending(cards);
+            SetCardSet(cards);
+            SetPlayerHandValue(AddCardValues(cards));
+            return true;
+        }
+       
         /// <summary>
         /// Sorts the cards list in ascending order by their card value. Uses LINQ to sort.
         /// </summary>
