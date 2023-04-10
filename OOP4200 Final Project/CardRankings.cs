@@ -17,10 +17,17 @@ namespace OOP4200_Final_Project
         // card combinations. 
         private List<Card> cardSet = new List<Card>();
 
-        // Getter for cardSet
+
+        // This variable is used to store the integer value of a players hand, used to compare 
+        // player hands with one another to determine the winner. 
+        private int playerHandValue;
+
+        // Getters
         private List<Card> GetCardSet() { return this.cardSet; }
-        // Setter for cardSet
+        private int GetPlayerHandValue() { return this.playerHandValue; }
+        // Setters
         private void SetCardSet(List<Card> cards) { this.cardSet = cards; }
+        private void SetPlayerHandValue(int value) { this.playerHandValue = value; }
 
 
         /* TO-DO List        
@@ -174,6 +181,7 @@ namespace OOP4200_Final_Project
                             straightFlushCards.Add(allCards[ii]);
                         }
                         SetCardSet(straightFlushCards);
+                        SetPlayerHandValue(AddCardValues(straightFlushCards));
                         return true;
                     }
                 }
@@ -204,7 +212,7 @@ namespace OOP4200_Final_Project
             return false;
         }
 
-
+        
         
         /// <summary>
         /// This method will check the list of cards to see if there is a four of a kind, three of a kind
@@ -250,7 +258,7 @@ namespace OOP4200_Final_Project
             
         }
 
-        // Not finished.
+        
         /// <summary>
         /// Checks for a full house.
         /// </summary>
@@ -258,10 +266,51 @@ namespace OOP4200_Final_Project
         /// <returns></returns>
         private bool CheckFullHouse(List<Card> cards)
         {
+            cards = SortCardsAscending(cards);
 
-            
+            // Checks if the first 2 cards have the same value
+            if (cards[0].cardValue == cards[1].cardValue)
+            {
+
+                // Checks if the last 3 cards have the same value
+                if (cards[2].cardValue == cards[3].cardValue &&
+                    cards[3].cardValue == cards[4].cardValue) 
+                {
+
+                    // Player has a full house.
+
+                    // Sets the cardSet and the playerHandValue
+                    SetCardSet(cards);
+                    SetPlayerHandValue(AddCardValues(cards));
+                    return true;
+
+                }
+            }
+
+
+                return false;
+        }
+
+
+        /// <summary>
+        /// Checks if the list of cards is a flush.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
+        private bool CheckFlush (List<Card> cards)
+        {
+            if (CheckAllCardsSuit(cards)){
+                return true;
+            }
             return false;
         }
+
+
+        private bool CheckStraight (List<Card> cards)
+        {
+            return false;
+        }
+
 
         // Might need editting
         /// <summary>
