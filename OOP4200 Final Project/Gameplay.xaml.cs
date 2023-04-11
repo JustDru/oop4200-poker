@@ -216,52 +216,6 @@ namespace OOP4200_Final_Project
 
         }
 
-        private void actionChecked(object sender, RoutedEventArgs e)
-        {
-            //TODO
-            tbxRaise.Clear();
-            if (roundCounter != 0)
-            {
-                ActionChecker();
-            }
-
-
-        }
-
-        /// <summary>
-        /// Simple validation to keep raise number only
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tbxRaise_TextChanged(object sender, TextChangedEventArgs e)
-        {            
-            if (int.TryParse(tbxRaise.Text, out raised))
-            {
-                if (raised < 10)
-                {
-                    btnContinue.IsEnabled = false;
-                }
-                else if (raised < (highBet - player1.playerAmntBet))
-                {
-                    btnContinue.IsEnabled = false;
-                }
-                else
-                {
-                    btnContinue.IsEnabled = true;
-                }                
-            }
-            else if (tbxRaise.Text == "")
-            {
-                btnContinue.IsEnabled = false;
-            }
-            else
-            {
-                tbxRaise.Clear();
-                MessageBox.Show("ERROR - Raise has to be numerical");
-                btnContinue.IsEnabled = false;
-            }
-
-        }
         /// <summary>
         /// Will pull up the rankings info screen
         /// </summary>
@@ -272,6 +226,46 @@ namespace OOP4200_Final_Project
             Rankings ranking = new Rankings();
             ranking.Visibility = Visibility.Visible;
         }
+
+        #region Raido Button Logic
+        private void actionChecked(object sender, RoutedEventArgs e)
+        {
+            //Only works if gameplay is active
+            tbxRaise.Clear();
+            if (roundCounter != 0)
+            {
+                ActionChecker();
+            }
+        }
+
+        /// <summary>
+        /// Simple validation to keep raise number only
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbxRaise_TextChanged(object sender, TextChangedEventArgs e)
+        {            
+            //validates for int and the high bet
+            if (int.TryParse(tbxRaise.Text, out raised))
+            {
+                if (raised < 10)
+                    btnContinue.IsEnabled = false;                
+                else if (raised < (highBet - player1.playerAmntBet))
+                    btnContinue.IsEnabled = false;
+                else
+                    btnContinue.IsEnabled = true;                               
+            }
+            else if (tbxRaise.Text == "")
+                btnContinue.IsEnabled = false;            
+            else
+            {
+                tbxRaise.Clear();
+                MessageBox.Show("ERROR - Raise has to be numerical");
+                btnContinue.IsEnabled = false;
+            }
+
+        }
+        
         /// <summary>
         /// checks to see what actions are currently available
         /// </summary>
@@ -296,6 +290,7 @@ namespace OOP4200_Final_Project
                 btnContinue.IsEnabled = true;
             }
         }
+        #endregion
 
         /// <summary>
         /// Method that runs when the game starts/resets
@@ -366,6 +361,7 @@ namespace OOP4200_Final_Project
 
 
         }
+
         #region User & Bot actions and logic
 
         /// <summary>
