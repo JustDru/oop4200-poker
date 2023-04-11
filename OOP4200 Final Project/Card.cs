@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace OOP4200_Final_Project
 {
@@ -61,7 +62,7 @@ namespace OOP4200_Final_Project
                 Jack = 11,
                 Queen = 12,
                 King = 13,
-                Ace = 14
+                Ace = 1
             }
         }
 
@@ -184,9 +185,10 @@ namespace OOP4200_Final_Project
         /// </summary>
         /// <param name="aCard"></param>
         /// <returns></returns>
-        public static string CardImage(Card aCard)
+        public static BitmapImage CardImage(Card aCard)
         {
             string cardPicRef = "";
+            
 
             if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Two)
             { cardPicRef = "/Images/2_of_clubs.png"; }
@@ -305,7 +307,8 @@ namespace OOP4200_Final_Project
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Ace)
             { cardPicRef = "/Images/ace_of_spades.png"; }
 
-            return cardPicRef;
+            BitmapImage cardImage = new BitmapImage(new Uri(cardPicRef, UriKind.Relative));
+            return cardImage;
         }
 
         /// <summary>

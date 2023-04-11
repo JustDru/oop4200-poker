@@ -93,18 +93,33 @@ namespace OOP4200_Final_Project
             {
                 Gameplay gameplay = new Gameplay();
                 gameplay.Visibility = Visibility.Visible;
+
+                //start turns at 2, add one if values for bots get passed
+                gameplay.numPlayers = 2;
                 
                 //pass the starting amount values to the textbox, then call
                 gameplay.tbxUserAmount.Text = p1StartAmt.ToString();
                 gameplay.tbxBot1Amount.Text = p2StartAmt.ToString();
+                gameplay.player1StartAmount = p1StartAmt;
+                gameplay.player2StartAmount = p2StartAmt;
 
                 //checks to see if the textbox is enabled - only sends value if they are!
                 if (P3Bet.IsEnabled == true)
-                { gameplay.tbxBot2Amount.Text = p3StartAmt.ToString();}
+                { 
+                    gameplay.tbxBot2Amount.Text = p3StartAmt.ToString();
+                    gameplay.player3StartAmount = p3StartAmt;
+                    gameplay.numPlayers++;
+                }
+                else { gameplay.stpBot2Panel.Visibility = Visibility.Hidden; }
                 if (P4Bet.IsEnabled == true) 
-                { gameplay.tbxBot3Amount.Text = p4StartAmt.ToString();}
-                
-                
+                { 
+                    gameplay.tbxBot3Amount.Text = p4StartAmt.ToString();
+                    gameplay.player4StartAmount = p4StartAmt;
+                    gameplay.numPlayers++;
+                }
+                else { gameplay.stpBot3Panel.Visibility = Visibility.Hidden; }
+
+
                 this.Visibility = Visibility.Hidden;
 
                 //call the Call function
@@ -127,7 +142,7 @@ namespace OOP4200_Final_Project
         /// <param name="e"></param>
         private void P3Active_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (P3Active.Text == "Not Playing")
+            if (P3Active.SelectedItem == cbiP3Playing)
             {
                 P3AI.IsEnabled = true;
                 P3AI.Text = "Easy";
@@ -141,6 +156,7 @@ namespace OOP4200_Final_Project
                 P3Bet.IsEnabled = false;
                 P3Bet.Clear();
             }
+
         }
         /// <summary>
         /// Event of changing selection for Player 4 Activity.
@@ -150,7 +166,7 @@ namespace OOP4200_Final_Project
         /// <param name="e"></param>
         private void P4Active_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (P4Active.Text == "Not Playing")
+            if (P4Active.SelectedItem == cbiP4Playing)
             {
                 P4AI.IsEnabled = true;
                 P4AI.Text = "Easy";

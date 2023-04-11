@@ -37,12 +37,12 @@
             <ComboBoxItem Content="Hard"/>
         </ComboBox>
         <ComboBox x:Name="P3Active" HorizontalAlignment="Left" Margin="145,235,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P3Active_SelectionChanged" >
-            <ComboBoxItem Content="Playing"/>
-            <ComboBoxItem Content="Not Playing" IsSelected="True"/>
+            <ComboBoxItem Name="cbiP3Playing" Content="Playing"/>
+            <ComboBoxItem Name="cbiP3NotPlaying" Content="Not Playing" IsSelected="True"/>
         </ComboBox>
         <ComboBox x:Name="P4Active" HorizontalAlignment="Left" Margin="146,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P4Active_SelectionChanged">
-            <ComboBoxItem Content="Playing"/>
-            <ComboBoxItem Content="Not Playing" IsSelected="True"/>
+            <ComboBoxItem Name="cbiP4Playing" Content="Playing"/>
+            <ComboBoxItem Name="cbiP4NotPlaying" Content="Not Playing" IsSelected="True"/>
         </ComboBox>
         <Label Content="$" HorizontalAlignment="Left" Margin="525,122,0,0" VerticalAlignment="Top" FontSize="17"/>
         <Label Content="$" HorizontalAlignment="Left" Margin="525,174,0,0" VerticalAlignment="Top" FontSize="17"/>

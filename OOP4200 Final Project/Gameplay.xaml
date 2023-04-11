@@ -37,7 +37,7 @@
                 <TextBox Name="tbxBot1Status" IsReadOnly="True"/>
 
             </StackPanel>
-            <StackPanel Orientation="Vertical" Background="YellowGreen">
+            <StackPanel Name="stpBot2Panel" Orientation="Vertical" Background="YellowGreen">
                 <Label Content="Bot 2" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="Bot2Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -51,7 +51,7 @@
                 <TextBox Name="tbxBot2Status" IsReadOnly="True"/>
 
             </StackPanel>
-            <StackPanel Orientation="Vertical" Background="Fuchsia">
+            <StackPanel Name="stpBot3Panel" Orientation="Vertical" Background="Fuchsia">
                 <Label Content="Bot 3" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="Bot3Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -86,16 +86,16 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Fold: " Width="55"/>
-                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Raise: " Width="55"/>
-                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                         <TextBox Name="tbxRaise" Width="80" IsEnabled="False" TextChanged="tbxRaise_TextChanged"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Check: " Width="55"/>
-                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13"/>
+                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                     </StackPanel>
                     <Button Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
                 </StackPanel>

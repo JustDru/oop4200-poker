@@ -20,430 +20,45 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class Gameplay : Window
     {
-        
-        // Keep track of whos turn it is
-        int turn = 1;
-        // Variable to track the ai's random choice
-        int choice = 0;
-        int call;
-        // Smallest number of players is 2
-        int numPlayers = 2;
+        BitmapImage CARDBACK = new BitmapImage(new Uri("/Images/CardBack.png", UriKind.Relative));
+        BitmapImage RandomCard = new BitmapImage(new Uri("/Images/2_of_clubs.png", UriKind.Relative));//placeholder until class logic
+        BitmapImage displayCard = new BitmapImage();
+        //these public variables get values in setupgame.xaml.cs
+        public int numPlayers;
+        int turnsPerRound;
+        public int player1StartAmount, player2StartAmount, player3StartAmount, player4StartAmount;
 
-        // Booleans to track which players folded
+        int turnCounter = 0;
+        int roundCounter = 0;
+        int raised;
+        int highBet = 10;
+        //if player has folded, bool = true
         bool p1Fold, p2Fold, p3Fold, p4Fold;
-        int foldCount;
-
-        // Variable to keep track of the current pot
-        int pot = 0;
-        // Variable to keep track of the value that someone raised the pot by
-        int raisedNum = 0;
-        // Boolean flag to track whether somebody raised or not
-        bool isRaise = false;
-
+        bool hasRaised = false;
+        bool starting = true;
         Deck deck = new Deck();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Player player3 = new Player();
+        Player player4 = new Player();
+        Player dealer = new Player();
 
+        /// <summary>
+        /// Initializes game and gives images proper values
+        /// </summary>
         public Gameplay()
         {
             InitializeComponent();
+            DealerCard1.Source = CARDBACK;
+            DealerCard2.Source = CARDBACK;
+            DealerCard3.Source = CARDBACK;
+            DealerCard4.Source = CARDBACK;
+            DealerCard5.Source = CARDBACK;
         }
 
-
-        /// <summary>
-        /// Method that runs when the game is started - initalizes all players
-        /// </summary>
-        public void Start()
-        {
-            // Create the player object for the human player
-            int player1StartAmount = Int32.Parse(tbxUserAmount.Text);
-            Player player1 = new Player("Player 1", deck.DrawCards(2), player1StartAmount);
-
-            // Bot 1 is enabled by default, create their Player object
-            int player2StartAmount = Int32.Parse(tbxBot1Amount.Text);
-            Player player2 = new Player("Player 2", deck.DrawCards(2), player2StartAmount);
-
-            // If bot 2 is enabled create their Player object
-            if (tbxBot2Amount != null)
-            {
-                int player3StartAmount = Int32.Parse(tbxBot2Amount.Text);
-                Player player3 = new Player("Player 3", deck.DrawCards(2), player3StartAmount);
-                numPlayers++;
-            }
-            // If bot 3 is enabled create their Player object
-            if (tbxBot3Amount != null)
-            {
-                int player4StartAmount = Int32.Parse(tbxBot3Amount.Text);
-                Player player4 = new Player("Player 4", deck.DrawCards(2), player4StartAmount);
-                numPlayers++;
-            }
-            // Give the dealer their five cards
-            List<Card> dealerCards = deck.DrawCards(5);
-
-            Continue();
-
-
-        }
-
-
-        /// <summary>
-        /// Function to assign the user as folded and print out a status message
-        /// </summary>
-        public void Fold()
-        {
-            if (turn == 1)
-            {
-                p1Fold = true;
-                lbxAnnoucements.Items.Add("You folded");
-            }
-            else if (turn == 2)
-            {
-                p2Fold = true;
-                lbxAnnoucements.Items.Add("Player 2 has folded");
-                
-            }
-            else if (turn == 3)
-            {
-                p3Fold = true;
-                lbxAnnoucements.Items.Add("Player 3 has folded");
-                
-            }
-            else if (turn == 4)
-            {
-                p4Fold = true;
-                lbxAnnoucements.Items.Add("Player 4 has folded");
-               
-            }
-            Continue();
-            /*
-            if (foldcount == (numPlayers -1) && P1Fold == false)
-            {
-                if (int.TryParse(tbxUserAmount.Text, out int record1))
-                {
-                    if (int.TryParse(tbxPot.Text, out int record2))
-                    {
-                        record1 += record2;
-                        tbxAnnouncements.Text = "You won $" + record2;
-                    }
-                    tbxUserAmount.Text = record1.ToString();
-                    NextRoundbtn.IsEnabled = true;
-                }
-            }
-            else if (foldcount == (numPlayers -1) && P2Fold == false)
-            {
-                if (int.TryParse(tbxBot1Amount.Text, out int record3))
-                {
-                    if (int.TryParse(tbxPot.Text, out int record4))
-                    {
-                        record3 += record4;
-                        tbxAnnouncements.Text = "Player 2 has won $" + record4;
-                    }
-                    tbxBot1Amount.Text = record3.ToString();
-                    NextRoundbtn.IsEnabled = true;
-                }
-            }
-            else if (foldcount == (numPlayers - 1) && P3Fold == false)
-            {
-                if (int.TryParse(tbxBot2Amount.Text, out int record5))
-                {
-                    if (int.TryParse(tbxPot.Text, out int record6))
-                    {
-                        record5 += record6;
-                        tbxAnnouncements.Text = "Player 3 has won $" + record6;
-                    }
-                    tbxBot2Amount.Text = record5.ToString();
-                }
-                NextRoundbtn.IsEnabled = true;
-            }
-            else if (foldcount == (numPlayers - 1) && P4Fold == false)
-            {
-                if (int.TryParse(tbxBot3Amount.Text, out int record7))
-                {
-                    if (int.TryParse(tbxPot.Text, out int record8))
-                    {
-                        record7 += record8;
-                        tbxAnnouncements.Text = "Player 4 has won $" + record8;
-                    }
-                    tbxBot3Amount.Text = record7.ToString();
-                }
-                NextRoundbtn.IsEnabled = true;
-            }
-            turn++;
-            TurnDisplay.Text = "Turn " + turn;
-            Thread.Sleep(1000);
-            Continue();
-            */
-        }
-
-
-        /// <summary>
-        /// Function that is called when a user presses the Check button to pass their turn
-        /// </summary>
-        public void Check()
-        {
-            // Checking is just passing your turn, print out a small message for whoever checks
-            if (turn == 1)
-            {
-               
-                if(p1Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("You checked");
-                }
-            }
-            else if (turn == 2)
-            {
-                if (p2Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 2 has checked");
-                }
-
-            }
-            else if (turn == 3)
-            {
-                if (p3Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 3 has checked");
-                }
-            }
-            else if (turn == 4)
-            {
-                if (p4Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 4 has checked");
-                    
-                }
-            }
-            Continue();
-        }
-
-        /// <summary>
-        /// Function to run through the turns
-        /// </summary>
-        public void Continue()
-        {// Human players turn 
-            if (turn == 1)
-            {
-                if(p1Fold == false)
-                {
-                    
-                }
-                else
-                {
-                    turn++;
-                }
-            }
-            // Second players turn (will choose a random action)
-            if (turn == 2 )
-            {
-                if (p2Fold == false)
-                {
-                    RandomActionDecider();
-                }
-                // If there are more than 2 players, increment the count by 1, else set it back to player 1
-                if (turn < numPlayers) { turn++; }
-                else { turn = 1; }
-            }
-            // Third players turn, same as above
-            if (turn == 3 && p3Fold == false)
-            {
-                RandomActionDecider();
-                if (turn < numPlayers) { turn++; }
-                else { turn = 1; }
-            }
-
-            if (turn == 4 && p4Fold == false)
-            {
-                RandomActionDecider();
-                // Set the turn to player 1's turn again
-                turn = 1;
-            }
-
-        }
-
-
-        /// <summary>
-        /// Function that is called when the Raise button is pressed, takes money from the player who raises
-        /// and adds it to the pot using the RaisePot function
-        /// </summary>
-        public void Raise()
-        {
-            // Create a random number generator to randomly raise for the ai
-            Random randomSelector = new Random();
-            int raiseAmount;
-            if (turn == 1)
-            {
-                // Get the amount that the user wants to raise the pot by
-                try
-                {
-                    raiseAmount = Convert.ToInt32(tbxRaise.Text.ToString());
-                    RaisePot("player1", raiseAmount);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occured: " + ex.Message);
-                    // Handle the exception here as appropriate
-                }
-
-            }
-            // Ai turns, chooses a random number from 1 to 100 to raise by
-            else if (turn == 2)
-            {
-                raiseAmount = randomSelector.Next(1, 100);
-                RaisePot("player2", raiseAmount);
-            }
-            else if (turn == 3)
-            {
-                raiseAmount = randomSelector.Next(1, 100);
-                RaisePot("player3", raiseAmount);
-            }
-            else
-            {
-                raiseAmount = randomSelector.Next(1, 100);
-                RaisePot("player4", raiseAmount);
-            }
-            isRaise = true;
-            Continue();
-        }
-
-        /// <summary>
-        /// Function that matches the current raise 
-        /// </summary>
-        public void Call()
-        {
-            if (turn == 1)
-            {
-                // Print out a message and call the RaisePot function to raise the pot by the call amount
-                if (p1Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("You called");
-                    RaisePot("player1", raisedNum);
-                }
-            }
-            else if (turn == 2)
-            {
-                if (p2Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 2 has called");
-                    RaisePot("player2", raisedNum);
-                }
-
-            }
-            else if (turn == 3)
-            {
-                if (p3Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 3 has called");
-                    RaisePot("player3", raisedNum);
-                }
-            }
-            else if (turn == 4)
-            {
-                if (p4Fold == false)
-                {
-                    lbxAnnoucements.Items.Add("Player 4 has called");
-                    RaisePot("player4", raisedNum);
-
-                }
-            }
-            Continue();
-            /*
-            if (turn == 1)
-            {
-                DisableActions();
-                try
-                {
-                    if (int.TryParse(tbxUserAmount.Text, out int callAmount))
-                    {
-                        callAmount--;
-                        tbxUserAmount.Text = callAmount.ToString();
-                        callamountraise++;
-                        tbxPot.Text = callamountraise.ToString();
-                        callamountraise = callamountraise * 2;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error has occurred");
-                }
-            }
-            else if (turn == 2)
-            {
-                try
-                {
-                    if (int.TryParse(tbxBot1Amount.Text, out int bot1callAmount))
-                    {
-                        //deduct how much was the callamountraise
-                        bot1callAmount-= callamountraise;
-
-                        //convert to string to return how much is left
-                        tbxUserAmount.Text = bot1callAmount.ToString();
-
-                        //add to pot
-                        if(int.TryParse(tbxPot.Text, out int addamount))
-                        {
-                            addamount += callamountraise;
-                        }
-                        //return the value for display
-                        tbxPot.Text = bot1callAmount.ToString();
-                    }
-                    //
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error has occurred");
-                }
-            }
-            else if (turn == 3)
-            {
-                try
-                {
-                    if (int.TryParse(tbxBot1Amount.Text, out int bot2callAmount))
-                    {
-                        bot2callAmount-= callamountraise;
-                        tbxUserAmount.Text = bot2callAmount.ToString();
-                        if (int.TryParse(tbxPot.Text, out int addamount2))
-                        {
-                            addamount2 += callamountraise;
-                        }
-                        tbxPot.Text = bot2callAmount.ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error has occurred");
-                }
-            }
-            else if (turn == 4)
-            {
-                try
-                {
-                    if (int.TryParse(tbxBot1Amount.Text, out int bot3callAmount))
-                    {
-                        bot3callAmount-= callamountraise;
-                        tbxUserAmount.Text = bot3callAmount.ToString();
-                        if (int.TryParse(tbxPot.Text, out int addamount3))
-                        {
-                            addamount3 += callamountraise;
-                        }
-                        tbxPot.Text = bot3callAmount.ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error has occurred");
-                }
-                turn = 1;
-            }
-            Continue();
-            */
-        }
-
-
-        BitmapImage CARDBACK = new BitmapImage(new Uri("CardBack.png", UriKind.Relative));
-        BitmapImage RandomCard = new BitmapImage(new Uri("2_of_clubs.png", UriKind.Relative));//placeholder until class logic
-        int TurnCounter = 0;
-        int RoundCounter = 0;
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            
+            //TODO redirect to main menu
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
@@ -455,99 +70,102 @@ namespace OOP4200_Final_Project
             //once turn counter hits 4, the dealer revieals the next cards
             //after all rounds, all cards are displayed and the winner
             //gets the pot, and will be stated who won in the announcements
-            if (turn == 1)
-            {
-                btnContinue.IsEnabled = true;
 
-                // If nobody raised, you cannot call
-                if (isRaise == false)
-                {
-                    rbCall.IsEnabled = false;
-                }
-                else 
-                { 
-                    rbCall.IsEnabled = true; 
-                }
-
-                // Call the function based on which radio button is clicked
-                if (rbCall.IsChecked == true)
-                {
-                    Call();
-                }
-                else if (rbFold.IsChecked == true)
-                {
-                    Fold();
-                }
-                else if (rbRaise.IsChecked == true)
-                {
-                    Raise();
-                }
-                else if (rbCheck.IsChecked == true)
-                {
-                    Check();
-                }
-                else
-                {
-                    MessageBox.Show("Please select an option");
-                }
-                turn++;
-                Continue();
-            }
-            /*
-            tbxRaise.IsEnabled = false;
-            rbCall.IsChecked = false;
-            rbFold.IsChecked = false;
-            rbRaise.IsChecked = false;
-            rbCheck.IsChecked = false;
-            tbxRaise.Clear();
+            lbxAnnoucements.Items.Clear();
             if (DealerCard1.Source == CARDBACK)
             {
-                DealerCard1.Source = RandomCard;
-                DealerCard2.Source = RandomCard;
-                DealerCard3.Source = RandomCard;
-                UserCard1.Source = RandomCard;
-                UserCard2.Source = RandomCard;
+                Start();
+                //First deal. will give everyone their cards
+            }
+            else if (roundCounter == 1)
+            {
+                Action();
+                //check to see if the bots can go or not due to turn order
+                if (turnCounter < turnsPerRound)
+                    RandomActionPlayer2();
+                if (turnCounter < turnsPerRound)
+                    if (stpBot2Panel.IsVisible) {RandomActionPlayer3();}
+                if (turnCounter < turnsPerRound)
+                    if (stpBot3Panel.IsVisible) { RandomActionPlayer4();}
 
-                lbxAnnoucements.Items.Clear();
-                lbxAnnoucements.Items.Add("Dealer: Cards Delt");
+                //Checks if user is allowed to check or call (cannot do either at 1 time)
+                if (hasRaised){rbCall.IsEnabled = true; rbCheck.IsEnabled = false;}
+                else {rbCall.IsEnabled = false; rbCheck.IsEnabled = true;}                
 
                 btnContinue.IsEnabled = false;
-                RoundCounter++;
-            }
-            else if (DealerCard4.Source == CARDBACK)
-            {
-                DealerCard4.Source = RandomCard;
+                //if all turns are counter, round counter goes up and the game continues
+                if (turnCounter >= turnsPerRound){
+                    roundCounter++;
+                    turnCounter = 0;
+                    DealerCard4.Source = Card.CardImage(dealer.playerHand[3]);
+                    lbxAnnoucements.Items.Add("Dealer: Card 4 revealed");
+                }
 
-                lbxAnnoucements.Items.Add("Dealer: Card 4 revealed");
+            }
+            else if (roundCounter == 2)
+            {
+                Action();
+                //check to see if the bots can go or not due to turn order
+                if (turnCounter < turnsPerRound)
+                    RandomActionPlayer2();
+                if (turnCounter < turnsPerRound)
+                    if (stpBot2Panel.IsVisible) { RandomActionPlayer3(); }
+                if (turnCounter < turnsPerRound)
+                    if (stpBot3Panel.IsVisible) { RandomActionPlayer4(); }
+
+                //Checks if user is allowed to check or call (cannot do either at 1 time)
+                if (hasRaised) { rbCall.IsEnabled = true; rbCheck.IsEnabled = false; }
+                else { rbCall.IsEnabled = false; rbCheck.IsEnabled = true; }
 
                 btnContinue.IsEnabled = false;
-                RoundCounter++;
+                if (turnCounter >= turnsPerRound)
+                {
+                    roundCounter++;
+                    turnCounter = 0;
+                    DealerCard5.Source = Card.CardImage(dealer.playerHand[4]);
+                    lbxAnnoucements.Items.Add("Dealer: Card 5 revealed");
+                }
             }
-            else if (DealerCard5.Source == CARDBACK)
+            else if (roundCounter >= 3)
             {
-                DealerCard5.Source = RandomCard;
+                Action();
+                //check to see if the bots can go or not due to turn order
+                if (turnCounter < turnsPerRound)
+                    RandomActionPlayer2();
+                if (turnCounter < turnsPerRound)
+                    if (stpBot2Panel.IsVisible) { RandomActionPlayer3(); }
+                if (turnCounter < turnsPerRound)
+                    if (stpBot3Panel.IsVisible) { RandomActionPlayer4(); }
 
-                lbxAnnoucements.Items.Add("Dealer: Card 5 revealed");
+                //Checks if user is allowed to check or call (cannot do either at 1 time)
+                if (hasRaised) { rbCall.IsEnabled = true; rbCheck.IsEnabled = false; }
+                else { rbCall.IsEnabled = false; rbCheck.IsEnabled = true; }
 
                 btnContinue.IsEnabled = false;
-                RoundCounter++;
-            }
-            else if (RoundCounter >= 3)
-            {
-                Bot1Card1.Source = RandomCard;
-                Bot1Card2.Source = RandomCard;
-                Bot2Card1.Source = RandomCard;
-                Bot2Card2.Source = RandomCard;
-                Bot3Card1.Source = RandomCard;
-                Bot3Card2.Source = RandomCard;
+                if (turnCounter >= turnsPerRound)
+                {
+                    Bot1Card1.Source = Card.CardImage(player2.playerHand[0]);
+                    Bot1Card2.Source = Card.CardImage(player2.playerHand[1]);
+                    Bot2Card1.Source = Card.CardImage(player3.playerHand[0]);
+                    Bot2Card2.Source = Card.CardImage(player3.playerHand[1]);
+                    Bot3Card1.Source = Card.CardImage(player4.playerHand[0]);
+                    Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
 
-                lbxAnnoucements.Items.Add("Bot1: [Result Here]");
-                lbxAnnoucements.Items.Add("Bot2: [Result Here]");
-                lbxAnnoucements.Items.Add("Bot3: [Result Here]");
-                lbxAnnoucements.Items.Add("User: [Result Here]");
-                lbxAnnoucements.Items.Add("[winner]: Wins this round, winning [pot here]");
+                    lbxAnnoucements.Items.Add("Bot1: [Result Here]");
+                    lbxAnnoucements.Items.Add("Bot2: [Result Here]");
+                    lbxAnnoucements.Items.Add("Bot3: [Result Here]");
+                    lbxAnnoucements.Items.Add("User: [Result Here]");
+                    lbxAnnoucements.Items.Add("[winner]: Wins this round, winning [pot here]");
 
-                RoundCounter = 0;
+                    rbCheck.IsEnabled = false;
+                    rbFold.IsEnabled = false;
+                    rbRaise.IsEnabled = false;
+                    rbCall.IsEnabled = false;
+                    btnContinue.IsEnabled = true;
+
+                    roundCounter = 0;
+                    turnCounter = 0;
+                }
             }
             else
             {
@@ -565,55 +183,101 @@ namespace OOP4200_Final_Project
                 UserCard1.Source = CARDBACK;
                 UserCard2.Source = CARDBACK;
 
+                highBet = 10;
+                raised = 0;
+
                 lbxAnnoucements.Items.Add("Dealer: Game Reset");
             }
-            */
 
+            if (p1Fold)
+            {
+                Fold();
+            }
 
+            tbxRaise.IsEnabled = false;
+            rbCall.IsChecked = false;
+            rbFold.IsChecked = false;
+            rbRaise.IsChecked = false;
+            rbCheck.IsChecked = false;
+            tbxRaise.Clear();
+
+            tbxUserBet.Text = player1.playerAmntBet.ToString();
+            tbxBot1Bet.Text = player2.playerAmntBet.ToString();
+            tbxBot2Bet.Text = player3.playerAmntBet.ToString();
+            tbxBot3Bet.Text = player4.playerAmntBet.ToString();
+
+            tbxUserAmount.Text = player1.playerAmntMoney.ToString();
+            tbxBot1Amount.Text = player2.playerAmntMoney.ToString();
+            tbxBot2Amount.Text = player3.playerAmntMoney.ToString();
+            tbxBot3Amount.Text = player4.playerAmntMoney.ToString();
+
+            dealer.playerAmntBet = player1.playerAmntBet + player2.playerAmntBet + player3.playerAmntBet + player4.playerAmntBet;
+            tbxPot.Text = dealer.playerAmntBet.ToString();
 
         }
 
         private void actionChecked(object sender, RoutedEventArgs e)
         {
-            if(rbRaise.IsChecked == true)
-            {
-                tbxRaise.IsEnabled = true;
-            }
-            else
-            {
-                tbxRaise.IsEnabled = false;
-            }
-            
             //TODO
-            if (RoundCounter != 0)
+            tbxRaise.Clear();
+            if (roundCounter != 0)
             {
                 ActionChecker();
             }
 
+
         }
 
+        /// <summary>
+        /// Simple validation to keep raise number only
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbxRaise_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (rbRaise.IsChecked == true)
+        {            
+            if (int.TryParse(tbxRaise.Text, out raised))
             {
-                int Raise;
-                if (int.TryParse(tbxRaise.Text, out Raise))
-                {
-                    btnContinue.IsEnabled = true;
-                }
-                else
+                if (raised < 10)
                 {
                     btnContinue.IsEnabled = false;
                 }
+                else if (raised < (highBet - player1.playerAmntBet))
+                {
+                    btnContinue.IsEnabled = false;
+                }
+                else
+                {
+                    btnContinue.IsEnabled = true;
+                }                
+            }
+            else if (tbxRaise.Text == "")
+            {
+                btnContinue.IsEnabled = false;
             }
             else
             {
-                tbxRaise.IsEnabled = false;
+                tbxRaise.Clear();
+                MessageBox.Show("ERROR - Raise has to be numerical");
+                btnContinue.IsEnabled = false;
             }
-        }
 
+        }
+        /// <summary>
+        /// Will pull up the rankings info screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRanking_Click(object sender, RoutedEventArgs e)
+        {
+            Rankings ranking = new Rankings();
+            ranking.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// checks to see what actions are currently available
+        /// </summary>
         private void ActionChecker()
         {
+            tbxRaise.IsEnabled = false;
             if (rbCall.IsChecked == true)
             {
                 btnContinue.IsEnabled = true;
@@ -633,133 +297,447 @@ namespace OOP4200_Final_Project
             }
         }
 
-        private void btnRanking_Click(object sender, RoutedEventArgs e)
-        {
-            Rankings ranking = new Rankings();
-            ranking.Visibility = Visibility.Visible;
-        }
-
-
         /// <summary>
-        /// Function to disable all actions the user can take
+        /// Method that runs when the game starts/resets
+        /// initalized values for players and the dealer, then displays card
         /// </summary>
-        private void DisableActions()
+        public void Start()
         {
-            rbFold.IsEnabled = false;
-            rbRaise.IsEnabled = false;
-            rbCall.IsEnabled = false;
-            rbCheck.IsEnabled = false;
-        }
+            deck.Reset();
+            deck.Shuffle();
+            // Create the player object for the human player
+            player1.playerHand = deck.DrawCards(2);
+            player1.playerAmntBet = 0;
 
-        /// <summary>
-        /// Function to enable all actions the user can take
-        /// </summary>
-        private void EnableActions()
-        {
-            rbFold.IsEnabled = true;
+            // Bot 1 is enabled by default, create their Player object
+            player2.playerHand = deck.DrawCards(2);
+            player2.playerAmntBet = 0;            
+
+            // If bot 2 is enabled create their Player object
+            if (stpBot2Panel.IsVisible)
+            {
+                player3.playerHand = deck.DrawCards(2);
+                player3.playerAmntBet = 0;
+                if (starting) {player3.playerAmntMoney = player3StartAmount;}
+            }
+            // If bot 3 is enabled create their Player object
+            if (stpBot3Panel.IsVisible)
+            {
+                player4.playerHand = deck.DrawCards(2);                
+                player4.playerAmntBet = 0;
+                if (starting) {player4.playerAmntMoney = player4StartAmount;}
+            }
+
+            //if the game is starting for the first time, give starting money
+            if (starting)
+            {
+                player1.playerAmntMoney = player1StartAmount;
+                player2.playerAmntMoney = player2StartAmount;
+                starting = false;
+            }
+
+            //reset turn per round and folded players
+            turnsPerRound = numPlayers;
+            p1Fold = false;
+            p2Fold = false;
+            p3Fold = false;
+            p4Fold = false;
+
+            // Give the dealer their five cards
+            dealer.playerHand = deck.DrawCards(5);
+
+            //displays cards
+            DealerCard1.Source = Card.CardImage(dealer.playerHand[0]);
+            DealerCard2.Source = Card.CardImage(dealer.playerHand[1]);
+            DealerCard3.Source = Card.CardImage(dealer.playerHand[2]);
+
+            UserCard1.Source = Card.CardImage(player1.playerHand[0]);
+            UserCard2.Source = Card.CardImage(player1.playerHand[1]);
+
+            lbxAnnoucements.Items.Clear();
+            lbxAnnoucements.Items.Add("Dealer: Cards Delt");
+
+            btnContinue.IsEnabled = false;
+            roundCounter++;
+
             rbRaise.IsEnabled = true;
-            rbCall.IsEnabled = true;
+            rbFold.IsEnabled = true;
             rbCheck.IsEnabled = true;
-        }
 
+
+        }
+        #region User & Bot actions and logic
 
         /// <summary>
-        /// Function to generate a random number from 1-3 to decide on the opponents play
+        /// Action logic for the user
         /// </summary>
-        private void RandomActionDecider()
+        public void Action()
         {
+            String message;
+            //Call raise function
+            if (rbRaise.IsChecked == true)
+            {
+                turnCounter = 1;
+                hasRaised = true;
+                message = Raise(player1, raised);
+                if (raised > highBet) { highBet = raised; }
+                lbxAnnoucements.Items.Add("User: " + message);
+            }
+            //call checked function
+            else if (rbCheck.IsChecked == true)
+            {
+                turnCounter++;
+                Check(player1);
+                lbxAnnoucements.Items.Add("User: Checked");
+            }
+            //call raise function, only raise whats needed
+            else if (rbCall.IsChecked == true)
+            {
+                turnCounter++;
+                message = Raise(player1, highBet - player1.playerAmntBet);
+                if (turnCounter >= turnsPerRound)
+                {
+                    hasRaised = false;
+                }
+                lbxAnnoucements.Items.Add("User: Called: " + message);
+            }
+            //quit the game for the rest of the round
+            else if (rbFold.IsChecked == true)
+            {
+                p1Fold = true;
+                lbxAnnoucements.Items.Add("User: Folded");
+            }
+
+        }
+
+        /// <summary>
+        /// Random action decider for Player 2 (Bot 1)
+        /// </summary>
+        public void RandomActionPlayer2()
+        {
+            String message;
             // Create a random number generator
             Random randomselector = new Random();
             int choice;
+            int botRaise;
             // Draw a number from 1 through 3
-            choice = randomselector.Next(1, 3);
+            choice = randomselector.Next(1, 4);
             // Decide on what the opponent does based on what number was generated above
-            if (choice == 1)
+            // only let bot play if they havent folded
+            if (!p2Fold)
             {
-                if (isRaise == false)
+                if (choice == 1)
                 {
-                    Check();
+                    //calls
+                    if (hasRaised)
+                    {
+                        turnCounter++;
+                        message = Raise(player2, highBet - player2.playerAmntBet);
+                        if (turnCounter >= turnsPerRound)
+                        {
+                            hasRaised = false;
+                        }
+                        lbxAnnoucements.Items.Add("Bot 1: Called: " + message);
+                    }
+                    //checked
+                    else
+                    {
+                        turnCounter++;
+                        Check(player2);
+                        lbxAnnoucements.Items.Add("Bot 1: Checked");
+                    }
                 }
-                else
+                //raise
+                else if (choice == 2)
                 {
-                    Call();                        
+                    //if a raise has happened, bot is not allowed to bet less than the raise
+                    //TODO better bot validation for bets
+                    if (hasRaised)
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(highBet, highBet + 200);
+                        message = Raise(player2, botRaise);
+                        if (player2.playerAmntBet > highBet) { highBet = player2.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 1: " + message);
+                    }
+                    else
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(20, 300);
+                        message = Raise(player2, botRaise);
+                        if (player2.playerAmntBet > highBet) { highBet = player2.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 1: " + message);
+                    }
+                }
+                //fold
+                else if (choice == 3)
+                {
+                    turnCounter++;
+                    if (turnCounter >= turnsPerRound)
+                    {
+                        hasRaised = false;
+                    }
+                    p2Fold = true;
+                    lbxAnnoucements.Items.Add("Bot 1: Folded");
                 }
             }
-            else if (choice == 2)
+            else
             {
-                Raise();
+                turnCounter++;
+                if (turnCounter >= turnsPerRound)
+                {
+                    hasRaised = false;
+                }
+                lbxAnnoucements.Items.Add("Bot 1: Folded");
             }
-            else if (choice == 3)
+        }
+
+        /// <summary>
+        /// Random action decider for Player 3 (Bot 2)
+        /// </summary>
+        public void RandomActionPlayer3()
+        {            
+            String message;
+            // Create a random number generator
+            Random randomselector = new Random();
+            int choice;
+            int botRaise;
+            // Draw a number from 1 through 3
+            choice = randomselector.Next(1, 4);
+            // Decide on what the opponent does based on what number was generated above
+            // only let bot play if they havent folded
+            if (!p3Fold)
             {
-                Fold();
+                if (choice == 1)
+                {
+                    if (hasRaised)
+                    {
+                        turnCounter++;
+                        message = Raise(player3, highBet - player3.playerAmntBet);
+                        if (turnCounter >= turnsPerRound)
+                        {
+                            hasRaised = false;
+                        }
+                        lbxAnnoucements.Items.Add("Bot 2: Called: " + message);
+                    }
+                    else
+                    {
+                        turnCounter++;
+                        Check(player3);
+                        lbxAnnoucements.Items.Add("Bot 2: Checked");
+                    }
+                }
+                else if (choice == 2)
+                {
+                    if (hasRaised)
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(highBet, highBet + 200);
+                        message = Raise(player3, botRaise);
+                        if (player3.playerAmntBet > highBet) { highBet = player3.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 2: " + message);
+                    }
+                    else
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(20, 300);
+                        message = Raise(player3, botRaise);
+                        if (player3.playerAmntBet > highBet) { highBet = player3.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 2: " + message);
+                    }
+                }
+                else if (choice == 3)
+                {
+                    turnCounter++;
+                    if (turnCounter >= turnsPerRound)
+                    {
+                        hasRaised = false;
+                    }
+                    p3Fold = true;
+                    lbxAnnoucements.Items.Add("Bot 2: Folded");
+                }
+            }
+            else
+            {
+                turnCounter++;
+                if (turnCounter >= turnsPerRound)
+                {
+                    hasRaised = false;
+                }
+                lbxAnnoucements.Items.Add("Bot 2: Folded");
+            }
+        }
+
+        /// <summary>
+        /// Random action decider for Player 4 (Bot 3)
+        /// </summary>
+        public void RandomActionPlayer4()
+        {
+            String message;
+            // Create a random number generator
+            Random randomselector = new Random();
+            int choice;
+            int botRaise;            
+            // Draw a number from 1 through 3
+            choice = randomselector.Next(1, 4);
+            // Decide on what the opponent does based on what number was generated above
+            //only let bot play if they havent folded
+            if (!p4Fold)
+            {
+                if (choice == 1)
+                {
+                    if (hasRaised)
+                    {
+                        turnCounter++;
+                        message = Raise(player4, highBet - player4.playerAmntBet);
+                        if (turnCounter >= turnsPerRound)
+                        {
+                            hasRaised = false;
+                        }
+                        lbxAnnoucements.Items.Add("Bot 3: Called: " + message);
+                    }
+                    else
+                    {
+                        turnCounter++;
+                        Check(player4);
+                        lbxAnnoucements.Items.Add("Bot 3: Checked");
+                    }
+                }
+                else if (choice == 2)
+                {
+                    if (hasRaised)
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(highBet, highBet + 200);
+                        message = Raise(player4, botRaise);
+                        if (player4.playerAmntBet > highBet) { highBet = player4.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 3: " + message);
+                    }
+                    else
+                    {
+                        turnCounter = 1;
+                        hasRaised = true;
+                        botRaise = randomselector.Next(20, 300);
+                        message = Raise(player4, botRaise);
+                        if (player4.playerAmntBet > highBet) { highBet = player4.playerAmntBet; }
+                        lbxAnnoucements.Items.Add("Bot 3: " + message);
+                    }
+                }
+                else if (choice == 3)
+                {
+                    turnCounter++;
+                    if (turnCounter >= turnsPerRound)
+                    {
+                        hasRaised = false;
+                    }
+                    p4Fold = true;
+                    lbxAnnoucements.Items.Add("Bot 3: Folded");
+                }
+            }
+            else
+            {
+                turnCounter++;
+                if (turnCounter >= turnsPerRound)
+                {
+                    hasRaised = false;
+                }
+                lbxAnnoucements.Items.Add("Bot 3: Folded");
             }
         }
 
 
         /// <summary>
-        /// Function that accepts a string and an integer. Checks which player is raising and takes their 
-        /// raise value. Does all calculations necessary and adds to the total pot.
+        /// Raises the pot and takes the money out of what the player has (if they have the money to bet)
         /// </summary>
         /// <param name="player"></param>
-        /// <param name="raise"></param>
-        public void RaisePot(String player, int raise)
+        /// <param name="raised"></param>
+        /// <returns></returns>
+        private String Raise(Player player, int raised)
         {
-            // Get the current values for each player that they can use to raise with
-            int player1Amount = Int32.Parse(tbxUserAmount.Text.ToString());
-            int player2Amount = Int32.Parse(tbxBot1Amount.Text.ToString());
-            int player3Amount;
-            if (int.TryParse(tbxBot2Amount.Text, out player3Amount))
-            { }
-            else { player3Amount = 0; }
-            int player4Amount;
-            if (int.TryParse(tbxBot2Amount.Text, out player4Amount))
-            { }
-            else { player4Amount = 0; }
+            String message = "";
+            if (player.playerAmntMoney < raised)
+            {
+                raised = player.playerAmntMoney;
+                player.playerAmntMoney = 0;
+                message = "All In!";
+            } 
+            else 
+            {
+                player.playerAmntMoney -= raised;
+                message = "Bet $" + raised.ToString();
+            }
+            player.playerAmntBet += raised;
+            
+            return message;
+        }
 
-
-            // Check which player is raising and ensure they have more than 0 dollars
-            if (player == "player1" &&  player1Amount > 0)
+        /// <summary>
+        /// checks if a bet has been made. if not, makes a $10 bet
+        /// </summary>
+        /// <param name="player"></param>
+        private void Check(Player player)
+        {
+            if (player.playerAmntBet == 0)
             {
-                // Subtract the raise amount from their total amount
-                player1Amount -= raise;
-                // Change the players total amount to the updated amount and incraese the pot
-                tbxUserAmount.Text = player1Amount.ToString();
-                pot += raise;
-                tbxPot.Text = pot.ToString();
-                raisedNum = raise;
-            }
-            else if(player == "player2" && player2Amount > 0)
-            {
-                player2Amount -= raise;
-                tbxBot1Amount.Text = player2Amount.ToString();
-                pot += raise;
-                tbxPot.Text = pot.ToString();
-                raisedNum = raise;
-            }
-            else if (player == "player3" && player3Amount > 0)
-            {
-                player3Amount -= raise;
-                tbxBot2Amount.Text = player3Amount.ToString();
-                pot += raise;
-                tbxPot.Text = pot.ToString();
-                raisedNum = raise;
-            }
-            else if(player == "player4" && player4Amount > 0)
-            {
-                player4Amount -= raise;
-                tbxBot3Amount.Text = player4Amount.ToString();
-                pot += raise;
-                tbxPot.Text = pot.ToString();
-                raisedNum = raise;
-            }
-            else
-            {
-                MessageBox.Show("An error occured!");
-                Application.Current.Shutdown();
-
+                Raise(player, 10);
             }
         }
 
-        
+        /// <summary>
+        /// Logic for when the user folds, allowing the bots to finish the game instantly
+        /// </summary>
+        public void Fold()
+        {
+            //takes user out of turn order and loops bots turns
+            turnsPerRound--;
+            while (roundCounter != 3)
+            {
+                if (turnCounter < turnsPerRound)
+                    RandomActionPlayer2();
+                if (turnCounter < turnsPerRound)
+                    if (stpBot2Panel.IsVisible) { RandomActionPlayer3(); }
+                if (turnCounter < turnsPerRound)
+                    if (stpBot3Panel.IsVisible) { RandomActionPlayer4(); }
+
+                if (turnCounter >= turnsPerRound)
+                {
+                    roundCounter++;
+                    turnCounter = 0;
+                }
+            }
+            // display all cards and results, reset variables so new game can start
+            DealerCard4.Source = Card.CardImage(dealer.playerHand[3]);
+            DealerCard5.Source = Card.CardImage(dealer.playerHand[4]);
+            Bot1Card1.Source = Card.CardImage(player2.playerHand[0]);
+            Bot1Card2.Source = Card.CardImage(player2.playerHand[1]);
+            Bot2Card1.Source = Card.CardImage(player3.playerHand[0]);
+            Bot2Card2.Source = Card.CardImage(player3.playerHand[1]);
+            Bot3Card1.Source = Card.CardImage(player4.playerHand[0]);
+            Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
+
+            lbxAnnoucements.Items.Add("Bot1: [Result Here]");
+            lbxAnnoucements.Items.Add("Bot2: [Result Here]");
+            lbxAnnoucements.Items.Add("Bot3: [Result Here]");
+            lbxAnnoucements.Items.Add("User: [Result Here]");
+            lbxAnnoucements.Items.Add("[winner]: Wins this round, winning [pot here]");
+
+            rbCheck.IsEnabled = false;
+            rbFold.IsEnabled = false;
+            rbRaise.IsEnabled = false;
+            rbCall.IsEnabled = false;
+            btnContinue.IsEnabled = true;
+
+            roundCounter = 0;
+            turnCounter = 0;
+            p1Fold = false;
+        }
+
+        #endregion
+
     }
 }
