@@ -110,6 +110,7 @@
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
+                <TextBox x:Name="TotalPlayers" TextWrapping="Wrap" Text="" Width="180" Height="20" IsReadOnly="True"/>
             </StackPanel>
 
         </StackPanel>

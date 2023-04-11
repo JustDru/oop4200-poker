@@ -55,6 +55,7 @@ namespace OOP4200_Final_Project
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            int maxturns = 4;
 
             p1StartAmt = 0;
             p2StartAmt = 0;
