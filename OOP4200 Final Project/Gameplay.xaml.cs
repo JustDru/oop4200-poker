@@ -706,6 +706,78 @@ namespace OOP4200_Final_Project
                     turnCounter = 0;
                 }
             }
+
+            // Create the default rankings for each player.
+            CardRankings player1Ranking = new CardRankings();
+            CardRankings player2Ranking = new CardRankings();
+            CardRankings player3Ranking = new CardRankings();
+            CardRankings player4Ranking = new CardRankings();
+
+            // Creates the rankings for each player using the CardRankings parameterized constructor,
+            // which takes in the player hand and the dealer hand. 
+            player1Ranking = new CardRankings(player1.playerHand, dealer.playerHand);
+            player2Ranking = new CardRankings(player2.playerHand, dealer.playerHand);
+
+            // Adds the other 2 bots if they are enabled.
+            if (stpBot2Panel.IsVisible)
+            {
+                player3Ranking = new CardRankings(player3.playerHand, dealer.playerHand);
+            }
+            if (stpBot3Panel.IsVisible)
+            {
+                player4Ranking = new CardRankings(player4.playerHand, dealer.playerHand);
+            }
+
+            // Variables used to show winner and determine winner.
+            // Default winner is the User, it will be overwritten if the other players have better hands 
+            // than the player. 
+            int winnerValue = (int)player1Ranking.cardRank;
+            CardRankings winnerHandValue = player1Ranking;
+            string winnerHand = player1Ranking.cardRank.ToString();
+            string winner = "User";
+
+            // Checks if the 1st bot has a cardRank higher than the players. Each ranking has an integer value 
+            // assigned to it, Royal flush is 10, high cards is 1. 
+            if ((int)player2Ranking.cardRank >= winnerValue)
+            {
+                // Checks if the second bot's hand value is greater than the players. 
+                // This is used to determine the winner if there was a tie, ex. both players have a two pair. 
+                if ((((player2Ranking.GetPlayerHandValue() > winnerHandValue.GetPlayerHandValue()) && ((int)player2Ranking.cardRank == winnerValue))) || (int)player2Ranking.cardRank > winnerValue)
+                {
+                    // Sets the winner variables to bot 1's values. 
+                    winnerValue = (int)player2Ranking.cardRank;
+                    winnerHand = player2Ranking.cardRank.ToString();
+                    winner = "Bot 1";
+                }
+
+            }
+            if (stpBot2Panel.IsVisible)
+            {
+                if ((int)player3Ranking.cardRank >= winnerValue)
+                {
+                    if ((((player3Ranking.GetPlayerHandValue() > winnerHandValue.GetPlayerHandValue()) && ((int)player3Ranking.cardRank == winnerValue))) || (int)player3Ranking.cardRank > winnerValue)
+                    {
+                        winnerValue = (int)player3Ranking.cardRank;
+                        winnerHand = player3Ranking.cardRank.ToString();
+                        winner = "Bot 2";
+                    }
+                }
+            }
+            if (stpBot3Panel.IsVisible)
+            {
+                if ((int)player4Ranking.cardRank >= winnerValue)
+                {
+                    if ((((player4Ranking.GetPlayerHandValue() > winnerHandValue.GetPlayerHandValue()) && ((int)player4Ranking.cardRank == winnerValue))) || (int)player4Ranking.cardRank > winnerValue)
+                    {
+                        winnerValue = (int)player4Ranking.cardRank;
+                        winnerHand = player4Ranking.cardRank.ToString();
+                        winner = "Bot 3";
+                    }
+                }
+            }
+
+
+
             // display all cards and results, reset variables so new game can start
             DealerCard4.Source = Card.CardImage(dealer.playerHand[3]);
             DealerCard5.Source = Card.CardImage(dealer.playerHand[4]);
@@ -716,11 +788,13 @@ namespace OOP4200_Final_Project
             Bot3Card1.Source = Card.CardImage(player4.playerHand[0]);
             Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
 
-            lbxAnnoucements.Items.Add("Bot1: [Result Here]");
-            lbxAnnoucements.Items.Add("Bot2: [Result Here]");
-            lbxAnnoucements.Items.Add("Bot3: [Result Here]");
-            lbxAnnoucements.Items.Add("User: [Result Here]");
-            lbxAnnoucements.Items.Add("[winner]: Wins this round, winning [pot here]");
+            lbxAnnoucements.Items.Add("Hand Values: " + player1Ranking.GetPlayerHandValue() + " " + player2Ranking.GetPlayerHandValue() + " " + player3Ranking.GetPlayerHandValue() + " " + player4Ranking.GetPlayerHandValue());
+            lbxAnnoucements.Items.Add("Bot1: " + player2Ranking.cardRank);
+            lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
+            lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
+            lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
+            lbxAnnoucements.Items.Add(winner + ": Wins this round, winning [pot here]");
+
 
             rbCheck.IsEnabled = false;
             rbFold.IsEnabled = false;
