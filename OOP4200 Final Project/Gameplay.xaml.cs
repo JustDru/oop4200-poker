@@ -826,8 +826,14 @@ namespace OOP4200_Final_Project
 
             lbxAnnoucements.Items.Add("Hand Values: " + player1Ranking.GetPlayerHandValue() + " " + player2Ranking.GetPlayerHandValue() + " " + player3Ranking.GetPlayerHandValue() + " " + player4Ranking.GetPlayerHandValue());
             lbxAnnoucements.Items.Add("Bot1: " + player2Ranking.cardRank);
-            lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
-            lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
+            if (stpBot2Panel.IsVisible)
+            {
+                lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
+            }
+            if (stpBot3Panel.IsVisible)
+            {
+                lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
+            }
             lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
             lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);
             // Pay the winner
