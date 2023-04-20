@@ -850,17 +850,17 @@ namespace OOP4200_Final_Project
                 // Display the winners new amount of money
                 tbxUserAmount.Text = player1.playerAmntMoney.ToString();
             }
-            if (winner == "Bot 2")
+            if (winner == "Bot 1")
             {
                 player2.playerAmntMoney += potAmnt;
                 tbxBot1Amount.Text = player2.playerAmntMoney.ToString();
             }
-            if (winner == "Bot 3")
+            if (winner == "Bot 2")
             {
                 player3.playerAmntMoney += potAmnt;
                 tbxBot2Amount.Text = player3.playerAmntMoney.ToString();
             }
-            if (winner == "Bot 4")
+            if (winner == "Bot 3")
             {
                 player4.playerAmntMoney += potAmnt;
                 tbxBot3Amount.Text = player4.playerAmntMoney.ToString();
