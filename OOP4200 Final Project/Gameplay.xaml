@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
-        Title="Gameplay" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="Gameplay" Height="800" Width="1200" WindowStartupLocation="CenterScreen" Background="#53300A">
     <Grid x:Name="Gamescreen">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Vertical">
-                <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left" ToolTip="Return to the main menu"/>
+        <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2" >
+            <StackPanel Orientation="Vertical" Background="SeaGreen">
+                <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left" ToolTip="Return to the main menu" FontSize="16" Height="30"/>
                 <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="DealerCard1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -23,7 +23,7 @@
                     <Image Name="DealerCard5" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Background="Aqua">
+            <StackPanel Orientation="Vertical" Background="RosyBrown">
                 <Label Content="Bot 1" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="Bot1Card1" Source="/Images/CardBack.png" Height="145" Width="100"/>
@@ -37,7 +37,7 @@
                 <TextBox Name="tbxBot1Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
 
             </StackPanel>
-            <StackPanel Name="stpBot2Panel" Orientation="Vertical" Background="YellowGreen">
+            <StackPanel Name="stpBot2Panel" Orientation="Vertical" Background="BlanchedAlmond">
                 <Label Content="Bot 2" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="Bot2Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -51,7 +51,7 @@
                 <TextBox Name="tbxBot2Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
 
             </StackPanel>
-            <StackPanel Name="stpBot3Panel" Orientation="Vertical" Background="Fuchsia">
+            <StackPanel Name="stpBot3Panel" Orientation="Vertical" Background="DarkGoldenrod">
                 <Label Content="Bot 3" FontWeight="Bold" FontSize="18"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="Bot3Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -67,48 +67,57 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="20,397,20,20" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Background="LightPink">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
-                    <TextBox Name="tbxUserStatus" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
-                    <Label Content="Bet:" ToolTip="Displays how much the user has bet"/>
-                    <TextBox Name="tbxUserBet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
-                    <Label Content="Amount:" ToolTip="Displays the users total cash"/>
-                    <TextBox Name="tbxUserAmount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                    <Label Content="Player Information" FontSize="20"/>
+                    <Label Content="Status:" ToolTip="Displays if the user is bankrupt" FontSize="16"/>
+                    <TextBox Name="tbxUserStatus" IsReadOnly="True" ToolTip="Displays if the user is bankrupt" FontSize="16"/>
+                    <Label Content="Bet:" ToolTip="Displays how much the user has bet" FontSize="16"/>
+                    <TextBox Name="tbxUserBet" IsReadOnly="True" ToolTip="Displays how much the user has bet" FontSize="16"/>
+                    <Label Content="Amount:" ToolTip="Displays the users total cash" FontSize="16"/>
+                    <TextBox Name="tbxUserAmount" IsReadOnly="True" ToolTip="Displays the users total cash" FontSize="16"/>
                 </StackPanel>
-                <Image Name="UserCard1" Source="/Images/Cardback.png" Height="300" Width="207"/>
-                <Image Name="UserCard2" Source="/Images/Cardback.png" Height="300" Width="207"/>
+                <Image Name="UserCard1" Source="/Images/Cardback.png" Height="250" Width="172"/>
+                <Image Name="UserCard2" Source="/Images/Cardback.png" Height="250" Width="172"/>
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Actions:"/>
+                    <Label Content="Actions:" FontSize="20"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Call: " Width="55" ToolTip="Match the current bet"/>
-                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Match the current bet"/>
+                        <Label Content="Call: " Width="70" ToolTip="Match the current bet" FontSize="20"/>
+                        <Viewbox Height="20">
+                            <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" IsEnabled="False" ToolTip="Match the current bet" VerticalAlignment="Center"/>
+                        </Viewbox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Fold: " Width="55" ToolTip="Forfit this round"/>
-                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Forfit this round"/>
+                        <Label Content="Fold: " Width="70" ToolTip="Forfit this round" FontSize="20"/>
+                        <Viewbox Height="20">
+                            <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" IsEnabled="False" ToolTip="Forfit this round" VerticalAlignment="Center"/>
+                        </Viewbox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Raise: " Width="55" ToolTip="Rasie the current bet"/>
-                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Rasie the current bet"/>
-                        <TextBox Name="tbxRaise" Width="80" IsEnabled="False" TextChanged="tbxRaise_TextChanged" ToolTip="Enter the amount to raise"/>
+                        <Label Content="Raise: " Width="70" ToolTip="Rasie the current bet" FontSize="20"/>
+                        <Viewbox Height="20">
+                            <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" IsEnabled="False" ToolTip="Rasie the current bet" VerticalAlignment="Center"/>
+                        </Viewbox>
+                        <TextBox Name="tbxRaise" Width="120" IsEnabled="False" TextChanged="tbxRaise_TextChanged" ToolTip="Enter the amount to raise" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Check: " Width="55" ToolTip="Do nothing"/>
-                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Do nothing"/>
+                        <Label Content="Check: " Width="70" ToolTip="Do nothing" FontSize="20"/>
+                        <Viewbox Height="20">
+                            <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" IsEnabled="False" ToolTip="Do nothing" VerticalAlignment="Center"/>
+                        </Viewbox>
                     </StackPanel>
-                    <Button x:Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True" ToolTip="Continue to the next turn"/>
+                    <Button x:Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True" ToolTip="Continue to the next turn" FontSize="20" Height="40" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Current Pot: " ToolTip="Shows the current pot of cash"/>
-                    <TextBox Name="tbxPot" IsReadOnly="True" ToolTip="Shows the current pot of cash"/>
-                    <Label Content="Announcements: " ToolTip="Displays action info mid-game"/>
-                    <ListBox Name="lbxAnnoucements" Height="200" Tag="Displays action info mid-game"/>
+                    <Label Content="Current Pot: " ToolTip="Shows the current pot of cash" FontSize="18"/>
+                    <TextBox Name="tbxPot" IsReadOnly="True" ToolTip="Shows the current pot of cash" FontSize="18"/>
+                    <Label Content="Announcements: " ToolTip="Displays action info mid-game" FontSize="18"/>
+                    <ListBox Name="lbxAnnoucements" Height="240" Tag="Displays action info mid-game" Width="250" FontSize="14"/>
 
 
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Height="298">
-                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click" ToolTip="Shows the different kinds of matches a player can make"/>
+                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click" ToolTip="Shows the different kinds of matches a player can make" FontSize="16" Width="80" Height="30"/>
                 </StackPanel>
             </StackPanel>
 
