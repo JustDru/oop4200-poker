@@ -11,6 +11,7 @@ namespace OOP4200_Final_Project
 {
     internal class CardRankings : Card
     {
+        // List used to store the cards of the player and the dealer. 
         private List<Card> allCards = new List<Card>();
 
         // This is the list of cards that have matched the criteria of one of the 
@@ -62,7 +63,7 @@ namespace OOP4200_Final_Project
 
         }
 
-        // Not finished
+       
         /// <summary>
         /// Parameterized Constructor
         /// </summary>
@@ -70,10 +71,16 @@ namespace OOP4200_Final_Project
         /// <param name="dealerCards"></param>
         public CardRankings(List<Card> playerCards, List<Card> dealerCards)
         {
+            // Combines the player cards with the dealer cards.
             allCards = CombineCards(playerCards, dealerCards);
 
+            // Sorts the cards in ascending order based off their card values. 
             allCards = SortCardsAscending(allCards);
 
+            // Each of these functions checks for their respective card combination. 
+            // They are called in order from lowest value to highest value, since each function
+            // will be replacing the playerHandValues and the cardRank value we need to call the
+            // highed calue combinations last. 
             CheckHighCard(allCards);
             CheckTwoPair(allCards);
             CheckStraight(allCards);
@@ -90,7 +97,7 @@ namespace OOP4200_Final_Project
 
         #region Methods
 
-        // Can be better organized
+        
         /// <summary>
         /// Checks the players cards and the dealers card to see if there is a royal flush
         /// </summary>
@@ -155,6 +162,12 @@ namespace OOP4200_Final_Project
         private bool CheckStraightFlush(List<Card> cards)
         {
             List<Card> straightFlushCards = new List<Card>();
+
+            // Loops a max of 3 times, this is because within the sorted list of 7 cards, there is only 3 places that
+            // a straight can be found. It can be found in the first 5 cards, the middle 5 cards, or the last 5 cards. 
+            // The if statement within the loop will check if the card at index of 'i' is one card value less than the 
+            // next card in the 5. This is the reason that the for loop cannot loop more than 3 times, the last card checked
+            // is i + 4, meaning it will be checking outside the list of 7 if i is greater than 3. 
             for (int i = 0; i < (cards.Count() - 4); i++)
             {
                 if ((int)cards[i].cardValue + 1 == (int)cards[i + 1].cardValue &&
@@ -162,17 +175,23 @@ namespace OOP4200_Final_Project
                     (int)cards[i + 2].cardValue + 1 == (int)cards[i + 3].cardValue &&
                     (int)cards[i + 3].cardValue + 1 == (int)cards[i + 4].cardValue)
                 {
+                    // 5 cards were found to be a straight, now those cards are added to the straightFlushCards list to be 
+                    // checked if their suits match. 
                     straightFlushCards.Add(cards[i]);
                     straightFlushCards.Add(cards[i + 1]);
                     straightFlushCards.Add(cards[i + 2]);
                     straightFlushCards.Add(cards[i + 3]);
                     straightFlushCards.Add(cards[i + 4]);
+
+                    // If the suits match then it sets the cardSet and the cardRank. 
                     if (CheckAllCardsSuit(straightFlushCards))
                     {
                         SetCardSet(straightFlushCards);
                         this.cardRank = Rankings.StraightFlush;
                         return true;
                     }
+
+                    // Returns false if the cards were not same suit. 
                     else
                     {
                         return false;
@@ -223,7 +242,9 @@ namespace OOP4200_Final_Project
             // Checks if there was a four of a kind
             if (numSameCards == 3)
             {
-                
+                // Checks if the card rank is less than a FourOfAKind and then sets the cardRank if it is. 
+                // This needs to be checked because this function is run after other card combination checks
+                // that may have a higher card combination value, like a flush. 
                 if ((int)this.cardRank < (int)Rankings.FourOfAKind)
                 {
                     SetCardSet(cards);
@@ -273,8 +294,6 @@ namespace OOP4200_Final_Project
         /// <returns></returns>
         private bool CheckFullHouse(List<Card> cards)
         {
-            //cards = SortCardsAscending(cards);
-
             // Uses LINQ to group cards by their card values
             var fullHouseCards = cards.GroupBy(card => card.cardValue);
 
@@ -295,6 +314,7 @@ namespace OOP4200_Final_Project
                 }
             }
 
+            // If there was a three of a kind and a pair found.
             if (threeOfAKind && pair) 
             {
                 SetCardSet(cards);
@@ -303,8 +323,6 @@ namespace OOP4200_Final_Project
 
             }
             return false;
-
-
 
         }
 
@@ -324,7 +342,7 @@ namespace OOP4200_Final_Project
         }
 
         /// <summary>
-        /// Checks if the list of cards is a straight.
+        /// Checks if the list of cards is a straight. Calls the IsStraight function. 
         /// </summary>
         /// <param name="cards"></param>
         /// <returns></returns>
@@ -365,7 +383,6 @@ namespace OOP4200_Final_Project
                 {
                     return true;
                 }
-
             }
             return false; 
         }
@@ -520,9 +537,13 @@ namespace OOP4200_Final_Project
             return allCards;
         }
 
+        /// <summary>
+        /// Just a helper function to help debugging a players hand.
+        /// </summary>
+        /// <param name="playerNum"></param>
+        /// <returns></returns>
         public int DumpHandValue(int playerNum)
         {
-            string handValue = "Player " + playerNum + " Values: ";
             int hand = 0;
 
             foreach (Card card in allCards)
