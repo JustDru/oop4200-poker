@@ -103,11 +103,11 @@
                     <Label Content="Current Pot: "/>
                     <TextBox Name="tbxPot" IsReadOnly="True"/>
                     <Label Content="Announcements: "/>
-                    <ListBox Name="lbxAnnoucements"/>
+                    <ListBox Name="lbxAnnoucements" Height="200"/>
 
 
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Height="298">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
                 </StackPanel>
             </StackPanel>

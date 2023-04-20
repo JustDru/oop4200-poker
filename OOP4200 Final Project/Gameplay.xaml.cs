@@ -723,10 +723,14 @@ namespace OOP4200_Final_Project
             CardRankings player3Ranking = new CardRankings();
             CardRankings player4Ranking = new CardRankings();
 
+            
+
             // Creates the rankings for each player using the CardRankings parameterized constructor,
             // which takes in the player hand and the dealer hand. 
-            player1Ranking = new CardRankings(player1.playerHand, dealer.playerHand);
-            player2Ranking = new CardRankings(player2.playerHand, dealer.playerHand);
+
+                player1Ranking = new CardRankings(player1.playerHand, dealer.playerHand);
+
+                player2Ranking = new CardRankings(player2.playerHand, dealer.playerHand);
 
             // Adds the other 2 bots if they are enabled.
             if (stpBot2Panel.IsVisible)
@@ -736,6 +740,7 @@ namespace OOP4200_Final_Project
             if (stpBot3Panel.IsVisible)
             {
                 player4Ranking = new CardRankings(player4.playerHand, dealer.playerHand);
+                
             }
 
             // Variables used to show winner and determine winner.
