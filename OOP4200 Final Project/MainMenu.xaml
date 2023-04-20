@@ -6,35 +6,8 @@
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d"
         Title="Poker" Height="450" Width="800" MinHeight="450" MinWidth="800">
-    <Grid Name="MainMenuView">
-        <Label HorizontalAlignment="Center" Margin="0,10,0,0" Content="Texas Hold 'Em Poker" VerticalAlignment="Top" Width="340" FontSize="35" Name="lblTitle"/>
-        <Button x:Name="Play" Content="Play" HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top" Height="51" Width="170" FontSize="20" Click="Play_Click"/>
-        <Button x:Name="Help" Content="Help" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Height="51" Width="171" FontSize="20" Click="Help_Click"/>
-        <Button x:Name="Options" Content="Options" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Height="51" Width="171" FontSize="20" Click="Options_Click"/>
-        <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Center" Margin="0,317,0,0" VerticalAlignment="Top" Height="51" Width="171" FontSize="20" Click="Exit_Click"/>
-        <Grid Grid.Column="1" Background="White" x:Name="ContentGrid" Grid.RowSpan="6" Visibility="Hidden">
-            <ContentControl x:Name="mainContentControl"/>
-        </Grid>
-
-        <Grid Name="OptionsView" Visibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label HorizontalAlignment="Left" Margin="35,10,0,0" Content="Options" VerticalAlignment="Top" Width="199" FontSize="30" Height="50"/>
-            <Label Margin="164,128,486,0"  Content="Window Mode" VerticalAlignment="Top" Width="150" FontSize="20"/>
-            <ComboBox Margin="340,135,280,240" Name="cboWindowMode" MaxHeight="59.04" MaxWidth="180">
-                <ComboBoxItem>
-                    <TextBlock>Fullscreen</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock>Windowed Fullscreen</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock>Windowed</TextBlock>
-                </ComboBoxItem>
-            </ComboBox>
-
-            <Button Content="Cancel" Margin="430,0,199,8" VerticalAlignment="Bottom" Height="52" Width="171" FontSize="20" Click="Options_Cancel_Click" Visibility="Visible" Name="Options_Cancel"/>
-            <Button Content="Accept" Margin="192,0,437,9" VerticalAlignment="Bottom" Height="51" Width="171" FontSize="20" Click="Options_Accept_Click" Visibility="Visible" Name="Options_Accept"/>
-
-        </Grid>
+    <Grid Name="MainMenuView" >
+        
     </Grid>
 
 </Window>

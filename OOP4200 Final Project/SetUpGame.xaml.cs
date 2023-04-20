@@ -33,22 +33,18 @@ namespace OOP4200_Final_Project
         public int p3StartAmt;
         public int p4StartAmt;
 
+        
 
 
         private void Main_Click(object sender, RoutedEventArgs e)
         {
             Setup.Visibility = Visibility.Hidden;
+            Window mainMenuWindow = Window.GetWindow(this);
+            if (mainMenuWindow is MainMenu mainMenu)
+            {
+                mainMenu.OpenMenu();
+            }
 
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.MainMenuView.Visibility = Visibility.Visible;
-
-            mainMenu.lblTitle.Visibility = Visibility.Visible;
-            mainMenu.Play.Visibility = Visibility.Visible;
-            mainMenu.Help.Visibility = Visibility.Visible;
-            mainMenu.Exit.Visibility = Visibility.Visible;
-
-            mainMenu.ContentGrid.Visibility = Visibility.Visible;
-            mainMenu.OptionsView.Visibility = Visibility.Visible;
 
         }
 
@@ -118,16 +114,21 @@ namespace OOP4200_Final_Project
                 }
                 else { gameplay.stpBot3Panel.Visibility = Visibility.Hidden; }
 
+                Window mainMenuWindow = Window.GetWindow(this);
+                if (mainMenuWindow is MainMenu mainMenu)
+                {
+                    mainMenu.MainMenuView.Children.Clear();
+                }
+                
 
-                this.Visibility = Visibility.Hidden;
 
                 //call the Call function
-                
 
-                
+
+
                 //newgame.Visibility = Visibility.Visible;
-                
-                
+
+
             }
 
         }
