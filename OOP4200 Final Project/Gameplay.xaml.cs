@@ -58,7 +58,10 @@ namespace OOP4200_Final_Project
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            //TODO redirect to main menu
+            this.Close();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)

@@ -117,7 +117,9 @@ namespace OOP4200_Final_Project
                 Window mainMenuWindow = Window.GetWindow(this);
                 if (mainMenuWindow is MainMenu mainMenu)
                 {
-                    mainMenu.MainMenuView.Children.Clear();
+                    Window parentWindow = Window.GetWindow(this);
+                    parentWindow.Close();
+
                 }
                 
 
