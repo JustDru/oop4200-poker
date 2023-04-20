@@ -56,6 +56,11 @@ namespace OOP4200_Final_Project
             DealerCard5.Source = CARDBACK;
         }
 
+        /// <summary>
+        /// Event Handler to return the user to the main menu from the gameplay window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             
@@ -148,33 +153,11 @@ namespace OOP4200_Final_Project
                 if (turnCounter >= turnsPerRound)
                 {
                     CheckWinner();
-                    /*
-                    Bot1Card1.Source = Card.CardImage(player2.playerHand[0]);
-                    Bot1Card2.Source = Card.CardImage(player2.playerHand[1]);
-                    Bot2Card1.Source = Card.CardImage(player3.playerHand[0]);
-                    Bot2Card2.Source = Card.CardImage(player3.playerHand[1]);
-                    Bot3Card1.Source = Card.CardImage(player4.playerHand[0]);
-                    Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
-
-                    lbxAnnoucements.Items.Add("Bot1: [Result Here]");
-                    lbxAnnoucements.Items.Add("Bot2: [Result Here]");
-                    lbxAnnoucements.Items.Add("Bot3: [Result Here]");
-                    lbxAnnoucements.Items.Add("User: [Result Here]");
-                    lbxAnnoucements.Items.Add("[winner]: Wins this round, winning " + tbxPot.Text);
-
-                    rbCheck.IsEnabled = false;
-                    rbFold.IsEnabled = false;
-                    rbRaise.IsEnabled = false;
-                    rbCall.IsEnabled = false;
-                    btnContinue.IsEnabled = true;
-
-                    roundCounter = 0;
-                    turnCounter = 0;
-                    */
                 }
             }
             else
             {
+                // Reset the game
                 DealerCard1.Source = CARDBACK;
                 DealerCard2.Source = CARDBACK;
                 DealerCard3.Source = CARDBACK;
@@ -199,7 +182,7 @@ namespace OOP4200_Final_Project
             {
                 Fold();
             }
-
+            // Disable radio buttons 
             tbxRaise.IsEnabled = false;
             rbCall.IsChecked = false;
             rbFold.IsChecked = false;
@@ -216,7 +199,7 @@ namespace OOP4200_Final_Project
             tbxBot1Amount.Text = player2.playerAmntMoney.ToString();
             tbxBot2Amount.Text = player3.playerAmntMoney.ToString();
             tbxBot3Amount.Text = player4.playerAmntMoney.ToString();
-
+            // Calculate the pot and display it in the current pot text box
             dealer.playerAmntBet = player1.playerAmntBet + player2.playerAmntBet + player3.playerAmntBet + player4.playerAmntBet;
             tbxPot.Text = dealer.playerAmntBet.ToString();
 
@@ -787,6 +770,7 @@ namespace OOP4200_Final_Project
                 }
 
             }
+            // Only check if bot 2 and 3 have the best hands if they're enabled
             if (stpBot2Panel.IsVisible)
             {
                 if ((int)player3Ranking.cardRank >= winnerValue)
@@ -823,9 +807,10 @@ namespace OOP4200_Final_Project
             Bot2Card2.Source = Card.CardImage(player3.playerHand[1]);
             Bot3Card1.Source = Card.CardImage(player4.playerHand[0]);
             Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
-
+            // Add a list of rankings to the announcements list box
             lbxAnnoucements.Items.Add("Hand Values: " + player1Ranking.GetPlayerHandValue() + " " + player2Ranking.GetPlayerHandValue() + " " + player3Ranking.GetPlayerHandValue() + " " + player4Ranking.GetPlayerHandValue());
             lbxAnnoucements.Items.Add("Bot1: " + player2Ranking.cardRank);
+            // Display bot 2 and bot 3's rankings only if they are active players
             if (stpBot2Panel.IsVisible)
             {
                 lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
@@ -838,13 +823,13 @@ namespace OOP4200_Final_Project
             lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);
             // Pay the winner
             PayoutPot(winner, dealer.playerAmntBet);
-
+            // Disable radio buttons
             rbCheck.IsEnabled = false;
             rbFold.IsEnabled = false;
             rbRaise.IsEnabled = false;
             rbCall.IsEnabled = false;
             btnContinue.IsEnabled = true;
-
+            // Reset the round
             roundCounter = 0;
             turnCounter = 0;
             p1Fold = false;
