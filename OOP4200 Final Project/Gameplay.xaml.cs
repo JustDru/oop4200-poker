@@ -144,6 +144,8 @@ namespace OOP4200_Final_Project
                 btnContinue.IsEnabled = false;
                 if (turnCounter >= turnsPerRound)
                 {
+                    CheckWinner();
+                    /*
                     Bot1Card1.Source = Card.CardImage(player2.playerHand[0]);
                     Bot1Card2.Source = Card.CardImage(player2.playerHand[1]);
                     Bot2Card1.Source = Card.CardImage(player3.playerHand[0]);
@@ -165,6 +167,7 @@ namespace OOP4200_Final_Project
 
                     roundCounter = 0;
                     turnCounter = 0;
+                    */
                 }
             }
             else
@@ -706,7 +709,14 @@ namespace OOP4200_Final_Project
                     turnCounter = 0;
                 }
             }
-
+            CheckWinner();
+            
+        }
+        /// <summary>
+        /// Logic for the end of the round to check who has the best hand
+        /// </summary>
+        public void CheckWinner()
+        {
             // Create the default rankings for each player.
             CardRankings player1Ranking = new CardRankings();
             CardRankings player2Ranking = new CardRankings();
@@ -793,7 +803,7 @@ namespace OOP4200_Final_Project
             lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
             lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
             lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
-            lbxAnnoucements.Items.Add(winner + ": Wins this round, winning [pot here]");
+            lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + tbxPot.Text);
 
 
             rbCheck.IsEnabled = false;
@@ -806,6 +816,7 @@ namespace OOP4200_Final_Project
             turnCounter = 0;
             p1Fold = false;
         }
+
 
         #endregion
 
