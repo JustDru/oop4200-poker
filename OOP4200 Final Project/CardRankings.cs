@@ -43,7 +43,8 @@ namespace OOP4200_Final_Project
             Straight = 4,
             TwoPair = 3,
             OnePair = 2,
-            HighCard = 1
+            HighCard = 1,
+            Folded = 0
         }
 
         public Rankings cardRank { get; set; }
