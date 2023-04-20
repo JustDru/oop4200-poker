@@ -155,7 +155,7 @@ namespace OOP4200_Final_Project
                     lbxAnnoucements.Items.Add("Bot2: [Result Here]");
                     lbxAnnoucements.Items.Add("Bot3: [Result Here]");
                     lbxAnnoucements.Items.Add("User: [Result Here]");
-                    lbxAnnoucements.Items.Add("[winner]: Wins this round, winning [pot here]");
+                    lbxAnnoucements.Items.Add("[winner]: Wins this round, winning " + tbxPot.Text);
 
                     rbCheck.IsEnabled = false;
                     rbFold.IsEnabled = false;
@@ -227,7 +227,7 @@ namespace OOP4200_Final_Project
             ranking.Visibility = Visibility.Visible;
         }
 
-        #region Raido Button Logic
+        #region Radio Button Logic
         private void actionChecked(object sender, RoutedEventArgs e)
         {
             //Only works if gameplay is active

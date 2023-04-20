@@ -97,7 +97,7 @@
                         <Label Content="Check: " Width="55"/>
                         <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
                     </StackPanel>
-                    <Button Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
+                    <Button x:Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Label Content="Current Pot: "/>
