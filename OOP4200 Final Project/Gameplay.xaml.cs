@@ -696,6 +696,7 @@ namespace OOP4200_Final_Project
             turnsPerRound--;
             while (roundCounter != 3)
             {
+                // Chooses random actions for each bot
                 if (turnCounter < turnsPerRound)
                     RandomActionPlayer2();
                 if (turnCounter < turnsPerRound)
@@ -707,6 +708,9 @@ namespace OOP4200_Final_Project
                 {
                     roundCounter++;
                     turnCounter = 0;
+                    // Calculate the pot value 
+                    dealer.playerAmntBet = player1.playerAmntBet + player2.playerAmntBet + player3.playerAmntBet + player4.playerAmntBet;
+                    tbxPot.Text = dealer.playerAmntBet.ToString();
                 }
             }
             CheckWinner();
@@ -723,23 +727,37 @@ namespace OOP4200_Final_Project
             CardRankings player3Ranking = new CardRankings();
             CardRankings player4Ranking = new CardRankings();
 
-            
+
 
             // Creates the rankings for each player using the CardRankings parameterized constructor,
             // which takes in the player hand and the dealer hand. 
-
+            if (!p1Fold)
+            {
                 player1Ranking = new CardRankings(player1.playerHand, dealer.playerHand);
-
+            }
+                
+            if (!p2Fold)
+            {
                 player2Ranking = new CardRankings(player2.playerHand, dealer.playerHand);
+            }
+                
 
             // Adds the other 2 bots if they are enabled.
             if (stpBot2Panel.IsVisible)
             {
-                player3Ranking = new CardRankings(player3.playerHand, dealer.playerHand);
+                if (!p3Fold)
+                {
+                    player3Ranking = new CardRankings(player3.playerHand, dealer.playerHand);
+                }
+                
             }
             if (stpBot3Panel.IsVisible)
             {
-                player4Ranking = new CardRankings(player4.playerHand, dealer.playerHand);
+                if (!p4Fold)
+                {
+                    player4Ranking = new CardRankings(player4.playerHand, dealer.playerHand);
+                }
+                
                 
             }
 
@@ -808,7 +826,7 @@ namespace OOP4200_Final_Project
             lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
             lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
             lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
-            lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + tbxPot.Text);
+            lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);
 
 
             rbCheck.IsEnabled = false;
