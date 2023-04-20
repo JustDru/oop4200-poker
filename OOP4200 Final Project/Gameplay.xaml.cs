@@ -58,10 +58,10 @@ namespace OOP4200_Final_Project
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            
             MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
-
+            this.Close();
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)

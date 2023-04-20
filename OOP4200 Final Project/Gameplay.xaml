@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
-                <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left"/>
+                <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left" ToolTip="Return to the main menu"/>
                 <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal">
                     <Image Name="DealerCard1" Source="/Images/Cardback.png" Height="145" Width="100"/>
@@ -29,12 +29,12 @@
                     <Image Name="Bot1Card1" Source="/Images/CardBack.png" Height="145" Width="100"/>
                     <Image Name="Bot1Card2" Source="/Images/CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
-                <Label Content="$amount:"/>
-                <TextBox Name="tbxBot1Amount" IsReadOnly="True"/>
-                <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot1Bet" IsReadOnly="True"/>
-                <Label Content="Status:"/>
-                <TextBox Name="tbxBot1Status" IsReadOnly="True"/>
+                <Label Content="$amount:" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot1Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot1Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot1Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
 
             </StackPanel>
             <StackPanel Name="stpBot2Panel" Orientation="Vertical" Background="YellowGreen">
@@ -43,12 +43,12 @@
                     <Image Name="Bot2Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
                     <Image Name="Bot2Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
-                <Label Content="$amount:"/>
-                <TextBox Name="tbxBot2Amount" IsReadOnly="True"/>
-                <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot2Bet" IsReadOnly="True"/>
-                <Label Content="Status:"/>
-                <TextBox Name="tbxBot2Status" IsReadOnly="True"/>
+                <Label Content="$amount:" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot2Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot2Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot2Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
 
             </StackPanel>
             <StackPanel Name="stpBot3Panel" Orientation="Vertical" Background="Fuchsia">
@@ -57,58 +57,58 @@
                     <Image Name="Bot3Card1" Source="/Images/Cardback.png" Height="145" Width="100"/>
                     <Image Name="Bot3Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
-                <Label Content="$amount:"/>
-                <TextBox Name="tbxBot3Amount" IsReadOnly="True"/>
-                <Label Content="$Bet:"/>
-                <TextBox Name="tbxBot3Bet" IsReadOnly="True"/>
-                <Label Content="Status:"/>
-                <TextBox Name="tbxBot3Status" IsReadOnly="True"/>
+                <Label Content="$amount:" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot3Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot3Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot3Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
 
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="20,397,20,20" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Status:"/>
-                    <TextBox Name="tbxUserStatus" IsReadOnly="True"/>
-                    <Label Content="Bet:"/>
-                    <TextBox Name="tbxUserBet" IsReadOnly="True"/>
-                    <Label Content="Amount:"/>
-                    <TextBox Name="tbxUserAmount" IsReadOnly="True"/>
+                    <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
+                    <TextBox Name="tbxUserStatus" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
+                    <Label Content="Bet:" ToolTip="Displays how much the user has bet"/>
+                    <TextBox Name="tbxUserBet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                    <Label Content="Amount:" ToolTip="Displays the users total cash"/>
+                    <TextBox Name="tbxUserAmount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
                 </StackPanel>
                 <Image Name="UserCard1" Source="/Images/Cardback.png" Height="300" Width="207"/>
                 <Image Name="UserCard2" Source="/Images/Cardback.png" Height="300" Width="207"/>
                 <StackPanel Orientation="Vertical">
                     <Label Content="Actions:"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Call: " Width="55"/>
-                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
+                        <Label Content="Call: " Width="55" ToolTip="Match the current bet"/>
+                        <RadioButton Name="rbCall" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Match the current bet"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Fold: " Width="55"/>
-                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
+                        <Label Content="Fold: " Width="55" ToolTip="Forfit this round"/>
+                        <RadioButton Name="rbFold" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Forfit this round"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Raise: " Width="55"/>
-                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
-                        <TextBox Name="tbxRaise" Width="80" IsEnabled="False" TextChanged="tbxRaise_TextChanged"/>
+                        <Label Content="Raise: " Width="55" ToolTip="Rasie the current bet"/>
+                        <RadioButton Name="rbRaise" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Rasie the current bet"/>
+                        <TextBox Name="tbxRaise" Width="80" IsEnabled="False" TextChanged="tbxRaise_TextChanged" ToolTip="Enter the amount to raise"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Check: " Width="55"/>
-                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False"/>
+                        <Label Content="Check: " Width="55" ToolTip="Do nothing"/>
+                        <RadioButton Name="rbCheck" GroupName="Actions" Checked="actionChecked" Height="13" IsEnabled="False" ToolTip="Do nothing"/>
                     </StackPanel>
-                    <Button x:Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True"/>
+                    <Button x:Name="btnContinue" Content="Continue" Click="btnContinue_Click" IsEnabled="True" ToolTip="Continue to the next turn"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Current Pot: "/>
-                    <TextBox Name="tbxPot" IsReadOnly="True"/>
-                    <Label Content="Announcements: "/>
-                    <ListBox Name="lbxAnnoucements" Height="200"/>
+                    <Label Content="Current Pot: " ToolTip="Shows the current pot of cash"/>
+                    <TextBox Name="tbxPot" IsReadOnly="True" ToolTip="Shows the current pot of cash"/>
+                    <Label Content="Announcements: " ToolTip="Displays action info mid-game"/>
+                    <ListBox Name="lbxAnnoucements" Height="200" Tag="Displays action info mid-game"/>
 
 
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Height="298">
-                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click"/>
+                    <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click" ToolTip="Shows the different kinds of matches a player can make"/>
                 </StackPanel>
             </StackPanel>
 

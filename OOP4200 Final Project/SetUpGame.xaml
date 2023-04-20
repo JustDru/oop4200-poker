@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:OOP4200_Final_Project"
         mc:Ignorable="d">
     <Grid x:Name="Setup">
-        <Button Content="Start Game" HorizontalAlignment="Left" Margin="580,357,0,0" VerticalAlignment="Top" Height="51" Width="170" FontSize="20" Click="Start_Click"/>
-        <Button Content="Main Menu" HorizontalAlignment="Left" Margin="50,357,0,0" VerticalAlignment="Top" Height="51" Width="171" FontSize="20" Click="Main_Click"/>
+        <Button Content="Start Game" HorizontalAlignment="Left" Margin="580,357,0,0" VerticalAlignment="Top" Height="51" Width="170" FontSize="20" Click="Start_Click" ToolTip="Start the game"/>
+        <Button Content="Main Menu" HorizontalAlignment="Left" Margin="50,357,0,0" VerticalAlignment="Top" Height="51" Width="171" FontSize="20" Click="Main_Click" ToolTip="Return to the main menu"/>
         <Label HorizontalAlignment="Center" Margin="0,10,0,0" Content="Set Up Game" VerticalAlignment="Top" Width="213" FontSize="35"/>
         <Label HorizontalAlignment="Left" Margin="143,74,0,0"  Content="Active Status" VerticalAlignment="Top" Width="122" FontSize="20"/>
         <Label HorizontalAlignment="Center" Margin="0,74,0,0" Content="AI Difficulty" VerticalAlignment="Top" Width="120" FontSize="20"/>
@@ -16,31 +16,31 @@
         <Label HorizontalAlignment="Left" Margin="44,172,0,0"  Content="Bot 1" VerticalAlignment="Top" Width="56" FontSize="20"/>
         <Label HorizontalAlignment="Left" Margin="44,227,0,0"  Content="Bot 2" VerticalAlignment="Top" Width="56" FontSize="20"/>
         <Label HorizontalAlignment="Left" Margin="44,291,0,0"  Content="Bot 3" VerticalAlignment="Top" Width="56" FontSize="20"/>
-        <TextBox x:Name="P1Bet" HorizontalAlignment="Left" Margin="544,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Text="1000"/>
-        <TextBox x:Name="P2Bet" HorizontalAlignment="Left" Margin="544,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Text="1000"/>
-        <TextBox x:Name="P3Bet" HorizontalAlignment="Left" Margin="544,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" IsEnabled="False"/>
-        <TextBox x:Name="P4Bet" HorizontalAlignment="Left" Margin="544,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" IsEnabled="False"/>
-        <ComboBox x:Name="P2AI" HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Width="120" FontSize="17" Height="29">
+        <TextBox x:Name="P1Bet" HorizontalAlignment="Left" Margin="544,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Text="1000" ToolTip="Enter the amount of cash this player starts with"/>
+        <TextBox x:Name="P2Bet" HorizontalAlignment="Left" Margin="544,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Text="1000" ToolTip="Enter the amount of cash this player starts with"/>
+        <TextBox x:Name="P3Bet" HorizontalAlignment="Left" Margin="544,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" IsEnabled="False" ToolTip="Enter the amount of cash this player starts with"/>
+        <TextBox x:Name="P4Bet" HorizontalAlignment="Left" Margin="544,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" IsEnabled="False" ToolTip="Enter the amount of cash this player starts with"/>
+        <ComboBox x:Name="P2AI" HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Width="120" FontSize="17" Height="29" ToolTip="Select the bots difficulty">
             <ComboBoxItem Content="Easy" IsSelected="True"/>
             <ComboBoxItem Content="Medium"/>
             <ComboBoxItem Content="Hard"/>
         </ComboBox>
 
-        <ComboBox x:Name="P3AI" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="17" Margin="0,231,0,0">
+        <ComboBox x:Name="P3AI" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="17" Margin="0,231,0,0" ToolTip="Select the bots difficulty">
             <ComboBoxItem Content="Easy"/>
             <ComboBoxItem Content="Medium"/>
             <ComboBoxItem Content="Hard"/>
         </ComboBox>
-        <ComboBox x:Name="P4AI" IsEnabled="False" HorizontalAlignment="Center" Margin="0,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17">
+        <ComboBox x:Name="P4AI" IsEnabled="False" HorizontalAlignment="Center" Margin="0,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17" ToolTip="Select the bots difficulty">
             <ComboBoxItem Content="Easy"/>
             <ComboBoxItem Content="Medium"/>
             <ComboBoxItem Content="Hard"/>
         </ComboBox>
-        <ComboBox x:Name="P3Active" HorizontalAlignment="Left" Margin="145,235,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P3Active_SelectionChanged" >
+        <ComboBox x:Name="P3Active" HorizontalAlignment="Left" Margin="145,235,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P3Active_SelectionChanged" ToolTip="Select to add another bot" >
             <ComboBoxItem Name="cbiP3Playing" Content="Playing"/>
             <ComboBoxItem Name="cbiP3NotPlaying" Content="Not Playing" IsSelected="True"/>
         </ComboBox>
-        <ComboBox x:Name="P4Active" HorizontalAlignment="Left" Margin="146,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P4Active_SelectionChanged">
+        <ComboBox x:Name="P4Active" HorizontalAlignment="Left" Margin="146,295,0,0" VerticalAlignment="Top" Width="120" FontSize="17" SelectionChanged="P4Active_SelectionChanged" ToolTip="Select to add another bot">
             <ComboBoxItem Name="cbiP4Playing" Content="Playing"/>
             <ComboBoxItem Name="cbiP4NotPlaying" Content="Not Playing" IsSelected="True"/>
         </ComboBox>
