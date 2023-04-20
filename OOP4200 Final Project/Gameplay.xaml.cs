@@ -827,7 +827,8 @@ namespace OOP4200_Final_Project
             lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
             lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
             lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);
-
+            // Pay the winner
+            PayoutPot(winner, dealer.playerAmntBet);
 
             rbCheck.IsEnabled = false;
             rbFold.IsEnabled = false;
@@ -838,6 +839,38 @@ namespace OOP4200_Final_Project
             roundCounter = 0;
             turnCounter = 0;
             p1Fold = false;
+        }
+
+        /// <summary>
+        /// Function to pay the winner of the round with the amount of money in the pot
+        /// </summary>
+        /// <param name="winner"></param>
+        /// <param name="potAmnt"></param>
+        public void PayoutPot(String winner, int potAmnt)
+        {
+            // Check who won the round
+            if (winner == "User")
+            {
+                // Add the current pot amount to the winners money amount variable
+                player1.playerAmntMoney += potAmnt;
+                // Display the winners new amount of money
+                tbxUserAmount.Text = player1.playerAmntMoney.ToString();
+            }
+            if (winner == "Bot 2")
+            {
+                player2.playerAmntMoney += potAmnt;
+                tbxBot1Amount.Text = player2.playerAmntMoney.ToString();
+            }
+            if (winner == "Bot 3")
+            {
+                player3.playerAmntMoney += potAmnt;
+                tbxBot2Amount.Text = player3.playerAmntMoney.ToString();
+            }
+            if (winner == "Bot 4")
+            {
+                player4.playerAmntMoney += potAmnt;
+                tbxBot3Amount.Text = player4.playerAmntMoney.ToString();
+            }
         }
 
 
