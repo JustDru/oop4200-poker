@@ -864,15 +864,15 @@ namespace OOP4200_Final_Project
             Bot3Card2.Source = Card.CardImage(player4.playerHand[1]);
             // Add a list of rankings to the announcements list box
             lbxAnnoucements.Items.Add("Hand Values: " + player1Ranking.GetPlayerHandValue() + " " + player2Ranking.GetPlayerHandValue() + " " + player3Ranking.GetPlayerHandValue() + " " + player4Ranking.GetPlayerHandValue());
-            lbxAnnoucements.Items.Add("Bot1: " + player2Ranking.cardRank);
+            lbxAnnoucements.Items.Add("Bot 1: " + player2Ranking.cardRank);
             // Display bot 2 and bot 3's rankings only if they are active players
             if (stpBot2Panel.IsVisible)
             {
-                lbxAnnoucements.Items.Add("Bot2: " + player3Ranking.cardRank);
+                lbxAnnoucements.Items.Add("Bot 2: " + player3Ranking.cardRank);
             }
             if (stpBot3Panel.IsVisible)
             {
-                lbxAnnoucements.Items.Add("Bot3: " + player4Ranking.cardRank);
+                lbxAnnoucements.Items.Add("Bot 3: " + player4Ranking.cardRank);
             }
             lbxAnnoucements.Items.Add("User: " + player1Ranking.cardRank);
             lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);

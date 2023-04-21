@@ -26,9 +26,9 @@ namespace OOP4200_Final_Project.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\igspo\\source\\repos\\" +
-            "oop4200-poker\\OOP4200FinalProjectFR\\OOP4200 Final Project\\dbPokerLogs.mdf\";Integ" +
-            "rated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Markus\\Desktop\\Durh" +
+            "am College\\Sem 4\\OPP3\\Working- Visual side\\OOP4200 Final Project\\dbPokerLogs.mdf" +
+            "\";Integrated Security=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

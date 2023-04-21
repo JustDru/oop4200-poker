@@ -39,10 +39,10 @@
         <Grid Name="StatsView" Visibility="hidden" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" Margin="20" >
                 <Label Content="Player Information:" FontSize="18" Margin="5"/>
-                <DataGrid Name="playerGrid" Margin="20"/>
+                <DataGrid Name="playerGrid" Margin="20" IsReadOnly="True" Height="200"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="MainMenu" Content="Main Menu" Click="Menu_Click" Height="52" Width="170" Margin="25"/>
+                    <Button Name="MainMenu" Content="Main Menu" Click="Menu_Click" Height="52" Width="170" Margin="25" FontSize="18"/>
                 </StackPanel>
             </StackPanel>
 
