@@ -43,7 +43,12 @@ namespace OOP4200_Final_Project
             Control set = new SetUpGame();
             this.MainMenuView.Children.Add(set);
         }
+        public void OpenStats()
+        {
+            MainMenuView.Children.Clear();
+            Control set = new SetUpGame();
+            this.MainMenuView.Children.Add(set);
+        }
 
-       
     }
 }

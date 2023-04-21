@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,9 +116,56 @@ namespace OOP4200_Final_Project
         }
 
 
+
         #endregion
 
+        private void Stats_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            /// mainMenu.OptionAccept();
+            
+            this.ContentGrid.Visibility = Visibility.Visible;
+            this.StatsView.Visibility = Visibility.Visible;
 
+        }
+
+        private void Stat_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+                //put the connection string in a string
+                string connectString = DBAccess.GetConnectionString();
+                //create a new connection
+                SqlConnection cn = new SqlConnection(connectString);
+                //open the connection
+                cn.Open();
+                //create query
+                string selectionQuery = "SELECT * FROM [dbo].[Winner_Logs]";
+                //create command, pass the query and connection
+                SqlCommand command = new SqlCommand(selectionQuery, cn);
+                //declare adapter
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                //declare data table
+                DataTable dt = new DataTable("Winner_Logs");
+                //fill data table with adapter
+                sda.Fill(dt);
+                //bind sql data table with xaml data table
+                playerGrid.ItemsSource = dt.DefaultView;
+                //close connection
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            this.ContentGrid.Visibility = Visibility.Hidden;
+            this.StatsView.Visibility = Visibility.Hidden;
+        }
     }
 }
 

@@ -16,7 +16,7 @@ namespace OOP4200_Final_Project
         /// Method to get the connection string to dbPokerLogs
         /// </summary>
         /// <returns></returns>
-        private static string GetConnectionString()
+        internal static string GetConnectionString()
         {
             return Properties.Settings.Default.ConnectionString;
         }
