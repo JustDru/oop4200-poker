@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 
 namespace OOP4200_Final_Project
@@ -19,6 +21,7 @@ namespace OOP4200_Final_Project
         internal static string GetConnectionString()
         {
             return Properties.Settings.Default.ConnectionString;
+
         }
 
         #endregion
@@ -50,7 +53,7 @@ namespace OOP4200_Final_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new Exception("Error inserting record");
             }
             finally
             {

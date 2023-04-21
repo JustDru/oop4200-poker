@@ -38,6 +38,7 @@ namespace OOP4200_Final_Project
             Ace = 1
         }
         #endregion
+        // Second set of Enumerators
         public static class Enums
         {
             public enum Suit
@@ -67,6 +68,7 @@ namespace OOP4200_Final_Project
         }
 
         #region Properties
+        // Accessors and Mutators for the cardSuit and cardValue
         public Suit cardSuit { get; set; }
         public Value cardValue { get; set; }
         #endregion
@@ -74,16 +76,12 @@ namespace OOP4200_Final_Project
 
         #region Method
 
-        /// <summary>
-        /// Checks if two cards passed in are equal to eachother
-        /// </summary>
-        /// <param name="op1"></param>
-        /// <param name="op2"></param>
-        /// <returns></returns>
-        /// 
 
         public List<Card> cards { get; set; }
 
+        /// <summary>
+        /// Default constructor for the Card class
+        /// </summary>
         public Card()
         {
             
@@ -189,7 +187,7 @@ namespace OOP4200_Final_Project
         {
             string cardPicRef = "";
             
-
+            // Assign the images for all 2 cards
             if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Two)
             { cardPicRef = "/Images/2_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Two)
@@ -198,7 +196,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/2_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Two)
             { cardPicRef = "/Images/2_of_spades.png"; }
-
+            // Assign the images for all 3 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Three)
             { cardPicRef = "/Images/3_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Three)
@@ -207,8 +205,8 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/3_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Three)
             { cardPicRef = "/Images/3_of_spades.png"; }
-
-            else if(aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Four)
+            // Assign the images for all 4 cards
+            else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Four)
             { cardPicRef = "/Images/4_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Four)
             { cardPicRef = "/Images/4_of_diamonds.png"; }
@@ -216,7 +214,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/4_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Four)
             { cardPicRef = "/Images/4_of_spades.png"; }
-
+            // Assign the images for all 5 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Five)
             { cardPicRef = "/Images/5_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Five)
@@ -225,7 +223,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/5_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Five)
             { cardPicRef = "/Images/5_of_spades.png"; }
-
+            // Assign the images for all 6 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Six)
             { cardPicRef = "/Images/6_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Six)
@@ -234,7 +232,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/6_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Six)
             { cardPicRef = "/Images/6_of_spades.png"; }
-
+            // Assign the images for all 7 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Seven)
             { cardPicRef = "/Images/7_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Seven)
@@ -243,7 +241,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/7_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Seven)
             { cardPicRef = "/Images/7_of_spades.png"; }
-
+            // Assign the images for all 8 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Eight)
             { cardPicRef = "/Images/8_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Eight)
@@ -252,7 +250,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/8_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Eight)
             { cardPicRef = "/Images/8_of_spades.png"; }
-
+            // Assign the images for all 9 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Nine)
             { cardPicRef = "/Images/9_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Nine)
@@ -261,7 +259,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/9_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Nine)
             { cardPicRef = "/Images/9_of_spades.png"; }
-
+            // Assign the images for all 10 cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Ten)
             { cardPicRef = "/Images/10_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Ten)
@@ -270,7 +268,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/10_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Ten)
             { cardPicRef = "/Images/10_of_spades.png"; }
-
+            // Assign the images for all Jack cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Jack)
             { cardPicRef = "/Images/jack_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Jack)
@@ -279,7 +277,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/jack_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Jack)
             { cardPicRef = "/Images/jack_of_spades.png"; }
-
+            // Assign the images for all Queen cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Queen)
             { cardPicRef = "/Images/queen_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Queen)
@@ -288,7 +286,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/queen_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.Queen)
             { cardPicRef = "/Images/queen_of_spades.png"; }
-
+            // Assign the images for all King cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.King)
             { cardPicRef = "/Images/king_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.King)
@@ -297,7 +295,7 @@ namespace OOP4200_Final_Project
             { cardPicRef = "/Images/king_of_hearts.png"; }
             else if (aCard.cardSuit == Suit.Spades && aCard.cardValue == Value.King)
             { cardPicRef = "/Images/king_of_spades.png"; }
-
+            // Assign the images for all Ace cards
             else if (aCard.cardSuit == Suit.Clubs && aCard.cardValue == Value.Ace)
             { cardPicRef = "/Images/ace_of_clubs.png"; }
             else if (aCard.cardSuit == Suit.Diamonds && aCard.cardValue == Value.Ace)

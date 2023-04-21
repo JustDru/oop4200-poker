@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="OOP4200_Final_Project.Properties.Settings.ConnectionString"
+            connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=&quot;C:\Users\igspo\source\repos\oop4200-poker\OOP4200FinalProjectFR\OOP4200 Final Project\dbPokerLogs.mdf&quot;;Integrated Security=True"
+            providerName="" />
+			<add name="DefaultConnection" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Database=dbPokerLogs; Trusted_Connection=true;"/>
+    </connectionStrings>
+</configuration>

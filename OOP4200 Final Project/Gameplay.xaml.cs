@@ -69,6 +69,11 @@ namespace OOP4200_Final_Project
             this.Close();
         }
 
+        /// <summary>
+        /// Event Handler to progress the game state when clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
             //moves on with the round
@@ -217,6 +222,11 @@ namespace OOP4200_Final_Project
         }
 
         #region Radio Button Logic
+        /// <summary>
+        /// Calls the action checker when a checkbox is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void actionChecked(object sender, RoutedEventArgs e)
         {
             //Only works if gameplay is active

@@ -30,6 +30,11 @@ namespace OOP4200_Final_Project
             InitializeComponent();
         }
         #region EVENT HANDLERS
+        /// <summary>
+        /// Event handler to switch the page to the set up game page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Play_Click(object sender, RoutedEventArgs e)
         {
 
@@ -46,7 +51,11 @@ namespace OOP4200_Final_Project
             P4Card1.Visibility = Visibility.Visible;
             P4Card2.Visibility = Visibility.Visible;*/
         }
-
+        /// <summary>
+        /// Event handler to show the user the help page when the button is clicked. Shows the user the rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Help_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Gameplay\n\n" +
@@ -58,7 +67,11 @@ namespace OOP4200_Final_Project
                 "\nIf there is more than one remaining player when the final betting round is complete, the last person to bet or raise shows their cards. The player with the best five-card poker hand wins the pot. In the event of identical hands, the pot will be divided between the players with the best hands. After the pot has been awarded, another round begins and the play proceeds clockwise." +
                 "\nReference: Bicycle: How to Play App, retrieved on March 18, 2022");
         }
-
+        /// <summary>
+        /// Event handler to switch the page to the options page from the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Options_Click(object sender, RoutedEventArgs e)
         {
 
@@ -67,11 +80,21 @@ namespace OOP4200_Final_Project
             inOption = true;
         }
 
+        /// <summary>
+        /// Event handler to close the program when the Exit button is pressed on the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Event handler to send the user to the main menu from the options page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Options_Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.ContentGrid.Visibility = Visibility.Hidden;
@@ -79,6 +102,11 @@ namespace OOP4200_Final_Project
             inOption = false;
         }
 
+        /// <summary>
+        /// Event handler for the accept button in the options page. Sets the window size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Options_Accept_Click(object sender, RoutedEventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
@@ -119,6 +147,11 @@ namespace OOP4200_Final_Project
 
         #endregion
 
+        /// <summary>
+        /// Event handler to load the statistics page and pull all of the data into the datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Stats_Click(object sender, RoutedEventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
@@ -153,16 +186,16 @@ namespace OOP4200_Final_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine(ex.Message);
             }
 
         }
 
-        private void Stat_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
+        /// <summary>
+        /// Event Handler to return to the main menu when the button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             this.ContentGrid.Visibility = Visibility.Hidden;

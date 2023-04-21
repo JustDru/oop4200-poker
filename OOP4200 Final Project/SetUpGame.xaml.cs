@@ -20,6 +20,9 @@ namespace OOP4200_Final_Project
     /// </summary>
     public partial class SetUpGame : UserControl
     {
+        /// <summary>
+        /// Creates the Set Up Game window
+        /// </summary>
         public SetUpGame()
         {
 
@@ -28,6 +31,7 @@ namespace OOP4200_Final_Project
             
 
         }
+        // Initialize starting amount variables
         public int p1StartAmt;
         public int p2StartAmt;
         public int p3StartAmt;
@@ -48,9 +52,15 @@ namespace OOP4200_Final_Project
 
         }
 
-
+        /// <summary>
+        /// Event handler for the "Start" button that switches the view to the Gameplay window.
+        /// Also sends the appropriate information to the gameplay window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            // Initialize player starting amounts
             p1StartAmt = 0;
             p2StartAmt = 0;
             p3StartAmt = 0;
@@ -58,6 +68,7 @@ namespace OOP4200_Final_Project
         ErrorMessages.Clear();
 
             #region Validation
+            // Check if the user and bot 1 have valid integer starting amounts
             if (P1Bet.Text == "" || !int.TryParse(P1Bet.Text, out p1StartAmt))
             {
                 ErrorMessages.AppendText("User Amount is Invalid.");
@@ -83,7 +94,7 @@ namespace OOP4200_Final_Project
                 }
             }
             #endregion
-
+            // As long as there are no error messages you can start the game
             if (ErrorMessages.Text == "")
             {
                 Gameplay gameplay = new Gameplay();
@@ -121,14 +132,6 @@ namespace OOP4200_Final_Project
                     parentWindow.Close();
 
                 }
-                
-
-
-                //call the Call function
-
-
-
-                //newgame.Visibility = Visibility.Visible;
 
 
             }

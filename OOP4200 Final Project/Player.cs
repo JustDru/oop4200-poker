@@ -11,7 +11,7 @@ namespace OOP4200_Final_Project
         Deck deck = new Deck();
         #region Constructors
         /// <summary>
-        /// Constructor for the Player 
+        /// Paramaterized Constructor for the Player 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="hand"></param>
@@ -22,6 +22,9 @@ namespace OOP4200_Final_Project
             playerAmntMoney = startingMoney;
             playerAmntBet = bet;
         }
+        /// <summary>
+        /// Default constructor for the Player object
+        /// </summary>
         public Player()
         {
             playerHand = deck.DrawCards(2);
@@ -32,12 +35,13 @@ namespace OOP4200_Final_Project
         #endregion
 
         #region Properties
-        public List<Card> playerHand { get; set; }
         //Card(s) the player is delt
-        public int playerAmntMoney { get; set; }
+        public List<Card> playerHand { get; set; }
         // Amount of money that the player has access to for bets
-        public int playerAmntBet { get; set; }
+        public int playerAmntMoney { get; set; }
         // Amount of money that the player is betting with
+        public int playerAmntBet { get; set; }
+        
 
         #endregion
 

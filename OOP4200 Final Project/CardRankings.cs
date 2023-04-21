@@ -24,10 +24,26 @@ namespace OOP4200_Final_Project
         private int playerHandValue;
 
         // Getters
+        /// <summary>
+        /// Get the card set
+        /// </summary>
+        /// <returns>A list of cards</returns>
         public List<Card> GetCardSet() { return this.cardSet; }
+        /// <summary>
+        /// Get the value of the players hand
+        /// </summary>
+        /// <returns></returns>
         public int GetPlayerHandValue() { return this.playerHandValue; }
         // Setters
+        /// <summary>
+        /// Set the value of the players card set
+        /// </summary>
+        /// <param name="cards"></param>
         private void SetCardSet(List<Card> cards) { this.cardSet = cards; }
+        /// <summary>
+        /// Set the value of the players hand
+        /// </summary>
+        /// <param name="value"></param>
         private void SetPlayerHandValue(int value) { this.playerHandValue = value; }
 
         #region Enums
