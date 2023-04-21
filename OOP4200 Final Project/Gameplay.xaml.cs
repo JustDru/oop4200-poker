@@ -754,6 +754,7 @@ namespace OOP4200_Final_Project
             CardRankings winnerHandValue = player1Ranking;
             string winnerHand = player1Ranking.cardRank.ToString();
             string winner = "User";
+            String bestHand = player1Ranking.cardRank.ToString();
 
             // Checks if the 1st bot has a cardRank higher than the players. Each ranking has an integer value 
             // assigned to it, Royal flush is 10, high cards is 1. 
@@ -767,6 +768,7 @@ namespace OOP4200_Final_Project
                     winnerValue = (int)player2Ranking.cardRank;
                     winnerHand = player2Ranking.cardRank.ToString();
                     winner = "Bot 1";
+                    bestHand = player2Ranking.cardRank.ToString();
                 }
 
             }
@@ -780,6 +782,7 @@ namespace OOP4200_Final_Project
                         winnerValue = (int)player3Ranking.cardRank;
                         winnerHand = player3Ranking.cardRank.ToString();
                         winner = "Bot 2";
+                        bestHand = player3Ranking.cardRank.ToString();
                     }
                 }
             }
@@ -792,6 +795,7 @@ namespace OOP4200_Final_Project
                         winnerValue = (int)player4Ranking.cardRank;
                         winnerHand = player4Ranking.cardRank.ToString();
                         winner = "Bot 3";
+                        bestHand = player4Ranking.cardRank.ToString();
                     }
                 }
             }
@@ -823,6 +827,17 @@ namespace OOP4200_Final_Project
             lbxAnnoucements.Items.Add(winner + ": Wins this round, winning " + dealer.playerAmntBet);
             // Pay the winner
             PayoutPot(winner, dealer.playerAmntBet);
+            // Add the winner of the round to the database logs
+            try
+            {
+                DBAccess.InsertNewRecord(winner, bestHand, dealer.playerAmntBet, DateTime.Now);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+
             // Disable radio buttons
             rbCheck.IsEnabled = false;
             rbFold.IsEnabled = false;

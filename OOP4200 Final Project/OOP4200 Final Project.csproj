@@ -76,6 +76,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\10_of_clubs.png" />
     <Resource Include="Images\10_of_diamonds.png" />
     <Resource Include="Images\10_of_hearts.png" />
