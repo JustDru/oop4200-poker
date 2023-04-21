@@ -181,6 +181,10 @@ namespace OOP4200_Final_Project
                 raised = 0;
 
                 lbxAnnoucements.Items.Add("Dealer: Game Reset");
+                tbxUserStatus.Text = "";
+                tbxBot1Status.Text = "";
+                tbxBot2Status.Text = "";
+                tbxBot3Status.Text = "";
             }
 
             if (p1Fold)
@@ -204,6 +208,7 @@ namespace OOP4200_Final_Project
             tbxBot1Amount.Text = player2.playerAmntMoney.ToString();
             tbxBot2Amount.Text = player3.playerAmntMoney.ToString();
             tbxBot3Amount.Text = player4.playerAmntMoney.ToString();
+
             // Calculate the pot and display it in the current pot text box
             dealer.playerAmntBet = player1.playerAmntBet + player2.playerAmntBet + player3.playerAmntBet + player4.playerAmntBet;
             tbxPot.Text = dealer.playerAmntBet.ToString();
@@ -219,6 +224,22 @@ namespace OOP4200_Final_Project
         {
             Rankings ranking = new Rankings();
             ranking.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// Will pull up a 'How to Play' popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Gameplay\n\n" +
+                "The Deal\n" +
+                "Each player is dealt two cards. The dealer spreads five cards, three at once, then another and then another that can be used by all players to amke their best possible five-card hand.\n\n" +
+                "The Play\n" +
+                "Each player is dealt two private cards (known as hole cards) that belong to them alone. Five community cards are dealt face-up to form the board. All playres in the game use these shared community cards in conjunction with their own hole cards to each make their best posisble five-cards poker hand." +
+                "In Hold 'em, the available actions are fold, check, call, or raise. Exactly which options are available depends on the action taken by the player. If nobody has made a bet, the plaer may either check or bet. If a player makes a bet, the others can call, raise, or fold. To call is to match the amount the previous player has bet. To raise is to bid how much they want ranging from 1 to 100." +
+                "\nIf there is more than one remaining player when the final betting round is complete, the last person to bet or raise shows their cards. The player with the best five-card poker hand wins the pot. In the event of identical hands, the pot will be divided between the players with the best hands. After the pot has been awarded, another round begins and the play proceeds clockwise." +
+                "\nReference: Bicycle: How to Play App, retrieved on March 18, 2022", "How To Play", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         #region Radio Button Logic
@@ -377,6 +398,7 @@ namespace OOP4200_Final_Project
                 message = Raise(player1, raised);
                 if (raised > highBet) { highBet = raised; }
                 lbxAnnoucements.Items.Add("User: " + message);
+                tbxUserStatus.Text = "Raised";
             }
             //call checked function
             else if (rbCheck.IsChecked == true)
@@ -384,6 +406,7 @@ namespace OOP4200_Final_Project
                 turnCounter++;
                 Check(player1);
                 lbxAnnoucements.Items.Add("User: Checked");
+                tbxUserStatus.Text = "Checked";
             }
             //call raise function, only raise whats needed
             else if (rbCall.IsChecked == true)
@@ -395,12 +418,14 @@ namespace OOP4200_Final_Project
                     hasRaised = false;
                 }
                 lbxAnnoucements.Items.Add("User: Called: " + message);
+                tbxUserStatus.Text = "Called";
             }
             //quit the game for the rest of the round
             else if (rbFold.IsChecked == true)
             {
                 p1Fold = true;
                 lbxAnnoucements.Items.Add("User: Folded");
+                tbxUserStatus.Text = "Folded";
             }
 
         }
@@ -433,6 +458,7 @@ namespace OOP4200_Final_Project
                             hasRaised = false;
                         }
                         lbxAnnoucements.Items.Add("Bot 1: Called: " + message);
+                        tbxBot1Status.Text = "Called";
                     }
                     //checked
                     else
@@ -440,6 +466,7 @@ namespace OOP4200_Final_Project
                         turnCounter++;
                         Check(player2);
                         lbxAnnoucements.Items.Add("Bot 1: Checked");
+                        tbxBot1Status.Text = "Checked";
                     }
                 }
                 //raise
@@ -455,6 +482,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player2, botRaise);
                         if (player2.playerAmntBet > highBet) { highBet = player2.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 1: " + message);
+                        tbxBot1Status.Text = "Raised";
                     }
                     else
                     {
@@ -464,6 +492,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player2, botRaise);
                         if (player2.playerAmntBet > highBet) { highBet = player2.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 1: " + message);
+                        tbxBot1Status.Text = "Raised";
                     }
                 }
                 //fold
@@ -476,6 +505,7 @@ namespace OOP4200_Final_Project
                     }
                     p2Fold = true;
                     lbxAnnoucements.Items.Add("Bot 1: Folded");
+                    tbxBot1Status.Text = "Folded";
                 }
             }
             else
@@ -516,12 +546,14 @@ namespace OOP4200_Final_Project
                             hasRaised = false;
                         }
                         lbxAnnoucements.Items.Add("Bot 2: Called: " + message);
+                        tbxBot2Status.Text = "Called";
                     }
                     else
                     {
                         turnCounter++;
                         Check(player3);
                         lbxAnnoucements.Items.Add("Bot 2: Checked");
+                        tbxBot2Status.Text = "Checked";
                     }
                 }
                 else if (choice == 2)
@@ -534,6 +566,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player3, botRaise);
                         if (player3.playerAmntBet > highBet) { highBet = player3.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 2: " + message);
+                        tbxBot2Status.Text = "Raised";
                     }
                     else
                     {
@@ -543,6 +576,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player3, botRaise);
                         if (player3.playerAmntBet > highBet) { highBet = player3.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 2: " + message);
+                        tbxBot2Status.Text = "Raised";
                     }
                 }
                 else if (choice == 3)
@@ -554,6 +588,7 @@ namespace OOP4200_Final_Project
                     }
                     p3Fold = true;
                     lbxAnnoucements.Items.Add("Bot 2: Folded");
+                    tbxBot2Status.Text = "Fold";
                 }
             }
             else
@@ -566,6 +601,7 @@ namespace OOP4200_Final_Project
                 lbxAnnoucements.Items.Add("Bot 2: Folded");
             }
         }
+
 
         /// <summary>
         /// Random action decider for Player 4 (Bot 3)
@@ -594,12 +630,14 @@ namespace OOP4200_Final_Project
                             hasRaised = false;
                         }
                         lbxAnnoucements.Items.Add("Bot 3: Called: " + message);
+                        tbxBot3Status.Text = "Called";
                     }
                     else
                     {
                         turnCounter++;
                         Check(player4);
                         lbxAnnoucements.Items.Add("Bot 3: Checked");
+                        tbxBot3Status.Text = "Checked";
                     }
                 }
                 else if (choice == 2)
@@ -612,6 +650,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player4, botRaise);
                         if (player4.playerAmntBet > highBet) { highBet = player4.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 3: " + message);
+                        tbxBot3Status.Text = "Raised";
                     }
                     else
                     {
@@ -621,6 +660,7 @@ namespace OOP4200_Final_Project
                         message = Raise(player4, botRaise);
                         if (player4.playerAmntBet > highBet) { highBet = player4.playerAmntBet; }
                         lbxAnnoucements.Items.Add("Bot 3: " + message);
+                        tbxBot3Status.Text = "Raised";
                     }
                 }
                 else if (choice == 3)
@@ -632,6 +672,7 @@ namespace OOP4200_Final_Project
                     }
                     p4Fold = true;
                     lbxAnnoucements.Items.Add("Bot 3: Folded");
+                    tbxBot3Status.Text = "Folded";
                 }
             }
             else

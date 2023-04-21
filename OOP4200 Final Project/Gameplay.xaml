@@ -11,8 +11,8 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2" >
-            <StackPanel Orientation="Vertical" Background="SeaGreen">
+        <StackPanel Orientation="Horizontal" Margin="20,20,20,392" Grid.ColumnSpan="2" Background="SeaGreen">
+            <StackPanel Orientation="Vertical">
                 <Button Content="MainMenu" Click="btnMainMenu_Click" Width="100" HorizontalAlignment="Left" ToolTip="Return to the main menu" FontSize="16" Height="30"/>
                 <Label Content="Dealer's cards:" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal">
@@ -30,11 +30,11 @@
                     <Image Name="Bot1Card2" Source="/Images/CardBack.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:" ToolTip="Displays the users total cash"/>
-                <TextBox Name="tbxBot1Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot1Amount" IsReadOnly="True" ToolTip="Displays the bots total cash"/>
                 <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
-                <TextBox Name="tbxBot1Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot1Bet" IsReadOnly="True" ToolTip="Displays how much the bot has bet"/>
                 <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
-                <TextBox Name="tbxBot1Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot1Status" IsReadOnly="True" ToolTip="Displays the bots status"/>
 
             </StackPanel>
             <StackPanel Name="stpBot2Panel" Orientation="Vertical" Background="BlanchedAlmond">
@@ -44,11 +44,11 @@
                     <Image Name="Bot2Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:" ToolTip="Displays the users total cash"/>
-                <TextBox Name="tbxBot2Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot2Amount" IsReadOnly="True" ToolTip="Displays the bots total cash"/>
                 <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
-                <TextBox Name="tbxBot2Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot2Bet" IsReadOnly="True" ToolTip="Displays how much the bot has bet"/>
                 <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
-                <TextBox Name="tbxBot2Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot2Status" IsReadOnly="True" ToolTip="Displays the bots status"/>
 
             </StackPanel>
             <StackPanel Name="stpBot3Panel" Orientation="Vertical" Background="DarkGoldenrod">
@@ -58,11 +58,11 @@
                     <Image Name="Bot3Card2" Source="/Images/Cardback.png" Height="145" Width="100"/>
                 </StackPanel>
                 <Label Content="$amount:" ToolTip="Displays the users total cash"/>
-                <TextBox Name="tbxBot3Amount" IsReadOnly="True" ToolTip="Displays the users total cash"/>
+                <TextBox Name="tbxBot3Amount" IsReadOnly="True" ToolTip="Displays the bots total cash"/>
                 <Label Content="$Bet:" ToolTip="Displays how much the user has bet"/>
-                <TextBox Name="tbxBot3Bet" IsReadOnly="True" ToolTip="Displays how much the user has bet"/>
+                <TextBox Name="tbxBot3Bet" IsReadOnly="True" ToolTip="Displays how much the bot has bet"/>
                 <Label Content="Status:" ToolTip="Displays if the user is bankrupt"/>
-                <TextBox Name="tbxBot3Status" IsReadOnly="True" ToolTip="Displays if the user is bankrupt"/>
+                <TextBox Name="tbxBot3Status" IsReadOnly="True" ToolTip="Displays the bots status"/>
 
             </StackPanel>
         </StackPanel>
@@ -70,12 +70,12 @@
             <StackPanel Orientation="Horizontal" Background="LightPink">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Player Information" FontSize="20"/>
-                    <Label Content="Status:" ToolTip="Displays if the user is bankrupt" FontSize="16"/>
-                    <TextBox Name="tbxUserStatus" IsReadOnly="True" ToolTip="Displays if the user is bankrupt" FontSize="16"/>
-                    <Label Content="Bet:" ToolTip="Displays how much the user has bet" FontSize="16"/>
-                    <TextBox Name="tbxUserBet" IsReadOnly="True" ToolTip="Displays how much the user has bet" FontSize="16"/>
                     <Label Content="Amount:" ToolTip="Displays the users total cash" FontSize="16"/>
                     <TextBox Name="tbxUserAmount" IsReadOnly="True" ToolTip="Displays the users total cash" FontSize="16"/>
+                    <Label Content="Bet:" ToolTip="Displays how much the user has bet" FontSize="16"/>
+                    <TextBox Name="tbxUserBet" IsReadOnly="True" ToolTip="Displays how much the user has bet" FontSize="16"/>                    
+                    <Label Content="Status:" ToolTip="Displays if the user is bankrupt" FontSize="16"/>
+                    <TextBox Name="tbxUserStatus" IsReadOnly="True" ToolTip="Displays the users status" FontSize="16"/>
                 </StackPanel>
                 <Image Name="UserCard1" Source="/Images/Cardback.png" Height="250" Width="172"/>
                 <Image Name="UserCard2" Source="/Images/Cardback.png" Height="250" Width="172"/>
@@ -116,8 +116,9 @@
 
 
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Height="298">
+                <StackPanel Orientation="Vertical">
                     <Button x:Name="btnRanking" Content="Rankings" Click="btnRanking_Click" ToolTip="Shows the different kinds of matches a player can make" FontSize="16" Width="80" Height="30"/>
+                    <Button x:Name="btnHelp" Content="Help" Click="btnHelp_Click" ToolTip="Shows the different kinds of matches a player can make" FontSize="16" Width="80" Height="30"/>
                 </StackPanel>
             </StackPanel>
 
