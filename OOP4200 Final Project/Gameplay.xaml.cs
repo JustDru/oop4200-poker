@@ -370,7 +370,7 @@ namespace OOP4200_Final_Project
             UserCard2.Source = Card.CardImage(player1.playerHand[1]);
 
             lbxAnnoucements.Items.Clear();
-            lbxAnnoucements.Items.Add("Dealer: Cards Delt");
+            lbxAnnoucements.Items.Add("Dealer: Cards Dealt");
 
             btnContinue.IsEnabled = false;
             roundCounter++;
