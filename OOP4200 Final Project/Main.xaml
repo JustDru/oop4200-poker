@@ -42,8 +42,7 @@
                 <DataGrid Name="playerGrid" Margin="20"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="Get" Content="Get Statistics" Click="Stat_Click" Width="100" Margin="25"/>
-                    <Button Name="MainMenu" Content="Main Menu" Click="Menu_Click" Width="100" Margin="25"/>
+                    <Button Name="MainMenu" Content="Main Menu" Click="Menu_Click" Height="52" Width="170" Margin="25"/>
                 </StackPanel>
             </StackPanel>
 

@@ -127,13 +127,9 @@ namespace OOP4200_Final_Project
             this.ContentGrid.Visibility = Visibility.Visible;
             this.StatsView.Visibility = Visibility.Visible;
 
-        }
-
-        private void Stat_Click(object sender, RoutedEventArgs e)
-        {
             try
             {
-                
+
                 //put the connection string in a string
                 string connectString = DBAccess.GetConnectionString();
                 //create a new connection
@@ -159,6 +155,12 @@ namespace OOP4200_Final_Project
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+        }
+
+        private void Stat_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)
